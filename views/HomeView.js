@@ -8,7 +8,7 @@ export function HomeView({ navigation }) {
   const tw = useTailwind()
 
   return (
-    <Viewport navigation={navigation}>
+    <Viewport navigation={navigation} active="Home">
       <Text>Hello World</Text>
     </Viewport>
   )

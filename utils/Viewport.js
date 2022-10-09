@@ -8,14 +8,14 @@ import { useTailwind } from 'tailwind-rn'
 
 import NavBar from './NavBar'
 
-export function Viewport ({ children, navigation })
+export function Viewport ({ children, navigation, active })
 {
   return (
     <View style={{flex: 1}}>
       <View style={{flex: 1}}>
         {children}
       </View>
-      <NavBar navigation={navigation}/>
+      <NavBar navigation={navigation} active={active}/>
     </View>
   )
 }

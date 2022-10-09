@@ -9,25 +9,43 @@ import {
 } from 'react-native-heroicons/outline'
 import { useTailwind } from 'tailwind-rn'
 
-const NavBar = ({ navigation }) => {
+const NavBar = ({ navigation, active }) => {
   const tw = useTailwind()
 
+  const colors =
+  {
+    Cart: '', NewOffer: '', Home: '', Bell: '', Profile: ''
+  }
+
+  Object.keys(colors).map((v) => colors[v] = '#393939');
+  colors[active] = '#d62f64';
+
   return (
-    <View style={{display: 'flex', flexDirection: 'row', justifyContent: 'center', alignSelf: 'stretch'}}>
-      <ShoppingCartIcon style={tw('text-[#393939]')} width={30} height={30} />
-      <PlusIcon style={tw('text-[#393939]')} width={30} height={30} />
+    <View style={tw('justify-around flex flex-row w-full bg-white p-3')}>
+
+      <ShoppingCartIcon 
+        style={tw(`text-[${colors.Cart}]`)} 
+        width={30} 
+        height={30} 
+      />
+
+
+      <PlusIcon style={tw(`text-[${colors.NewOffer}]`)} width={30} height={30} />
+
       <ShoppingBagIcon
-        style={tw('text-[#393939]')}
+        style={tw(`text-[${colors.Home}]`)}
         width={30}
         height={30}
         onPress={() => navigation.navigate('HomeView')}
       />
-      <BellIcon style={tw('text-[#393939]')} width={30} height={30} />
+
+      <BellIcon style={tw(`text-[${colors.Bell}]`)} width={30} height={30} />
+
       <UserCircleIcon
-        style={tw('text-[#393939]')}
         width={30}
         height={30}
         onPress={() => navigation.navigate('AuthView')}
+        style={tw(`text-[${colors.Profile}]`)}
       />
     </View>
   )

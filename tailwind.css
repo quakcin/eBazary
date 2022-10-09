@@ -10,6 +10,15 @@
   bottom: 0px
 }
 
+.my-5 {
+  margin-top: 1.25rem;
+  margin-bottom: 1.25rem
+}
+
+.mb-5 {
+  margin-bottom: 1.25rem
+}
+
 .flex {
   display: flex
 }
@@ -22,6 +31,15 @@
   height: 2.5rem
 }
 
+.w-full {
+  width: 100%
+}
+
+.border-spacing-y-2 {
+  --tw-border-spacing-y: 0.5rem;
+  border-spacing: var(--tw-border-spacing-x) var(--tw-border-spacing-y)
+}
+
 .flex-row {
   flex-direction: row
 }
@@ -30,8 +48,25 @@
   justify-content: space-between
 }
 
+.justify-around {
+  justify-content: space-around
+}
+
 .justify-evenly {
   justify-content: space-evenly
+}
+
+.rounded-full {
+  border-radius: 9999px
+}
+
+.border-b-2 {
+  border-bottom-width: 2px
+}
+
+.border-red-500 {
+  --tw-border-opacity: 1;
+  border-color: rgb(239 68 68 / var(--tw-border-opacity))
 }
 
 .bg-yellow-500 {
@@ -42,6 +77,28 @@
 .bg-red-500 {
   --tw-bg-opacity: 1;
   background-color: rgb(239 68 68 / var(--tw-bg-opacity))
+}
+
+.bg-red-100 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(254 226 226 / var(--tw-bg-opacity))
+}
+
+.bg-white {
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 255 255 / var(--tw-bg-opacity))
+}
+
+.p-10 {
+  padding: 2.5rem
+}
+
+.p-5 {
+  padding: 1.25rem
+}
+
+.p-3 {
+  padding: 0.75rem
 }
 
 .px-5 {
@@ -62,4 +119,9 @@
 .text-\[\#393939\] {
   --tw-text-opacity: 1;
   color: rgb(57 57 57 / var(--tw-text-opacity))
+}
+
+.text-\[\#d62f64\] {
+  --tw-text-opacity: 1;
+  color: rgb(214 47 100 / var(--tw-text-opacity))
 }
