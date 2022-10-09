@@ -1,6 +1,5 @@
 module.exports = {
-  //content: ['./HomeView.js', './App.js', './NavBar.js'],
-  content: ['./views/**/*.js', './App.js'],
+  content: ['./views/**/*.js', './App.js', './utils/**/*.js'],
   theme: {
     extend: {}
   },
