@@ -20,7 +20,7 @@ export default function App() {
   return (
     <TailwindProvider utilities={utilities}>
       <NavigationContainer>
-        <Stack.Navigator>
+        <Stack.Navigator screenOptions={{ animation: 'none' }}>
           <Stack.Screen
             name='AuthView'
             options={{ title: 'Auth', headerShown: false }}
