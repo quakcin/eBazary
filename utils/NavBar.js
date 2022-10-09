@@ -13,11 +13,7 @@ const NavBar = ({ navigation }) => {
   const tw = useTailwind()
 
   return (
-    <View
-      style={tw(
-        'flex flex-row justify-evenly fixed left-0 bottom-0 h-10 bg-red-500'
-      )}
-    >
+    <View style={{display: 'flex', flexDirection: 'row', justifyContent: 'center', alignSelf: 'stretch'}}>
       <ShoppingCartIcon style={tw('text-[#393939]')} width={30} height={30} />
       <PlusIcon style={tw('text-[#393939]')} width={30} height={30} />
       <ShoppingBagIcon
