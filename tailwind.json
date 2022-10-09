@@ -1,18 +1,14 @@
 {
-	"h-screen": {
-		"style": {
-			"height": "100vh"
-		}
-	},
-	"h-full": {
-		"style": {
-			"height": "100%"
-		}
-	},
 	"bg-red-500": {
 		"style": {
 			"--tw-bg-opacity": 1,
 			"backgroundColor": "rgb(239 68 68 / var(--tw-bg-opacity))"
+		}
+	},
+	"text-black": {
+		"style": {
+			"--tw-text-opacity": 1,
+			"color": "rgb(0 0 0 / var(--tw-text-opacity))"
 		}
 	}
 }
