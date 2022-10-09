@@ -25,27 +25,32 @@ const NavBar = ({ navigation, active }) => {
 
       <ShoppingCartIcon 
         style={tw(`text-[${colors.Cart}]`)} 
-        width={30} 
-        height={30} 
+        width={30} height={30} 
+        onPress={() => navigation.navigate('CartView')}
       />
 
-
-      <PlusIcon style={tw(`text-[${colors.NewOffer}]`)} width={30} height={30} />
+      <PlusIcon 
+        style={tw(`text-[${colors.NewOffer}]`)} 
+        width={30} height={30} 
+        onPress={() => navigation.navigate('NewOfferView')}
+      />
 
       <ShoppingBagIcon
         style={tw(`text-[${colors.Home}]`)}
-        width={30}
-        height={30}
+        width={30} height={30}
         onPress={() => navigation.navigate('HomeView')}
       />
 
-      <BellIcon style={tw(`text-[${colors.Bell}]`)} width={30} height={30} />
+      <BellIcon 
+        style={tw(`text-[${colors.Bell}]`)} 
+        width={30} height={30} 
+        onPress={() => navigation.navigate('BellView')}
+      />
 
       <UserCircleIcon
-        width={30}
-        height={30}
-        onPress={() => navigation.navigate('AuthView')}
         style={tw(`text-[${colors.Profile}]`)}
+        width={30} height={30}
+        onPress={() => navigation.navigate('ProfileView')}
       />
     </View>
   )

@@ -9,6 +9,10 @@ import utilities from './tailwind.json'
 
 import { AuthView } from './views/AuthView.js'
 import { HomeView } from './views/HomeView'
+import { CartView } from './views/CartView'
+import { NewOfferView } from './views/NewOfferView'
+import { BellView } from './views/BellView'
+import { ProfileView } from './views/ProfileView'
 
 const Stack = createNativeStackNavigator()
 
@@ -19,13 +23,33 @@ export default function App() {
         <Stack.Navigator>
           <Stack.Screen
             name='AuthView'
-            options={{ title: 'Auth' }}
+            options={{ title: 'Auth', headerShown: false }}
             component={AuthView}
           />
           <Stack.Screen
+            name='CartView'
+            options={{ title: 'Mój Koszyk' }}
+            component={CartView}
+          />
+          <Stack.Screen
+            name='NewOfferView'
+            options={{ title: 'Dodaj Ofertę' }}
+            component={NewOfferView}
+          />
+          <Stack.Screen
             name='HomeView'
-            options={{ title: 'Home' }}
+            options={{ title: 'Home', headerShown: false }}
             component={HomeView}
+          />
+          <Stack.Screen
+            name='BellView'
+            options={{ title: 'Powiadomienia' }}
+            component={BellView}
+          />
+          <Stack.Screen
+            name='ProfileView'
+            options={{ title: 'Mój Profil' }}
+            component={ProfileView}
           />
         </Stack.Navigator>
       </NavigationContainer>
