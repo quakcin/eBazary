@@ -9,7 +9,7 @@ export function AuthView({ navigation }) {
   const tw = useTailwind()
 
   return (
-    <View style={tw('mt-10')}>
+    <View style={{marginTop: 150}}>
       <Button title='Zaloguj' onPress={() => navigation.replace('HomeView')} />
     </View>
   )
