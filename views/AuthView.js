@@ -10,7 +10,7 @@ export function AuthView({ navigation }) {
 
   return (
     <View style={tw('mt-10')}>
-      <Button title='Zaloguj' onPress={() => navigation.navigate('HomeView')} />
+      <Button title='Zaloguj' onPress={() => navigation.replace('HomeView')} />
     </View>
   )
 }

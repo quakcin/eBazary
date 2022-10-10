@@ -37,11 +37,5 @@
 			"paddingBottom": 12,
 			"paddingLeft": 12
 		}
-	},
-	"text-black": {
-		"style": {
-			"--tw-text-opacity": 1,
-			"color": "rgb(0 0 0 / var(--tw-text-opacity))"
-		}
 	}
 }
