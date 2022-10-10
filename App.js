@@ -13,6 +13,7 @@ import { CartView } from './views/CartView'
 import { NewOfferView } from './views/NewOfferView'
 import { BellView } from './views/BellView'
 import { ProfileView } from './views/ProfileView'
+import { OfferView } from './views/OfferView'
 
 const Stack = createNativeStackNavigator()
 
@@ -50,6 +51,11 @@ export default function App() {
             name='ProfileView'
             options={{ title: 'Mój Profil' }}
             component={ProfileView}
+          />
+          <Stack.Screen
+            name='OfferView'
+            options={{ title: 'Oferta' }}
+            component={OfferView}
           />
         </Stack.Navigator>
       </NavigationContainer>

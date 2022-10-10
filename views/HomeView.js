@@ -40,7 +40,8 @@ export function HomeView({ navigation }) {
               price={o.price}
               subtitle={o.kind}
               image={o.image}
-              onSubtitleClick={() => {console.log("Do nothing")}}
+              onSubtitleClick={() => {console.log("Do nothing cause " + o.title)}}
+              onTileClick={() => { navigation.navigate('OfferView') }}
             />
           ))}
         </View>
