@@ -3,8 +3,9 @@ import { StatusBar } from 'expo-status-bar'
 import { StyleSheet, Text, View, Button, FlatList, Image, ScrollView, TouchableOpacity } from 'react-native'
 import { useTailwind } from 'tailwind-rn'
 import { Viewport } from '../utils/Viewport'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, SafeAreaView } from 'react'
 import AutoHeightImage from 'react-native-auto-height-image'
+import VerticalSlider from '../components/ImageSlider'
 
 export function OfferView ({ navigation }) {
   const tw = useTailwind()
@@ -63,21 +64,11 @@ export function OfferView ({ navigation }) {
         </Text>
           <Text style={{textAlign: 'center', fontWeight: 'bold', fontSize: 12, marginBottom: 15}}>
             prezentuje
-          </Text>
-        {offer.images.map((a) => 
-          <View style={{alignItems: 'center', marginBottom: 25}}>
-            <TouchableOpacity onPress={() =>
-            navigation.navigate('showImage', {
-              url: a
-            })
-            }>
-              <AutoHeightImage
-                width={250}
-                source={{uri: a}}
-              />
-          </TouchableOpacity>
-          </View>
-        )}
+        </Text>          
+        <VerticalSlider 
+          pictures = {offer.images} 
+          navigation = {navigation}
+          />
         <View style={{width: '80%', marginLeft: '10%'}}>
           <Text style={{textAlign: 'center', fontWeight: 'bold', fontSize: 16}}>
             Opis

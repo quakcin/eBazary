@@ -1,9 +1,10 @@
 import React from "react"
-import { View, Image, ImageBackground, Text, StyleSheet } from "react-native"
+import { View, Image, Text, StyleSheet, TouchableOpacity } from "react-native"
 
 const ShowImage = (props) => {
   return (
-    <View style={style.imgContainer}>
+    <View
+      style={style.imgContainer}>
       <Image
         source={{uri: props.route.params.url}}
         style={style.image}
