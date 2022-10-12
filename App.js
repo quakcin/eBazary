@@ -14,6 +14,7 @@ import { NewOfferView } from './views/NewOfferView'
 import { BellView } from './views/BellView'
 import { ProfileView } from './views/ProfileView'
 import { OfferView } from './views/OfferView'
+import ShowImage from './utils/ShowImage'
 
 const Stack = createNativeStackNavigator()
 
@@ -56,6 +57,11 @@ export default function App() {
             name='OfferView'
             options={{ title: 'Oferta' }}
             component={OfferView}
+          />
+          <Stack.Screen
+            name='showImage'
+            options={{ headerShown: false }}
+            component={ShowImage}
           />
         </Stack.Navigator>
       </NavigationContainer>

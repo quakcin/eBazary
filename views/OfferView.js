@@ -1,6 +1,6 @@
 
 import { StatusBar } from 'expo-status-bar'
-import { StyleSheet, Text, View, Button, FlatList, Image, ScrollView } from 'react-native'
+import { StyleSheet, Text, View, Button, FlatList, Image, ScrollView, TouchableOpacity } from 'react-native'
 import { useTailwind } from 'tailwind-rn'
 import { Viewport } from '../utils/Viewport'
 import { useEffect, useState } from 'react'
@@ -66,10 +66,16 @@ export function OfferView ({ navigation }) {
           </Text>
         {offer.images.map((a) => 
           <View style={{alignItems: 'center', marginBottom: 25}}>
-            <AutoHeightImage
-              width={250}
-              source={{uri: a}}
-            />
+            <TouchableOpacity onPress={() =>
+            navigation.navigate('showImage', {
+              url: a
+            })
+            }>
+              <AutoHeightImage
+                width={250}
+                source={{uri: a}}
+              />
+          </TouchableOpacity>
           </View>
         )}
         <View style={{width: '80%', marginLeft: '10%'}}>
