@@ -1,11 +1,7 @@
 import { View, Text, Image } from 'react-native'
 import React from 'react'
 
-const CartItem = ({ data }) => {
-  const deleteItem = () => {
-    console.log(`Removing ${JSON.stringify(data)}`)
-  }
-
+const ShoppingHistoryItem = ({ data }) => {
   return (
     <View
       style={{
@@ -32,12 +28,7 @@ const CartItem = ({ data }) => {
               alignItems: 'center'
             }}
           >
-            <Text
-              style={{ fontSize: 11, color: '#C32FA3' }}
-              onPress={deleteItem}
-            >
-              usuń
-            </Text>
+            <Text style={{ fontSize: 11, color: '#C32FA3' }}>02.03.2019</Text>
             <Text>{data.price}zł</Text>
           </View>
         </View>
@@ -46,4 +37,4 @@ const CartItem = ({ data }) => {
   )
 }
 
-export default CartItem
+export default ShoppingHistoryItem

@@ -1,6 +1,12 @@
-
 import { StatusBar } from 'expo-status-bar'
-import { TouchableOpacity, Text, View, Image, ScrollView, TextInput } from 'react-native'
+import {
+  TouchableOpacity,
+  Text,
+  View,
+  Image,
+  ScrollView,
+  TextInput
+} from 'react-native'
 import { useTailwind } from 'tailwind-rn'
 import { Viewport } from '../utils/Viewport'
 import OfferTile from '../components/OfferTile'
@@ -12,11 +18,8 @@ import DropDownPicker from 'react-native-dropdown-picker'
 export function HomeView({ navigation }) {
   const tw = useTailwind()
 
-  const [offers, setOffers] = useState([]);
-
-
-  const [isShowingFilters, setIsShowingFilters] = useState(false);
-  // const [isShowingCategories, setIsSHowingCategories] = useState(true);
+  const [offers, setOffers] = useState([])
+  const [isShowingFilters, setIsShowingFilters] = useState(true)
 
   const [categories, setCateogries] = useState([
     {label: 'Wszystkie',   value: 0}, 
@@ -34,12 +37,6 @@ export function HomeView({ navigation }) {
     {label: 'Bogato',     value: 3}
   ])
 
-  const [category, setCategory] = useState({label: 'Wszystkie', value: 0});
-  const [filter, setFilter] = useState({label: 'Trafność', value: 0});
-
-  const [openCategroy, setOpenCategory] = useState(false);
-  const [openFilter, setOpenFilter] = useState(false);
-
   // fix drop down hooks
 
   const serverResp = `
@@ -47,8 +44,7 @@ export function HomeView({ navigation }) {
   `
   
   useEffect(() => {
-
-    const resp = JSON.parse(serverResp);
+    const resp = JSON.parse(serverResp)
     for (let r of resp)
       if (r.title.length > 18)
         r.title = r.title.substr(0, 18) + "...";
@@ -56,12 +52,20 @@ export function HomeView({ navigation }) {
   }, [])
 
   return (
-    <Viewport navigation={navigation} active="Home" isFullScreen={true}>
+    <Viewport navigation={navigation} active='Home' isFullScreen={true}>
       <ScrollView>
-        <View style={{width: '80%', marginTop: 15, marginLeft: '10%', flexDirection: 'row', justifyContent: 'space-between'}}>
+        <View
+          style={{
+            width: '80%',
+            marginTop: 15,
+            marginLeft: '10%',
+            flexDirection: 'row',
+            justifyContent: 'space-between'
+          }}
+        >
           <TextInput
-            style={{backgroundColor: '#dedede', padding: 3, width: '90%'}}
-            placeholder="Szukaj"
+            style={{ backgroundColor: '#dedede', padding: 3, width: '90%' }}
+            placeholder='Szukaj'
           />
           <TouchableOpacity>
             <FunnelIcon
@@ -112,23 +116,24 @@ export function HomeView({ navigation }) {
             </View>
           )}
         </View>
-        <View 
-          style={{alignItems: 'center', marginTop: 15}}
-        >
+        <View style={{ alignItems: 'center', marginTop: 15 }}>
           {offers.map((o) => (
             <OfferTile
               title={o.title}
               price={o.price}
               subtitle={o.kind}
               image={o.image}
-              onSubtitleClick={() => {console.log("Do nothing cause " + o.title)}}
-              onTileClick={() => { navigation.navigate('OfferView') }}
+              onSubtitleClick={() => {
+                console.log('Do nothing cause ' + o.title)
+              }}
+              onTileClick={() => {
+                navigation.navigate('OfferView')
+              }}
               key={o.title}
             />
           ))}
         </View>
       </ScrollView>
     </Viewport>
-
   )
 }

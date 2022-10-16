@@ -37,29 +37,30 @@ export function CartView({ navigation }) {
 
   return (
     <Viewport navigation={navigation} active='Cart'>
-      <View style={{ alignItems: 'center', marginTop: 20 }}>
+      <View style={{ alignItems: 'center' }}>
         <ScrollView style={{ height: '85%' }}>
           {offers.map((data, index) => (
             <CartItem data={data} key={index} />
           ))}
         </ScrollView>
 
-        <TouchableOpacity
-          style={{
-            borderRadius: 20,
-            backgroundColor: '#68BAA6',
-            paddingHorizontal: 45,
-            paddingVertical: 10,
-            marginTop: 15
-          }}
-        >
-          <Text
-            style={{ color: 'white', fontSize: 15, fontWeight: '500' }}
-            onPress={buy}
+        <View style={{ minHeight: '15%', justifyContent: 'center' }}>
+          <TouchableOpacity
+            style={{
+              borderRadius: 20,
+              backgroundColor: '#68BAA6',
+              paddingHorizontal: 45,
+              paddingVertical: 10
+            }}
           >
-            Dokonaj Zakupu
-          </Text>
-        </TouchableOpacity>
+            <Text
+              style={{ color: 'white', fontSize: 15, fontWeight: '500' }}
+              onPress={buy}
+            >
+              Dokonaj Zakupu
+            </Text>
+          </TouchableOpacity>
+        </View>
       </View>
     </Viewport>
   )
