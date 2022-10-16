@@ -31,6 +31,9 @@ export function HomeView({ navigation }) {
   return (
     <Viewport navigation={navigation} active="Home" isFullScreen={true}>
       <ScrollView>
+        <View>
+          <Text>Wyszukiwarka</Text>
+        </View>
         <View 
           style={{alignItems: 'center'}}
         >
