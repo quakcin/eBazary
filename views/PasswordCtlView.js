@@ -14,16 +14,19 @@ export function PasswordCtlView ({ navigation }) {
           name="oldPas"
           style={styles.input}
           placeholder="Aktualne hasło"
+          secureTextEntry={true}
         />
         <TextInput
           name="newPas1"
           style={styles.input}
           placeholder="Nowe hasło"
+          secureTextEntry={true}
         />
         <TextInput
           name="newPas2"
           style={styles.input}
           placeholder="Powtórz nowe hasło"
+          secureTextEntry={true}
         />
       </View>
       <View style={{padding: 35, marginTop: 10 }}>
