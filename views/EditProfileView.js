@@ -13,7 +13,7 @@ export function EditProfileView ({ navigation }) {
   const [profile, setProfile] = useState({});
   const [name, setName] = useState('');
   const [surname, setSurname] = useState('');
-  const [image, setImage] = useState('');
+  const [image, setImage] = useState('a');
   const [user, setUser] = useState('');
   const [mail, setMail] = useState('');
   const [desc, setDesc] = useState('');
@@ -79,24 +79,18 @@ export function EditProfileView ({ navigation }) {
               name="desc"
               multiline={true}
               style={[styles.input, {height: 80}]}
-              placeholder="Krótki opis użtykownika"
+              placeholder="Krótki opis użytkownika"
               value={desc}
               onChange={setDesc}
             />
           </View>
           <View style = {styles.buttonArea}>
-            <View style={{width:"80%", marginBottom: '8%'}}>
-              <Button
-                title="Zapisz"
-                onPress={() => console.log('Zapisz zmiany')}
-              />
-            </View>
-            <View style={{width:"80%", marginBottom: '15%'}}>
-              <Button
-                title="Usuń konto"
-                onPress={() => console.log('Usunięcie konta')}
-              />
-            </View>
+            <TouchableOpacity style={styles.button} onPress={() => console.log("Zapisz")} >
+              <Text style={{fontSize: 18}}>ZAPISZ</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.button} onPress={() => console.log("Usuń konto")} >
+              <Text style={{fontSize: 18, color: "#d63827"}}>USUŃ KONTO</Text>
+            </TouchableOpacity>
           </View>
           <View style={styles.info}>
             <Text style={styles.info}>Możesz też zmienić
@@ -127,5 +121,13 @@ const styles = StyleSheet.create({
     width: "100%",
     alignItems:"center", 
     marginTop: 70
-  }
+  },
+  button: {
+    width: "80%",
+    height: 40,
+    alignItems: "center",
+    justifyContent: "center",
+    margin: 10,
+    backgroundColor: "#bfbfbf",
+  },
 });
