@@ -12,6 +12,11 @@ export function EditProfileView ({ navigation }) {
 
   const [profile, setProfile] = useState({});
   const [name, setName] = useState('');
+  const [surname, setSurname] = useState('');
+  const [image, setImage] = useState('');
+  const [user, setUser] = useState('');
+  const [mail, setMail] = useState('');
+  const [desc, setDesc] = useState('');
 
   const serverResp = {
     name: "Mariusz",
@@ -25,6 +30,11 @@ export function EditProfileView ({ navigation }) {
   useEffect(() => {
     setProfile(serverResp);
     setName(serverResp.name);
+    setSurname(serverResp.surname);
+    setUser(serverResp.user)
+    setDesc(serverResp.desc);
+    setImage(serverResp.image);
+    setMail(serverResp.mail);
   }, [])
 
   return (
@@ -32,7 +42,7 @@ export function EditProfileView ({ navigation }) {
       <ScrollView style={{marginTop: 20, padding: 20}}>
         <View style={{alignItems:"center", marginBottom: "10%"}}>
           <AutoHeightImage
-            source = {{uri: profile.image}}
+            source = {{uri: image}}
             width={150}
           />
           <View style = {{width: "100%", alignItems:"center"}}>
@@ -48,26 +58,30 @@ export function EditProfileView ({ navigation }) {
               name="surname"
               style={styles.input}
               placeholder="Nazwisko"
-              value={profile.surname}
+              value={surname}
+              onChange={setSurname}
             />
             <TextInput
               name="nickname"
               style={styles.input}
               placeholder="Nazwa użytkownika"
-              value={profile.user}
+              value={user}
+              onChange={setUser}
             />
             <TextInput
               name="mail"
               style={styles.input}
               placeholder="Adres e-mail"
-              value={profile.mail}
+              value={mail}
+              onChange={setMail}
             />
             <TextInput
               name="desc"
               multiline={true}
               style={[styles.input, {height: 80}]}
               placeholder="Krótki opis użtykownika"
-              value={profile.desc}
+              value={desc}
+              onChange={setDesc}
             />
           </View>
           <View style = {styles.buttonArea}>
