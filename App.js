@@ -15,6 +15,11 @@ import { BellView } from './views/BellView'
 import { ProfileView } from './views/ProfileView'
 import { OfferView } from './views/OfferView'
 import ShowImage from './utils/ShowImage'
+import { BuyView } from './views/BuyView'
+import { TransactionDetailsView } from './views/TransactionDetailsView'
+import { MyShoppingView } from './views/MyShoppingView'
+import { EditProfileView } from './views/EditProfileView'
+import { PasswordCtlView } from './views/PasswordCtlView'
 
 const Stack = createNativeStackNavigator()
 
@@ -62,6 +67,31 @@ export default function App() {
             name='showImage'
             options={{ headerShown: false }}
             component={ShowImage}
+          />
+          <Stack.Screen
+            name='MyShoppingView'
+            options={{ title: 'Moje zakupy' }}
+            component={MyShoppingView}
+          />
+          <Stack.Screen
+            name='TransactionDetailsView'
+            options={{ title: 'Szczegóły zakupu' }}
+            component={TransactionDetailsView}
+          />
+          <Stack.Screen
+            name='BuyView'
+            options={{ title: 'Finalizacja zakupu' }}
+            component={BuyView}
+          />
+          <Stack.Screen
+            name='EditProfileView'
+            options={{ title: 'Edycja profilu' }}
+            component={EditProfileView}
+          />
+          <Stack.Screen
+            name='PassCtrlView'
+            options={{ title: 'Zmiana hasła' }}
+            component={PasswordCtlView}
           />
         </Stack.Navigator>
       </NavigationContainer>

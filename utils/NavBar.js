@@ -57,7 +57,8 @@ const NavBar = ({ navigation, active }) => {
         style={{ color: colors.Profile }}
         width={30}
         height={30}
-        onPress={() => navigation.navigate('ProfileView')}
+        //onPress={() => navigation.navigate('ProfileView')}
+        onPress={() => navigation.navigate('PassCtrlView')}
       />
     </View>
   )
