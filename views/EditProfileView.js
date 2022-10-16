@@ -11,6 +11,7 @@ export function EditProfileView ({ navigation }) {
   const tw = useTailwind()
 
   const [profile, setProfile] = useState({});
+  const [name, setName] = useState('');
 
   const serverResp = {
     name: "Mariusz",
@@ -23,6 +24,7 @@ export function EditProfileView ({ navigation }) {
 
   useEffect(() => {
     setProfile(serverResp);
+    setName(serverResp.name);
   }, [])
 
   return (
@@ -39,7 +41,8 @@ export function EditProfileView ({ navigation }) {
               name="name"
               style={styles.input}
               placeholder="Imię"
-              value={profile.name}
+              value={name}
+              onChange={setName}
             />
             <TextInput
               name="surname"
