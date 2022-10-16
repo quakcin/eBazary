@@ -1,6 +1,12 @@
-
 import { StatusBar } from 'expo-status-bar'
-import { TouchableOpacity, Text, View, Image, ScrollView, TextInput } from 'react-native'
+import {
+  TouchableOpacity,
+  Text,
+  View,
+  Image,
+  ScrollView,
+  TextInput
+} from 'react-native'
 import { useTailwind } from 'tailwind-rn'
 import { Viewport } from '../utils/Viewport'
 import OfferTile from '../components/OfferTile'
@@ -12,19 +18,26 @@ import DropDownPicker from 'react-native-dropdown-picker'
 export function HomeView({ navigation }) {
   const tw = useTailwind()
 
-  const [offers, setOffers] = useState([]);
-  const [isShowingFilters, setIsShowingFilters] = useState(true);
-
+  const [offers, setOffers] = useState([])
+  const [isShowingFilters, setIsShowingFilters] = useState(true)
 
   const [categories, setCateogries] = useState([
-    'Wszystkie', 'Dom', 'Elektronika', 'Moda', 'Motoryzacja', 'Inne'
+    'Wszystkie',
+    'Dom',
+    'Elektronika',
+    'Moda',
+    'Motoryzacja',
+    'Inne'
   ])
 
-  const [category, setCategory] = useState('');
-  const [openCategroy, setOpenCategory] = useState(false);
+  const [category, setCategory] = useState('')
+  const [openCategroy, setOpenCategory] = useState(false)
 
   const [sorting, setSorting] = useState([
-    'Trafnosc', 'Ocena', 'Oszczędnie', 'Bogato'
+    'Trafnosc',
+    'Ocena',
+    'Oszczędnie',
+    'Bogato'
   ])
 
   // fix drop down hooks
@@ -34,29 +47,44 @@ export function HomeView({ navigation }) {
   `
 
   useEffect(() => {
-
-    const resp = JSON.parse(serverResp);
+    const resp = JSON.parse(serverResp)
     for (let r of resp)
-      if (r.title.length > 18)
-        r.title = r.title.substr(0, 18) + "...";
+      if (r.title.length > 18) r.title = r.title.substr(0, 18) + '...'
 
-  setSorting(sorting.map((n) => {return {label: n, value: n}}));
-  setCateogries(categories.map((n) => {return {label: n, value: n}}));
-    setOffers(resp);
+    setSorting(
+      sorting.map((n) => {
+        return { label: n, value: n }
+      })
+    )
+    setCateogries(
+      categories.map((n) => {
+        return { label: n, value: n }
+      })
+    )
+    setOffers(resp)
   }, [])
 
   return (
-    <Viewport navigation={navigation} active="Home" isFullScreen={true}>
+    <Viewport navigation={navigation} active='Home' isFullScreen={true}>
       <ScrollView>
-        <View style={{width: '80%', marginTop: 15, marginLeft: '10%', flexDirection: 'row', justifyContent: 'space-between'}}>
+        <View
+          style={{
+            width: '80%',
+            marginTop: 15,
+            marginLeft: '10%',
+            flexDirection: 'row',
+            justifyContent: 'space-between'
+          }}
+        >
           <TextInput
-            style={{backgroundColor: '#dedede', padding: 3, width: '90%'}}
-            placeholder="Szukaj"
+            style={{ backgroundColor: '#dedede', padding: 3, width: '90%' }}
+            placeholder='Szukaj'
           />
           <TouchableOpacity>
             <FunnelIcon
-              width = {30} height = {30}
-              style={{color: '#000000', marginLeft: '10%'}}
+              width={30}
+              height={30}
+              style={{ color: '#000000', marginLeft: '10%' }}
             />
           </TouchableOpacity>
         </View>
@@ -70,26 +98,26 @@ export function HomeView({ navigation }) {
               open={openCategroy}
               setOpen={setOpenCategory}
             />
-
           )}
         </View>
-        <View 
-          style={{alignItems: 'center', marginTop: 15}}
-        >
+        <View style={{ alignItems: 'center', marginTop: 15 }}>
           {offers.map((o) => (
             <OfferTile
               title={o.title}
               price={o.price}
               subtitle={o.kind}
               image={o.image}
-              onSubtitleClick={() => {console.log("Do nothing cause " + o.title)}}
-              onTileClick={() => { navigation.navigate('OfferView') }}
+              onSubtitleClick={() => {
+                console.log('Do nothing cause ' + o.title)
+              }}
+              onTileClick={() => {
+                navigation.navigate('OfferView')
+              }}
               key={o.title}
             />
           ))}
         </View>
       </ScrollView>
     </Viewport>
-
   )
 }
