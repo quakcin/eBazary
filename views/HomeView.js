@@ -19,7 +19,11 @@ export function HomeView({ navigation }) {
   const tw = useTailwind()
 
   const [offers, setOffers] = useState([])
-  const [isShowingFilters, setIsShowingFilters] = useState(true)
+  const [isShowingFilters, setIsShowingFilters] = useState(false)
+  const [category, setCategory] = useState('')
+  const [filter, setFilter] = useState('');
+  const [openCategroy, setOpenCategory] = useState(false);
+  const [openFilter, setOpenFilter] = useState(false);
 
   const [categories, setCateogries] = useState([
     {label: 'Wszystkie',   value: 0}, 
