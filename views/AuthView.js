@@ -1,6 +1,6 @@
 import { StatusBar } from "expo-status-bar";
 import React, { useState } from "react";
-import { StyleSheet, Text, View, Image, TextInput, Button, TouchableOpacity } from "react-native";
+import { StyleSheet, Text, View, Image, TextInput, Button, TouchableOpacity, ScrollView } from "react-native";
 import AutoHeightImage from "react-native-auto-height-image";
  
 export function AuthView({ navigation }) {
@@ -8,41 +8,43 @@ export function AuthView({ navigation }) {
   const [password, setPassword] = useState("");
  
   return (
-    <View style={styles.container}>
-      <AutoHeightImage 
-        width={240} 
-        style={styles.image}
-        source={{uri:"https://i.postimg.cc/9fW1Sg1Y/clipart323390.png"}} />
- 
-      <View style={styles.inputView}>
-        <TextInput
-          style={styles.TextInput}
-          placeholder="Nazwa użytkownika"
-          onChangeText={(email) => setEmail(email)}
-        />
-      </View>
- 
-      <View style={styles.inputView}>
-        <TextInput
-          style={styles.TextInput}
-          placeholder="Hasło"
-          //placeholderTextColor="#003f5c"
-          secureTextEntry={true}
-          onChangeText={(password) => setPassword(password)}
-        />
-      </View>
- 
-      <TouchableOpacity style={styles.loginBtn} onPress={() => navigation.replace('HomeView')} >
-        <Text style={{fontSize: 18}}>ZALOGUJ</Text>
-      </TouchableOpacity>
+    <ScrollView style={{marginTop: "12%", padding: 20}}>
+      <View style={{alignItems:"center", marginBottom: "10%"}}>
+        <AutoHeightImage 
+          width={240} 
+          style={styles.image}
+          source={{uri:"https://i.postimg.cc/9fW1Sg1Y/clipart323390.png"}} />
+  
+        <View style={styles.inputView}>
+          <TextInput
+            style={styles.TextInput}
+            placeholder="Nazwa użytkownika"
+            onChangeText={(email) => setEmail(email)}
+          />
+        </View>
+  
+        <View style={styles.inputView}>
+          <TextInput
+            style={styles.TextInput}
+            placeholder="Hasło"
+            //placeholderTextColor="#003f5c"
+            secureTextEntry={true}
+            onChangeText={(password) => setPassword(password)}
+          />
+        </View>
+  
+        <TouchableOpacity style={styles.loginBtn} onPress={() => navigation.replace('HomeView')} >
+          <Text style={{fontSize: 18}}>ZALOGUJ</Text>
+        </TouchableOpacity>
 
-      <TouchableOpacity style={{marginTop: "15%"}} onPress={() => { navigation.navigate('CreateAccountView') }}>
-        <Text style={styles.createAccount}>
-          Jeśli nadal nie posiadasz konta w naszym serwisie, możesz je założyć 
-          <Text style={[styles.createAccount, {color: "#b8215b"}]}> tutaj.</Text>
-        </Text>
-      </TouchableOpacity>
-    </View>
+        <TouchableOpacity style={{marginTop: "15%"}} onPress={() => { navigation.navigate('CreateAccountView') }}>
+          <Text style={styles.createAccount}>
+            Jeśli nadal nie posiadasz konta w naszym serwisie, możesz je założyć 
+            <Text style={[styles.createAccount, {color: "#b8215b"}]}> tutaj.</Text>
+          </Text>
+        </TouchableOpacity>
+      </View>
+    </ScrollView>
   );
 }
  
@@ -60,9 +62,9 @@ const styles = StyleSheet.create({
  
   inputView: {
     backgroundColor: "#bfbfbf",
-    width: "70%",
+    width: "80%",
     height: 45,
-    marginBottom: 20,
+    margin: 20
   },
  
   TextInput: {
@@ -82,7 +84,7 @@ const styles = StyleSheet.create({
     height: 50,
     alignItems: "center",
     justifyContent: "center",
-    marginTop: 40,
+    marginTop: 50,
     backgroundColor: "#bfbfbf",
   },
 });
