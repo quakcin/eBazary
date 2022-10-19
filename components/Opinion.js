@@ -14,6 +14,7 @@ const Opinion = ({ image, rating, message }) => {
           style={{ color: `${i < rating ? '#FFA901' : 'black'}` }}
           width={18}
           height={18}
+          key={i}
         />
       )
 
