@@ -9,7 +9,7 @@ import {
 } from 'react-native-heroicons/outline'
 import { useTailwind } from 'tailwind-rn'
 
-export default function Notification ({ kind, handle })
+export default function Notification ({ kind, source, navigation })
 {
   const tw = useTailwind()
 
@@ -45,23 +45,33 @@ export default function Notification ({ kind, handle })
 
   return (
     <View style={{marginTop: 15}}>
-      <View style={{flexDirection: 'row', alignContent: 'center'}}>
-        <View style={{marginRight: 10}}>
-          {kinds[kind].icon}
-        </View>
-        <View style={{alignContent: 'center'}}>
-          <View>
-            <Text style={{fontSize: 16, fontWeight: 'bold'}}>
-              {kinds[kind].title}
-            </Text>
+      <TouchableOpacity
+        onPress={() => {
+          console.log(source);
+          if (["TransactionSuccess", "TransactionFailure", "NewBuyer"].includes(source.type))
+          {
+            navigation.navigate({name: "TransactionDetailsView", merge: true, params: { source: source}});
+          }
+        }}
+      >
+        <View style={{flexDirection: 'row', alignContent: 'center'}}>
+          <View style={{marginRight: 10}}>
+            {kinds[kind].icon}
           </View>
-          <View>
-            <Text style={{fontSize: 12}}>
-              {kinds[kind].subtitle}
-            </Text>
+          <View style={{alignContent: 'center'}}>
+            <View>
+              <Text style={{fontSize: 16, fontWeight: 'bold'}}>
+                {kinds[kind].title}
+              </Text>
+            </View>
+            <View>
+              <Text style={{fontSize: 12}}>
+                {kinds[kind].subtitle}
+              </Text>
+            </View>
           </View>
         </View>
-      </View>
+      </TouchableOpacity>
     </View>
   )
 }

@@ -83,6 +83,7 @@ export default function App() {
           <Stack.Screen
             name='TransactionDetailsView'
             options={{ title: 'Szczegóły zakupu' }}
+            initialParams={{source: null}}
             component={TransactionDetailsView}
           />
           <Stack.Screen

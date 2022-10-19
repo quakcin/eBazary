@@ -3,12 +3,12 @@
 ** TODO:
 
 - Marcin:
-[] Wszystkie od notifkacji 
-[] Finalizacja Zakupu
+[x] Wszystkie od notifkacji 
+[x] Finalizacja Zakupu
 
 - Maciek:
-[] Logowanie i rejestracja
+[x] Logowanie i rejestracja
 
 - Michał
-[] Dodawanie nowego ogłoszenia
-[] Moje Konto
+[ ] Dodawanie nowego ogłoszenia
+[ ] Moje Konto

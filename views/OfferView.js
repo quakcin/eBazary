@@ -84,7 +84,9 @@ export function OfferView ({ navigation }) {
               <Button title="Do Koszyka" />
             </View>
             <View style={{marginTop: 15, marginBottom: 30}}>
-              <Button title="Kup Teraz!" />
+              <Button title="Kup Teraz!" 
+                onPress={ () => navigation.navigate("BuyView") }
+              />
             </View>
           </View>
         </View>
