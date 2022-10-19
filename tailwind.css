@@ -10,16 +10,8 @@
   flex-direction: row
 }
 
-.items-center {
-  align-items: center
-}
-
 .justify-around {
   justify-content: space-around
-}
-
-.self-center {
-  align-self: center
 }
 
 .bg-white {
@@ -29,40 +21,4 @@
 
 .p-3 {
   padding: 0.75rem
-}
-
-.py-8 {
-  padding-top: 2rem;
-  padding-bottom: 2rem
-}
-
-.py-5 {
-  padding-top: 1.25rem;
-  padding-bottom: 1.25rem
-}
-
-.py-3 {
-  padding-top: 0.75rem;
-  padding-bottom: 0.75rem
-}
-
-.pb-24 {
-  padding-bottom: 6rem
-}
-
-.pb-12 {
-  padding-bottom: 3rem
-}
-
-.pb-0 {
-  padding-bottom: 0px
-}
-
-.text-xl {
-  font-size: 1.25rem;
-  line-height: 1.75rem
-}
-
-.font-bold {
-  font-weight: 700
 }

@@ -47,9 +47,9 @@ export function CartView({ navigation }) {
         <View style={{ minHeight: '15%', justifyContent: 'center' }}>
           <TouchableOpacity
             style={{
-              borderRadius: 20,
+              borderRadius: 5,
               backgroundColor: '#68BAA6',
-              paddingHorizontal: 45,
+              paddingHorizontal: 68,
               paddingVertical: 10
             }}
           >
