@@ -1,6 +1,6 @@
 import Checkbox from 'expo-checkbox';
-import { useState } from 'react';
-import { StyleSheet, Text, View, ScrollView, Image, TextInput, TouchableOpacity } from 'react-native'
+import React, { useState } from 'react';
+import { StyleSheet, Text, View, ScrollView, Image, TextInput, TouchableOpacity, Alert } from 'react-native'
 import AutoHeightImage from 'react-native-auto-height-image'
 import { Viewport } from '../utils/Viewport'
 
@@ -13,6 +13,36 @@ export function CreateAccountView ({ navigation }) {
   const [surname, setSurname] = useState("");
   const [password1, setPassword1] = useState("");
   const [password2, setPassword2] = useState("");
+  const hasUnsavedChanges = Boolean(true);
+
+  React.useEffect(
+    () =>
+      navigation.addListener('beforeRemove', (e) => {
+        if (!hasUnsavedChanges) {
+          // If we don't have unsaved changes, then we don't need to do anything
+          return;
+        }
+
+        // Prevent default behavior of leaving the screen
+        e.preventDefault();
+
+        // Prompt the user before leaving the screen
+        Alert.alert(
+          'Czy chcesz przerwać rejestrację?',
+          'Posiadasz niezapisane dane, jeżeli przerwiesz proces rejestracji Twoje konto nie zostanie utworzone!',
+          [
+            { text: 'Nie, pozostań', style: 'cancel', onPress: () => {} },
+            {
+              text: "Tak, anuluj",
+              style: 'destructive',
+              onPress: () => navigation.dispatch(e.data.action),
+            },
+          ]
+        );
+      }),
+    [navigation, hasUnsavedChanges]
+  );
+
 
   return (
     <ScrollView style={{marginTop: "12%", padding: 20}}>
@@ -27,13 +57,13 @@ export function CreateAccountView ({ navigation }) {
             name="name"
             style={styles.input}
             placeholder="Imię"
-            onChangeText={(name) => setName(name)}
+            onChangeText= { setName }
           />
           <TextInput
             name="surname"
             style={styles.input}
             placeholder="Nazwisko"
-            onChangeText={(surname) => setSurname(surname)}
+            onChangeText= { setSurname }
           />
           <TextInput
             name="nickname"
