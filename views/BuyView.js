@@ -6,6 +6,7 @@ import { useTailwind } from 'tailwind-rn'
 import { Viewport } from '../utils/Viewport'
 import { useEffect, useState } from 'react'
 import DropDownPicker from 'react-native-dropdown-picker'
+import SelectList from 'react-native-dropdown-select-list'
 
 const serverResp = {
   items: [
@@ -43,14 +44,13 @@ export function BuyView ({ navigation }) {
   }
 
 
-  const [open, setOpen] = useState(false);
-  const [value, setValue] = useState(null);
-  const [items, setItems] = useState([
-    {label: 'Poczta Polska', value: 'pp'},
-    {label: 'Kurier DPD', value: 'pl'},
-    {label: 'Kurier DHL', value: 'ph'},
-    {label: 'Paczkomat InPost', value: 'pi'}
-  ]);
+  const [selected, setSelected] = useState("");
+  const data = [
+    {key:'pp', value: 'Poczta Polska'},
+    {key:'pl', value: 'Kurier DPD'},
+    {key:'ph', value: 'Kurier DHL'},
+    {key:'pi', value: 'Paczkomat InPost'},
+  ];
 
   return (
     <Viewport navigation={navigation} active="Cart">
@@ -94,14 +94,13 @@ export function BuyView ({ navigation }) {
             />
           </View>
           <View style={{padding: 10}}>
-            <DropDownPicker
-              open={open}
-              value={value}
-              items={items}
-              setOpen={setOpen}
-              setValue={setValue}
-              setItems={setItems}
-              placeholder="Rodzaj dostawy"
+            <SelectList
+              setSelected={setSelected} 
+              data={data}
+              search={false}
+              placeholder = {"Rodzaj dostawy"}
+              boxStyles={{borderRadius:0, backgroundColor: '#cfcfcf', borderWidth:0}}
+              dropdownStyles={{borderRadius:0, backgroundColor: '#cfcfcf', borderWidth:0}}
             />
           </View>
         </View>
