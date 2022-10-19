@@ -1,102 +1,270 @@
-
 import { StatusBar } from 'expo-status-bar'
-import { useEffect, useState } from 'react'
-import { StyleSheet, Text, View, Button, ScrollView, Image, TextInput, TouchableOpacity } from 'react-native'
-import AutoHeightImage from 'react-native-auto-height-image'
+import {
+  StyleSheet,
+  Text,
+  View,
+  Button,
+  Image,
+  ScrollView,
+  TextInput,
+  TouchableOpacity
+} from 'react-native'
 import { useTailwind } from 'tailwind-rn'
 import { Viewport } from '../utils/Viewport'
+import { PencilIcon } from 'react-native-heroicons/outline'
+import { Controller, useForm } from 'react-hook-form'
 
+const serverResp = {
+  name: 'Mariusz',
+  surname: 'Kowalski',
+  user: 'TanieIphonyPL',
+  mail: 'tanieiphony@gmail.com',
+  desc: 'Właścicielem konta OleOle_pl jest Euro-net  Sp. z o.o. z siedzibą w Warszawie, przy ul. Muszkieterów.',
+  image:
+    'https://ath2.unileverservices.com/wp-content/uploads/sites/3/2017/09/professional-mens-hairstyles-light-styling-min.jpg'
+}
 
-export function EditProfileView ({ navigation }) {
-  const tw = useTailwind()
+export function EditProfileView({ navigation }) {
+  const {
+    control,
+    handleSubmit,
+    formState: { errors }
+  } = useForm()
 
-  const [profile, setProfile] = useState({});
-  const [name, setName] = useState('');
-  const [surname, setSurname] = useState('');
-  const [image, setImage] = useState('a');
-  const [user, setUser] = useState('');
-  const [mail, setMail] = useState('');
-  const [desc, setDesc] = useState('');
+  const onSubmit = (data) => console.log(data)
 
-  const serverResp = {
-    name: "Mariusz",
-    surname: "Kowalski",
-    user: "TanieIphonyPL",
-    mail: "tanieiphony@gmail.com",
-    desc: "Właścicielem konta OleOle_pl jest Euro-net  Sp. z o.o. z siedzibą w Warszawie, przy ul. Muszkieterów.",
-    image: "https://i.pinimg.com/originals/e5/71/4a/e5714a28c71efc5235c89db3cb2fa801.jpg"
+  const onDeleteAccount = () => console.log('Removing account...')
+
+  const onPasswordChange = () => {
+    navigation.navigate('PassCtrlView')
   }
 
-  useEffect(() => {
-    setProfile(serverResp);
-    setName(serverResp.name);
-    setSurname(serverResp.surname);
-    setUser(serverResp.user)
-    setDesc(serverResp.desc);
-    setImage(serverResp.image);
-    setMail(serverResp.mail);
-  }, [])
-
   return (
-    <Viewport navigation={navigation} active="Cart">
-      <ScrollView style={{marginTop: 20, padding: 20}}>
-        <View style={{alignItems:"center", marginBottom: "10%"}}>
-          <AutoHeightImage
-            source = {{uri: image}}
-            width={150}
-          />
-          <View style = {{width: "100%", alignItems:"center"}}>
+    <Viewport navigation={navigation} active='Profile'>
+      <ScrollView>
+        <View style={{ paddingHorizontal: 45, paddingVertical: 30 }}>
+          <View
+            style={{
+              position: 'relative',
+              width: 130,
+              height: 130,
+              alignSelf: 'center',
+              marginBottom: 12
+            }}
+          >
+            <Image
+              source={{ uri: serverResp.image }}
+              style={{
+                width: 130,
+                height: 130,
+                borderRadius: 90,
+                alignSelf: 'center',
+                position: 'absolute'
+              }}
+            />
+            <PencilIcon
+              width={18}
+              height={18}
+              style={{
+                color: 'black',
+                position: 'absolute',
+                alignSelf: 'flex-end'
+              }}
+            />
+          </View>
 
-            <TextInput
-              name="name"
-              style={styles.input}
-              placeholder="Imię"
-              value={name}
-              onChange={setName}
-            />
-            <TextInput
-              name="surname"
-              style={styles.input}
-              placeholder="Nazwisko"
-              value={surname}
-              onChange={setSurname}
-            />
-            <TextInput
-              name="nickname"
-              style={styles.input}
-              placeholder="Nazwa użytkownika"
-              value={user}
-              onChange={setUser}
-            />
-            <TextInput
-              name="mail"
-              style={styles.input}
-              placeholder="Adres e-mail"
-              value={mail}
-              onChange={setMail}
-            />
-            <TextInput
-              name="desc"
-              multiline={true}
-              style={[styles.input, {height: 80}]}
-              placeholder="Krótki opis użytkownika"
-              value={desc}
-              onChange={setDesc}
-            />
-          </View>
-          <View style = {styles.buttonArea}>
-            <TouchableOpacity style={styles.button} onPress={() => console.log("Zapisz")} >
-              <Text style={{fontSize: 18}}>ZAPISZ</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.button} onPress={() => console.log("Usuń konto")} >
-              <Text style={{fontSize: 18, color: "#d63827"}}>USUŃ KONTO</Text>
-            </TouchableOpacity>
-          </View>
-          <View style={styles.info}>
-            <Text style={styles.info}>Możesz też zmienić
-                <Text style={[styles.info, {color: '#b8215b'}]} onPress={() => { navigation.navigate('PassCtrlView') }}> tutaj </Text>
-              swoje aktualne hasło</Text>
-          </View>
+          <Controller
+            control={control}
+            rules={{
+              required: true
+            }}
+            render={({ field: { onChange, onBlur, value } }) => (
+              <TextInput
+                style={[styles.defaultInput, styles.shortInput]}
+                onBlur={onBlur}
+                onChangeText={onChange}
+                value={value}
+                defaultValue={serverResp.name}
+                placeholder='Imie'
+              />
+            )}
+            name='imie'
+          />
+          {errors.imie && (
+            <Text
+              style={{
+                color: '#fc0303',
+                fontWeight: '500',
+                fontSize: 13,
+                marginTop: 6
+              }}
+            >
+              Imie jest wymagane!
+            </Text>
+          )}
+
+          <Controller
+            control={control}
+            rules={{
+              required: true
+            }}
+            render={({ field: { onChange, onBlur, value } }) => (
+              <TextInput
+                style={[styles.defaultInput, styles.shortInput]}
+                onBlur={onBlur}
+                onChangeText={onChange}
+                value={value}
+                defaultValue={serverResp.surname}
+                placeholder='Nazwisko'
+              />
+            )}
+            name='nazwisko'
+          />
+          {errors.nazwisko && (
+            <Text
+              style={{
+                color: '#fc0303',
+                fontWeight: '500',
+                fontSize: 13,
+                marginTop: 6
+              }}
+            >
+              Nazwisko jest wymagane!
+            </Text>
+          )}
+
+          <Controller
+            control={control}
+            rules={{
+              required: true
+            }}
+            render={({ field: { onChange, onBlur, value } }) => (
+              <TextInput
+                style={[styles.defaultInput, styles.shortInput]}
+                onBlur={onBlur}
+                onChangeText={onChange}
+                value={value}
+                defaultValue={serverResp.user}
+                placeholder='Nazwa użytkownika'
+              />
+            )}
+            name='nazwa_uzytkownika'
+          />
+          {errors.nazwa_uzytkownika && (
+            <Text
+              style={{
+                color: '#fc0303',
+                fontWeight: '500',
+                fontSize: 13,
+                marginTop: 6
+              }}
+            >
+              Nazwa użytkownika jest wymagana!
+            </Text>
+          )}
+
+          <Controller
+            control={control}
+            rules={{
+              required: true
+            }}
+            render={({ field: { onChange, onBlur, value } }) => (
+              <TextInput
+                style={[styles.defaultInput, styles.shortInput]}
+                onBlur={onBlur}
+                onChangeText={onChange}
+                value={value}
+                defaultValue={serverResp.mail}
+                placeholder='Email'
+              />
+            )}
+            name='email'
+          />
+          {errors.email && (
+            <Text
+              style={{
+                color: '#fc0303',
+                fontWeight: '500',
+                fontSize: 13,
+                marginTop: 6
+              }}
+            >
+              Email jest wymagany!
+            </Text>
+          )}
+
+          <Controller
+            control={control}
+            rules={{
+              required: true
+            }}
+            render={({ field: { onChange, onBlur, value } }) => (
+              <TextInput
+                style={[styles.defaultInput, styles.longInput]}
+                onBlur={onBlur}
+                onChangeText={onChange}
+                value={value}
+                defaultValue={serverResp.desc}
+                placeholder='Opis'
+                textAlign='left'
+                textAlignVertical='top'
+                multiline={true}
+              />
+            )}
+            name='opis'
+          />
+          {errors.opis && (
+            <Text
+              style={{
+                color: '#fc0303',
+                fontWeight: '500',
+                fontSize: 13,
+                marginTop: 6
+              }}
+            >
+              Opis jest wymagany!
+            </Text>
+          )}
+
+          <TouchableOpacity
+            style={{
+              borderRadius: 5,
+              backgroundColor: '#68BAA6',
+              paddingHorizontal: 45,
+              paddingVertical: 10,
+              alignItems: 'center',
+              marginTop: 25
+            }}
+            onPress={handleSubmit(onSubmit)}
+          >
+            <Text style={{ color: 'white', fontSize: 15, fontWeight: '500' }}>
+              Zapisz
+            </Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            style={{
+              borderRadius: 5,
+              backgroundColor: '#d62f64',
+              paddingHorizontal: 45,
+              paddingVertical: 10,
+              alignItems: 'center',
+              marginTop: 13
+            }}
+            onPress={onDeleteAccount}
+          >
+            <Text style={{ color: 'white', fontSize: 15, fontWeight: '500' }}>
+              Usuwanie Konta
+            </Text>
+          </TouchableOpacity>
+
+          <Text style={{ alignSelf: 'center', marginTop: 15 }}>
+            Możesz też zmienić{' '}
+            <Text style={{ color: '#2463C2' }} onPress={onPasswordChange}>
+              tutaj
+            </Text>{' '}
+            swoje aktualne hasło
+          </Text>
         </View>
       </ScrollView>
     </Viewport>
@@ -104,30 +272,28 @@ export function EditProfileView ({ navigation }) {
 }
 
 const styles = StyleSheet.create({
-  input: {
+  defaultInput: {
+    backgroundColor: 'white',
+    marginTop: 15
+  },
+
+  shortInput: {
+    width: '100%',
+    borderWidth: 2,
     height: 40,
-    width: "80%",
-    marginTop: 40,
-    padding: 10,
-    backgroundColor: "#bfbfbf"
+    borderColor: '#393939',
+    paddingHorizontal: 20
   },
-  info: {
-    padding: 10,
-    fontSize: 18,
-    textAlign: "center",
-    lineHeight: 25
-  },
-  buttonArea: {
-    width: "100%",
-    alignItems:"center", 
-    marginTop: 70
-  },
-  button: {
-    width: "80%",
+
+  longInput: {
+    width: '100%',
+    minHeight: 150,
+    height: 150,
+    maxHeight: 150,
+    borderWidth: 2,
     height: 40,
-    alignItems: "center",
-    justifyContent: "center",
-    margin: 10,
-    backgroundColor: "#bfbfbf",
-  },
-});
+    borderColor: '#393939',
+    paddingHorizontal: 20,
+    paddingVertical: 12
+  }
+})
