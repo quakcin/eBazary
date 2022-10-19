@@ -51,12 +51,14 @@ export function CreateAccountView ({ navigation }) {
             name="pass1"
             style={styles.input}
             placeholder="Hasło"
+            secureTextEntry={true}
             onChangeText={(password1) => setPassword1(password1)}
           />
           <TextInput
             name="pass2"
             style={styles.input}
             placeholder="Powtórz hasło"
+            secureTextEntry={true}
             onChangeText={(password2) => setPassword2(password2)}
           />
         </View>
