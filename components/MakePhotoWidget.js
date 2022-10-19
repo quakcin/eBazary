@@ -17,7 +17,6 @@ const MakePhotoWidget = () => {
       }}
     >
       <CameraIcon width={30} heigh={30} style={{ color: 'black' }} />
-      {/* <PlusCircleIcon width={30} heigh={30} style={{ color: 'black' }} /> */}
     </View>
   )
 }

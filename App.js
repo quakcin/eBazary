@@ -20,6 +20,7 @@ import { TransactionDetailsView } from './views/TransactionDetailsView'
 import { MyShoppingView } from './views/MyShoppingView'
 import { EditProfileView } from './views/EditProfileView'
 import { PasswordCtlView } from './views/PasswordCtlView'
+import { MyOffersView } from './views/MyOffersView'
 
 const Stack = createNativeStackNavigator()
 
@@ -72,6 +73,11 @@ export default function App() {
             name='MyShoppingView'
             options={{ title: 'Moje zakupy' }}
             component={MyShoppingView}
+          />
+          <Stack.Screen
+            name='MyOffersView'
+            options={{ title: 'Moje Oferty' }}
+            component={MyOffersView}
           />
           <Stack.Screen
             name='TransactionDetailsView'
