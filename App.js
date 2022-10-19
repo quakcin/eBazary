@@ -20,6 +20,7 @@ import { TransactionDetailsView } from './views/TransactionDetailsView'
 import { MyShoppingView } from './views/MyShoppingView'
 import { EditProfileView } from './views/EditProfileView'
 import { PasswordCtlView } from './views/PasswordCtlView'
+import { CreateAccountView } from './views/CreateAccountView'
 import { MyOffersView } from './views/MyOffersView'
 
 const Stack = createNativeStackNavigator()
@@ -98,6 +99,11 @@ export default function App() {
             name='PassCtrlView'
             options={{ title: 'Zmiana hasła' }}
             component={PasswordCtlView}
+          />
+          <Stack.Screen
+            name='CreateAccountView'
+            options={{ headerShown: false }}
+            component={CreateAccountView}
           />
         </Stack.Navigator>
       </NavigationContainer>
