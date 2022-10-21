@@ -99,8 +99,8 @@ export function BuyView ({ navigation }) {
               data={data}
               search={false}
               placeholder = {"Rodzaj dostawy"}
-              boxStyles={{borderRadius:0, backgroundColor: '#cfcfcf', borderWidth:0}}
-              dropdownStyles={{borderRadius:0, backgroundColor: '#cfcfcf', borderWidth:0}}
+              boxStyles={{ borderRadius:0, backgroundColor: '#cfcfcf', borderWidth:0 }}
+              dropdownStyles={{ borderRadius:0, backgroundColor: '#cfcfcf', borderWidth:0 }}
             />
           </View>
         </View>

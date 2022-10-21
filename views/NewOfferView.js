@@ -12,6 +12,8 @@ import { Viewport } from '../utils/Viewport'
 import { useForm, Controller } from 'react-hook-form'
 import MakePhotoWidget from '../components/MakePhotoWidget'
 import RemovePhotoWidget from '../components/RemovePhotoWidget'
+import SelectList from 'react-native-dropdown-select-list'
+import { useState } from 'react'
 
 export function NewOfferView({ navigation }) {
   const {
@@ -21,6 +23,16 @@ export function NewOfferView({ navigation }) {
   } = useForm()
 
   const onSubmit = (data) => console.log(data)
+
+  const [selected, setSelected] = useState("");
+  const data = [
+    {key:'1', value: 'Wszystkie'},
+    {key:'2', value: 'Dom'},
+    {key:'3', value: 'Elektronika'},
+    {key:'4', value: 'Moda'},
+    {key:'5', value: 'Motoryzacja'},
+    {key:'6', value: 'Pozostałe'},
+  ];
 
   return (
     <Viewport navigation={navigation} active='NewOffer'>
@@ -67,17 +79,16 @@ export function NewOfferView({ navigation }) {
               rules={{
                 required: true
               }}
-              render={({ field: { onChange, onBlur, value } }) => (
-                <TextInput
-                  style={[
-                    styles.defaultInput,
-                    styles.shortInput,
-                    { marginTop: 15 }
-                  ]}
+              render={({ field: { onChange, onBlur, selected } }) => (
+                <SelectList
+                  setSelected={setSelected} 
                   onBlur={onBlur}
                   onChangeText={onChange}
-                  value={value}
-                  placeholder='Kategoria'
+                  data={data}
+                  search={false}
+                  placeholder = {"Kategoria"}
+                  boxStyles={{ borderRadius:0, backgroundColor: 'white', borderWidth:2, marginTop: 15 }}
+                  dropdownStyles={{ borderRadius:0, backgroundColor: 'white', borderWidth:2 }}
                 />
               )}
               name='kategoria'
@@ -239,7 +250,7 @@ const styles = StyleSheet.create({
   shortInput: {
     width: '100%',
     borderWidth: 2,
-    height: 40,
+    height: 50,
     borderColor: '#393939',
     paddingHorizontal: 20
   },
@@ -250,7 +261,7 @@ const styles = StyleSheet.create({
     height: 150,
     maxHeight: 150,
     borderWidth: 2,
-    height: 40,
+    height: 50,
     borderColor: '#393939',
     paddingHorizontal: 20,
     paddingVertical: 12
