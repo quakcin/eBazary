@@ -82,7 +82,7 @@ export function HomeView({ navigation }) {
             />
           </TouchableOpacity>
         </View>
-        <View style={{width: '80%', marginLeft: '10%', marginBottom: 30}}>
+        <View style={{width: '80%', marginLeft: '10%', marginBottom: 20, marginTop: 5}}>
           {isShowingFilters && (
             <View>
               <View style={{flexDirection: 'row'}}>
@@ -94,9 +94,11 @@ export function HomeView({ navigation }) {
                   open={openCategroy}
                   setOpen={setOpenCategory}
                   placeholder="Kategoria"
-                  textStyle={{fontSize: 10}}
+                  textStyle={{fontSize: 14}}
                   containerStyle={{width: '50%', padding: 10}}
-                  dropDownContainerStyle={{marginLeft: 10}}
+                  dropDownContainerStyle={{marginLeft: 10, borderRadius: 0, backgroundColor: '#dedede'}}
+                  listMode="SCROLLVIEW"
+                  style={{ backgroundColor: "#dedede", borderRadius: 0, borderWidth: 0}}
                 />
                 <DropDownPicker
                   items={filters}
@@ -106,9 +108,11 @@ export function HomeView({ navigation }) {
                   open={openFilter}
                   setOpen={setOpenFilter}
                   placeholder="Filtr"
-                  textStyle={{fontSize: 10}}
+                  listMode="SCROLLVIEW"
+                  textStyle={{fontSize: 14}}
                   containerStyle={{width: '50%', padding: 10}}
-                  dropDownContainerStyle={{marginLeft: 10}}
+                  dropDownContainerStyle={{marginLeft: 10, borderRadius: 0, backgroundColor: '#dedede'}}
+                  style={{ backgroundColor: "#dedede", borderRadius: 0, borderWidth: 0}}
                 />
               </View>
               <View style={{flexDirection: 'row', alignItems: 'center', marginTop: 10}}>
