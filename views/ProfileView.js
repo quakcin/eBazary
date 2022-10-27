@@ -11,6 +11,12 @@ import {
 import { useTailwind } from 'tailwind-rn'
 import Opinion from '../components/Opinion'
 import { Viewport } from '../utils/Viewport'
+import {
+  useFonts,
+  RobotoMono_600SemiBold
+} from '@expo-google-fonts/roboto-mono'
+import { Ubuntu_400Regular } from '@expo-google-fonts/ubuntu'
+import { Karla_400Regular } from '@expo-google-fonts/karla'
 
 const serverResp = {
   name: 'Mariusz',
@@ -36,6 +42,14 @@ const serverResp = {
 }
 
 export function ProfileView({ navigation }) {
+  let [fontsLoaded] = useFonts({
+    RobotoMono_600SemiBold,
+    Ubuntu_400Regular,
+    Karla_400Regular
+  })
+
+  if (!fontsLoaded) return null
+
   return (
     <Viewport navigation={navigation} active='Profile'>
       <ScrollView>
@@ -61,10 +75,24 @@ export function ProfileView({ navigation }) {
                 flexShrink: 1
               }}
             >
-              <Text style={{ fontWeight: '700', fontSize: 16 }}>
+              <Text
+                style={{
+                  fontWeight: '600',
+                  fontSize: 16,
+                  fontFamily: 'RobotoMono_600SemiBold'
+                }}
+              >
                 {serverResp.user}
               </Text>
-              <Text>{serverResp.desc}</Text>
+              <Text
+                style={{
+                  fontWeight: '400',
+                  fontSize: 13,
+                  fontFamily: 'Ubuntu_400Regular'
+                }}
+              >
+                {serverResp.desc}
+              </Text>
             </View>
           </View>
 
@@ -81,7 +109,14 @@ export function ProfileView({ navigation }) {
               navigation.navigate('MyOffersView')
             }}
           >
-            <Text style={{ color: 'white', fontSize: 15, fontWeight: '500' }}>
+            <Text
+              style={{
+                color: 'white',
+                fontSize: 15,
+                fontWeight: '400',
+                fontFamily: 'Karla_400Regular'
+              }}
+            >
               Moje Oferty
             </Text>
           </TouchableOpacity>
@@ -99,7 +134,14 @@ export function ProfileView({ navigation }) {
               navigation.navigate('MyShoppingView')
             }}
           >
-            <Text style={{ color: 'white', fontSize: 15, fontWeight: '500' }}>
+            <Text
+              style={{
+                color: 'white',
+                fontSize: 15,
+                fontWeight: '400',
+                fontFamily: 'Karla_400Regular'
+              }}
+            >
               Moje Zakupy
             </Text>
           </TouchableOpacity>
@@ -117,14 +159,28 @@ export function ProfileView({ navigation }) {
               navigation.navigate('EditProfileView')
             }}
           >
-            <Text style={{ color: 'white', fontSize: 15, fontWeight: '500' }}>
+            <Text
+              style={{
+                color: 'white',
+                fontSize: 15,
+                fontWeight: '400',
+                fontFamily: 'Karla_400Regular'
+              }}
+            >
               Edytuj Profil
             </Text>
           </TouchableOpacity>
 
-          <Text style={{ alignSelf: 'center', marginTop: 22 }}>
+          <Text
+            style={{
+              alignSelf: 'center',
+              marginTop: 22,
+              fontFamily: 'Karla_400Regular',
+              fontSize: 14
+            }}
+          >
             Posiadasz{' '}
-            {<Text style={{ color: '#FFA901', fontWeight: '600' }}>2</Text>}{' '}
+            {<Text style={{ color: '#00A9B0', fontWeight: '600' }}>2</Text>}{' '}
             opinie
           </Text>
 

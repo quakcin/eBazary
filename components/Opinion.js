@@ -1,8 +1,13 @@
 import { View, Text, Image } from 'react-native'
 import React from 'react'
 import { StarIcon } from 'react-native-heroicons/outline'
+import { Nunito_400Regular, useFonts } from '@expo-google-fonts/nunito'
 
 const Opinion = ({ image, rating, message }) => {
+  let [fontsLoaded] = useFonts({
+    Nunito_400Regular
+  })
+
   const MAX_STARS = 5
 
   const generateStarsJSX = () => {
@@ -21,6 +26,8 @@ const Opinion = ({ image, rating, message }) => {
     return stars
   }
 
+  if (!fontsLoaded) return null
+
   return (
     <View style={{ flexDirection: 'row', marginTop: 13 }}>
       <Image
@@ -37,7 +44,15 @@ const Opinion = ({ image, rating, message }) => {
         <View style={{ flexDirection: 'row' }}>
           {(() => generateStarsJSX())()}
         </View>
-        <Text style={{ fontSize: 12 }}>{message}</Text>
+        <Text
+          style={{
+            fontSize: 12,
+            fontFamily: 'Nunito_400Regular',
+            fontWeight: '400'
+          }}
+        >
+          {message}
+        </Text>
       </View>
     </View>
   )

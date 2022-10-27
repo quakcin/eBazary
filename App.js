@@ -22,10 +22,15 @@ import { EditProfileView } from './views/EditProfileView'
 import { PasswordCtlView } from './views/PasswordCtlView'
 import { CreateAccountView } from './views/CreateAccountView'
 import { MyOffersView } from './views/MyOffersView'
+import { Karla_400Regular, useFonts } from '@expo-google-fonts/karla'
 
 const Stack = createNativeStackNavigator()
 
 export default function App() {
+  let [fontsLoaded] = useFonts({
+    Karla_400Regular
+  })
+
   return (
     <TailwindProvider utilities={utilities}>
       <NavigationContainer>
@@ -55,11 +60,22 @@ export default function App() {
             options={{ title: 'Powiadomienia' }}
             component={BellView}
           />
-          <Stack.Screen
-            name='ProfileView'
-            options={{ title: 'Mój Profil' }}
-            component={ProfileView}
-          />
+
+          {fontsLoaded ? (
+            <Stack.Screen
+              name='ProfileView'
+              options={{
+                title: 'Mój Profil',
+                headerTitleStyle: {
+                  fontFamily: 'Karla_400Regular'
+                }
+              }}
+              component={ProfileView}
+            />
+          ) : (
+            <></>
+          )}
+
           <Stack.Screen
             name='OfferView'
             options={{ title: 'Oferta' }}
@@ -83,7 +99,7 @@ export default function App() {
           <Stack.Screen
             name='TransactionDetailsView'
             options={{ title: 'Szczegóły zakupu' }}
-            initialParams={{source: null}}
+            initialParams={{ source: null }}
             component={TransactionDetailsView}
           />
           <Stack.Screen
