@@ -156,6 +156,7 @@ export function NewOfferView({ navigation }) {
                       styles.shortInput,
                       { width: '85%' }
                     ]}
+                    keyboardType='numeric'
                     onBlur={onBlur}
                     onChangeText={onChange}
                     value={value}
