@@ -10,6 +10,7 @@ import { TransactionDetailsView } from './views/TransactionDetailsView'
 import { Karla_400Regular, useFonts } from '@expo-google-fonts/karla'
 import Drawer from './utils/Drawer'
 import { CreateAccountView } from './views/CreateAccountView'
+import ShowImage from './utils/ShowImage'
 
 const Stack = createStackNavigator()
 
@@ -93,6 +94,11 @@ export default function App() {
               }
             }}
             component={CreateAccountView}
+          />
+          <Stack.Screen
+            name='showImage'
+            options={{ headerShown: false }}
+            component={ShowImage}
           />
         </Stack.Navigator>
       </NavigationContainer>
