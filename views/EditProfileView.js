@@ -13,6 +13,7 @@ import { useTailwind } from 'tailwind-rn'
 import { Viewport } from '../utils/Viewport'
 import { PencilIcon } from 'react-native-heroicons/outline'
 import { Controller, useForm } from 'react-hook-form'
+import { Colors } from '../utils/Colors'
 
 const serverResp = {
   name: 'Mariusz',
@@ -93,7 +94,7 @@ export function EditProfileView({ navigation }) {
           {errors.imie && (
             <Text
               style={{
-                color: '#fc0303',
+                color: Colors.reddish,
                 fontWeight: '500',
                 fontSize: 13,
                 marginTop: 6
@@ -123,7 +124,7 @@ export function EditProfileView({ navigation }) {
           {errors.nazwisko && (
             <Text
               style={{
-                color: '#fc0303',
+                color: Colors.reddish,
                 fontWeight: '500',
                 fontSize: 13,
                 marginTop: 6
@@ -153,7 +154,7 @@ export function EditProfileView({ navigation }) {
           {errors.nazwa_uzytkownika && (
             <Text
               style={{
-                color: '#fc0303',
+                color: Colors.reddish,
                 fontWeight: '500',
                 fontSize: 13,
                 marginTop: 6
@@ -183,7 +184,7 @@ export function EditProfileView({ navigation }) {
           {errors.email && (
             <Text
               style={{
-                color: '#fc0303',
+                color: Colors.reddish,
                 fontWeight: '500',
                 fontSize: 13,
                 marginTop: 6
@@ -216,7 +217,7 @@ export function EditProfileView({ navigation }) {
           {errors.opis && (
             <Text
               style={{
-                color: '#fc0303',
+                color: Colors.reddish,
                 fontWeight: '500',
                 fontSize: 13,
                 marginTop: 6
@@ -229,7 +230,7 @@ export function EditProfileView({ navigation }) {
           <TouchableOpacity
             style={{
               borderRadius: 5,
-              backgroundColor: '#68BAA6',
+              backgroundColor: Colors.buttons,
               paddingHorizontal: 45,
               paddingVertical: 10,
               alignItems: 'center',
@@ -245,7 +246,7 @@ export function EditProfileView({ navigation }) {
           <TouchableOpacity
             style={{
               borderRadius: 5,
-              backgroundColor: '#d62f64',
+              backgroundColor: Colors.reddish,
               paddingHorizontal: 45,
               paddingVertical: 10,
               alignItems: 'center',
@@ -260,7 +261,7 @@ export function EditProfileView({ navigation }) {
 
           <Text style={{ alignSelf: 'center', marginTop: 15 }}>
             Możesz też zmienić{' '}
-            <Text style={{ color: '#2463C2' }} onPress={onPasswordChange}>
+            <Text style={{ color: Colors.bluish }} onPress={onPasswordChange}>
               tutaj
             </Text>{' '}
             swoje aktualne hasło
@@ -281,7 +282,7 @@ const styles = StyleSheet.create({
     width: '100%',
     borderWidth: 2,
     height: 40,
-    borderColor: '#393939',
+    borderColor: Colors.dark,
     paddingHorizontal: 20
   },
 
@@ -292,7 +293,7 @@ const styles = StyleSheet.create({
     maxHeight: 150,
     borderWidth: 2,
     height: 40,
-    borderColor: '#393939',
+    borderColor: Colors.dark,
     paddingHorizontal: 20,
     paddingVertical: 12
   }

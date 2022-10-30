@@ -2,6 +2,7 @@ import { View, Text, Image } from 'react-native'
 import React from 'react'
 import { StarIcon } from 'react-native-heroicons/outline'
 import { Nunito_400Regular, useFonts } from '@expo-google-fonts/nunito'
+import { Colors } from './../utils/Colors'
 
 const Opinion = ({ image, rating, message }) => {
   let [fontsLoaded] = useFonts({
@@ -16,7 +17,7 @@ const Opinion = ({ image, rating, message }) => {
     for (let i = 0; i < MAX_STARS; i++)
       stars.push(
         <StarIcon
-          style={{ color: `${i < rating ? '#FFA901' : 'black'}` }}
+          style={{ color: `${i < rating ? Colors.yellowish : 'black'}` }}
           width={18}
           height={18}
           key={i}

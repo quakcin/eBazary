@@ -17,8 +17,7 @@ import {
 } from '@expo-google-fonts/roboto-mono'
 import { Ubuntu_400Regular } from '@expo-google-fonts/ubuntu'
 import { Karla_400Regular } from '@expo-google-fonts/karla'
-import { EditProfileView } from './EditProfileView'
-import { MyOffersView } from './MyOffersView'
+import { Colors } from '../utils/Colors'
 
 const serverResp = {
   name: 'Mariusz',
@@ -102,7 +101,7 @@ export function ProfileView({ navigation }) {
             <TouchableOpacity
               style={{
                 borderRadius: 5,
-                backgroundColor: '#68BAA6',
+                backgroundColor: Colors.buttons,
                 paddingHorizontal: 45,
                 paddingVertical: 10,
                 alignItems: 'center',
@@ -127,7 +126,7 @@ export function ProfileView({ navigation }) {
             <TouchableOpacity
               style={{
                 borderRadius: 5,
-                backgroundColor: '#68BAA6',
+                backgroundColor: Colors.buttons,
                 paddingHorizontal: 45,
                 paddingVertical: 10,
                 alignItems: 'center',
@@ -152,7 +151,7 @@ export function ProfileView({ navigation }) {
             <TouchableOpacity
               style={{
                 borderRadius: 5,
-                backgroundColor: '#68BAA6',
+                backgroundColor: Colors.buttons,
                 paddingHorizontal: 45,
                 paddingVertical: 10,
                 alignItems: 'center',
@@ -183,7 +182,11 @@ export function ProfileView({ navigation }) {
               }}
             >
               Posiadasz{' '}
-              {<Text style={{ color: '#00A9B0', fontWeight: '600' }}>2</Text>}{' '}
+              {
+                <Text style={{ color: Colors.greenish, fontWeight: '600' }}>
+                  2
+                </Text>
+              }{' '}
               opinie
             </Text>
 

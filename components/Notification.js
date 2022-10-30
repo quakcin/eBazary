@@ -8,64 +8,121 @@ import {
   MegaphoneIcon
 } from 'react-native-heroicons/outline'
 import { useTailwind } from 'tailwind-rn'
+import { Colors } from '../utils/Colors'
+import {
+  useFonts,
+  RobotoMono_600SemiBold
+} from '@expo-google-fonts/roboto-mono'
+import { Ubuntu_400Regular } from '@expo-google-fonts/ubuntu'
+import { Karla_400Regular } from '@expo-google-fonts/karla'
 
-export default function Notification ({ kind, source, navigation })
-{
+export default function Notification({ kind, source, navigation }) {
   const tw = useTailwind()
 
-  const iconSize = 40;
+  const iconSize = 40
 
   const kinds = {
     NewOpinion: {
-      title: "Dodano opinię na twój temat",
-      subtitle: "Kliknij tutaj aby zobaczyć",
-      icon: <StarIcon width={iconSize} height={iconSize} style={{color: '#000000'}}/>
+      title: 'Dodano opinię na twój temat',
+      subtitle: 'Kliknij tutaj aby zobaczyć',
+      icon: (
+        <StarIcon
+          width={iconSize}
+          height={iconSize}
+          style={{ color: Colors.yellowish }}
+        />
+      )
     },
     NewViews: {
-      title: "Ktoś odwiedził twój profil",
-      subtitle: "Oby tak dalej!",
-      icon: <EyeIcon width={iconSize} height={iconSize} style={{color: '#000000'}}/>
+      title: 'Ktoś odwiedził twój profil',
+      subtitle: 'Oby tak dalej!',
+      icon: (
+        <EyeIcon
+          width={iconSize}
+          height={iconSize}
+          style={{ color: Colors.bluish }}
+        />
+      )
     },
     TransactionSuccess: {
-      title: "Pomyślnie dokonano zakupu",
-      subtitle: "Kliknij tutaj po więcej informacji.",
-      icon: <HeartIcon width={iconSize} height={iconSize} style={{color: '#000000'}}/>
+      title: 'Pomyślnie dokonano zakupu',
+      subtitle: 'Kliknij tutaj po więcej informacji.',
+      icon: (
+        <HeartIcon
+          width={iconSize}
+          height={iconSize}
+          style={{ color: Colors.reddish }}
+        />
+      )
     },
     TransactionFailure: {
-      title: "Zakup nie powiódł się",
-      subtitle: "Spróbuj ponownie później",
-      icon: <ExclamationTriangleIcon width={iconSize} height={iconSize} style={{color: '#000000'}}/>
+      title: 'Zakup nie powiódł się',
+      subtitle: 'Spróbuj ponownie później',
+      icon: (
+        <ExclamationTriangleIcon
+          width={iconSize}
+          height={iconSize}
+          style={{ color: Colors.reddish }}
+        />
+      )
     },
     NewBuyer: {
-      title: "Ktoś kupił twój produkt",
-      subtitle: "Zobacz kto",
-      icon: <MegaphoneIcon width={iconSize} height={iconSize} style={{color: '#000000'}}/>
+      title: 'Ktoś kupił twój produkt',
+      subtitle: 'Zobacz kto',
+      icon: (
+        <MegaphoneIcon
+          width={iconSize}
+          height={iconSize}
+          style={{ color: Colors.greenish }}
+        />
+      )
     }
   }
 
+  let [fontsLoaded] = useFonts({
+    RobotoMono_600SemiBold,
+    Ubuntu_400Regular,
+    Karla_400Regular
+  })
+
+  if (!fontsLoaded) return null
+
   return (
-    <View style={{marginTop: 15}}>
+    <View style={{ marginTop: 20, width: '100%', alignItems: 'center' }}>
       <TouchableOpacity
+        style={{ width: '80%', alignItems: 'flex-start', paddingLeft: '2%' }}
         onPress={() => {
-          console.log(source);
-          if (["TransactionSuccess", "TransactionFailure", "NewBuyer"].includes(source.type))
-          {
-            navigation.navigate({name: "TransactionDetailsView", merge: true, params: { source: source}});
+          console.log(source)
+          if (
+            ['TransactionSuccess', 'TransactionFailure', 'NewBuyer'].includes(
+              source.type
+            )
+          ) {
+            navigation.navigate({
+              name: 'TransactionDetailsView',
+              merge: true,
+              params: { source: source }
+            })
           }
         }}
       >
-        <View style={{flexDirection: 'row', alignContent: 'center'}}>
-          <View style={{marginRight: 10}}>
-            {kinds[kind].icon}
-          </View>
-          <View style={{alignContent: 'center'}}>
+        <View
+          style={{
+            flexDirection: 'row',
+            alignItems: 'center'
+          }}
+        >
+          <View style={{ marginRight: 10 }}>{kinds[kind].icon}</View>
+          <View style={{ alignContent: 'center' }}>
             <View>
-              <Text style={{fontSize: 16, fontWeight: 'bold'}}>
+              <Text
+                style={{ fontSize: 15, fontFamily: 'RobotoMono_600SemiBold' }}
+              >
                 {kinds[kind].title}
               </Text>
             </View>
             <View>
-              <Text style={{fontSize: 12}}>
+              <Text style={{ fontSize: 12, fontFamily: 'Karla_400Regular' }}>
                 {kinds[kind].subtitle}
               </Text>
             </View>
@@ -75,4 +132,3 @@ export default function Notification ({ kind, source, navigation })
     </View>
   )
 }
-

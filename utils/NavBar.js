@@ -8,6 +8,7 @@ import {
   UserCircleIcon
 } from 'react-native-heroicons/outline'
 import { useTailwind } from 'tailwind-rn'
+import { Colors } from './Colors'
 
 const NavBar = ({ navigation, active }) => {
   const tw = useTailwind()
@@ -20,8 +21,8 @@ const NavBar = ({ navigation, active }) => {
     Profile: ''
   }
 
-  Object.keys(colors).map((v) => (colors[v] = '#393939'))
-  colors[active] = '#d62f64'
+  Object.keys(colors).map((v) => (colors[v] = Colors.navbarInactive))
+  colors[active] = Colors.navbarActive
 
   return (
     <View style={tw('justify-around flex flex-row w-full bg-white p-3')}>

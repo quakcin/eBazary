@@ -1,5 +1,6 @@
 import { View, Text, Image } from 'react-native'
 import React from 'react'
+import { Colors } from '../utils/Colors'
 
 const ShoppingHistoryItem = ({ data }) => {
   return (
@@ -28,7 +29,9 @@ const ShoppingHistoryItem = ({ data }) => {
               alignItems: 'center'
             }}
           >
-            <Text style={{ fontSize: 11, color: '#C32FA3' }}>02.03.2019</Text>
+            <Text style={{ fontSize: 11, color: Colors.removeAndDate }}>
+              02.03.2019
+            </Text>
             <Text>{data.price}zł</Text>
           </View>
         </View>

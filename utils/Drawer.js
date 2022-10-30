@@ -1,7 +1,6 @@
 import { createDrawerNavigator } from '@react-navigation/drawer'
 import { AuthView } from '../views/AuthView'
 import { BellView } from '../views/BellView'
-import { BuyView } from '../views/BuyView'
 import { CartView } from '../views/CartView'
 import { CreateAccountView } from '../views/CreateAccountView'
 import { EditProfileView } from '../views/EditProfileView'
@@ -26,12 +25,24 @@ export default function () {
     <Drawer.Navigator initialRouteName='HomeView' backBehavior='history'>
       <Drawer.Screen
         name='AuthView'
-        options={{ title: 'Auth', headerShown: false, swipeEnabled: false }}
+        options={{
+          title: 'Auth',
+          headerShown: false,
+          swipeEnabled: false,
+          headerTitleStyle: {
+            fontFamily: 'Karla_400Regular'
+          }
+        }}
         component={AuthView}
       />
       <Drawer.Screen
         name='CartView'
-        options={{ title: 'Mój Koszyk' }}
+        options={{
+          title: 'Mój Koszyk',
+          headerTitleStyle: {
+            fontFamily: 'Karla_400Regular'
+          }
+        }}
         component={CartView}
         onPress={() => {
           this.navigate('CardView')
@@ -39,17 +50,33 @@ export default function () {
       />
       <Drawer.Screen
         name='NewOfferView'
-        options={{ title: 'Dodaj Ofertę' }}
+        options={{
+          title: 'Dodaj Ofertę',
+          headerTitleStyle: {
+            fontFamily: 'Karla_400Regular'
+          }
+        }}
         component={NewOfferView}
       />
       <Drawer.Screen
         name='HomeView'
-        options={{ title: 'Home', headerShown: false }}
+        options={{
+          title: 'Home',
+          headerShown: false,
+          headerTitleStyle: {
+            fontFamily: 'Karla_400Regular'
+          }
+        }}
         component={HomeView}
       />
       <Drawer.Screen
         name='BellView'
-        options={{ title: 'Powiadomienia' }}
+        options={{
+          title: 'Powiadomienia',
+          headerTitleStyle: {
+            fontFamily: 'Karla_400Regular'
+          }
+        }}
         component={BellView}
       />
 
@@ -69,32 +96,43 @@ export default function () {
       )}
       <Drawer.Screen
         name='MyShoppingView'
-        options={{ title: 'Moje zakupy' }}
+        options={{
+          title: 'Moje zakupy',
+          headerTitleStyle: {
+            fontFamily: 'Karla_400Regular'
+          }
+        }}
         component={MyShoppingView}
       />
       <Drawer.Screen
         name='MyOffersView'
-        options={{ title: 'Moje Oferty' }}
+        options={{
+          title: 'Moje Oferty',
+          headerTitleStyle: {
+            fontFamily: 'Karla_400Regular'
+          }
+        }}
         component={MyOffersView}
       />
       <Drawer.Screen
         name='EditProfileView'
-        options={{ title: 'Edycja profilu' }}
+        options={{
+          title: 'Edycja profilu',
+          headerTitleStyle: {
+            fontFamily: 'Karla_400Regular'
+          }
+        }}
         component={EditProfileView}
       />
       <Drawer.Screen
         name='PassCtrlView'
-        options={{ title: 'Zmiana hasła' }}
-        component={PasswordCtlView}
-      />
-      <Drawer.Screen
-        name='CreateAccountView'
         options={{
-          headerShown: false,
-          swipeEnabled: false,
-          title: 'Rejestracja'
+          title: 'Zmiana hasła',
+          headerTitleStyle: {
+            fontFamily: 'Karla_400Regular'
+          }
         }}
-        component={CreateAccountView}
+        component={PasswordCtlView}
       />
     </Drawer.Navigator>
   )

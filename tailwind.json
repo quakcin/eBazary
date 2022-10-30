@@ -29,6 +29,14 @@
 			"justifyContent": "space-around"
 		}
 	},
+	"border": {
+		"style": {
+			"borderTopWidth": 1,
+			"borderRightWidth": 1,
+			"borderBottomWidth": 1,
+			"borderLeftWidth": 1
+		}
+	},
 	"bg-white": {
 		"style": {
 			"--tw-bg-opacity": 1,

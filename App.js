@@ -9,6 +9,7 @@ import { BuyView } from './views/BuyView'
 import { TransactionDetailsView } from './views/TransactionDetailsView'
 import { Karla_400Regular, useFonts } from '@expo-google-fonts/karla'
 import Drawer from './utils/Drawer'
+import { CreateAccountView } from './views/CreateAccountView'
 
 const Stack = createStackNavigator()
 
@@ -26,7 +27,12 @@ export default function App() {
         >
           <Stack.Screen
             name='Drawer'
-            options={{ headerShown: false }}
+            options={{
+              headerShown: false,
+              headerTitleStyle: {
+                fontFamily: 'Karla_400Regular'
+              }
+            }}
             component={Drawer}
           />
 
@@ -34,28 +40,59 @@ export default function App() {
             name='AuthView'
             options={{
               title: 'Auth',
-              headerShown: false
+              headerShown: false,
+              headerTitleStyle: {
+                fontFamily: 'Karla_400Regular'
+              }
             }}
             component={AuthView}
           />
 
           <Stack.Screen
             name='TransactionDetailsView'
-            options={{ title: 'Szczegóły zakupu' }}
+            options={{
+              title: 'Szczegóły zakupu',
+              headerTitleStyle: {
+                fontFamily: 'Karla_400Regular'
+              }
+            }}
             initialParams={{ source: null }}
             component={TransactionDetailsView}
           />
 
           <Stack.Screen
             name='OfferView'
-            options={{ title: 'Oferta' }}
+            options={{
+              title: 'Oferta',
+              headerTitleStyle: {
+                fontFamily: 'Karla_400Regular'
+              }
+            }}
             component={OfferView}
           />
 
           <Stack.Screen
             name='BuyView'
-            options={{ title: 'Finalizacja zakupu' }}
+            options={{
+              title: 'Finalizacja zakupu',
+              headerTitleStyle: {
+                fontFamily: 'Karla_400Regular'
+              }
+            }}
             component={BuyView}
+          />
+
+          <Stack.Screen
+            name='CreateAccountView'
+            options={{
+              headerShown: false,
+              swipeEnabled: false,
+              title: 'Rejestracja',
+              headerTitleStyle: {
+                fontFamily: 'Karla_400Regular'
+              }
+            }}
+            component={CreateAccountView}
           />
         </Stack.Navigator>
       </NavigationContainer>

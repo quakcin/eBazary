@@ -17,6 +17,7 @@ import { useState } from 'react'
 import { useFonts, RobotoMono_500Medium } from '@expo-google-fonts/roboto-mono'
 import { Ubuntu_400Regular } from '@expo-google-fonts/ubuntu'
 import { Karla_400Regular } from '@expo-google-fonts/karla'
+import { Colors } from '../utils/Colors'
 
 export function NewOfferView({ navigation }) {
   const {
@@ -76,7 +77,7 @@ export function NewOfferView({ navigation }) {
             {errors.tytul && (
               <Text
                 style={{
-                  color: '#fc0303',
+                  color: Colors.reddish,
                   fontWeight: '500',
                   fontSize: 13,
                   marginTop: 6
@@ -122,7 +123,7 @@ export function NewOfferView({ navigation }) {
             {errors.kategoria && (
               <Text
                 style={{
-                  color: '#fc0303',
+                  color: Colors.reddish,
                   fontWeight: '500',
                   fontSize: 13,
                   marginTop: 6
@@ -172,7 +173,7 @@ export function NewOfferView({ navigation }) {
             {errors.cena?.message && (
               <Text
                 style={{
-                  color: '#fc0303',
+                  color: Colors.reddish,
                   fontWeight: '500',
                   fontSize: 13,
                   marginTop: 6
@@ -184,7 +185,7 @@ export function NewOfferView({ navigation }) {
             {errors.cena?.required && (
               <Text
                 style={{
-                  color: '#fc0303',
+                  color: Colors.reddish,
                   fontWeight: '500',
                   fontSize: 13,
                   marginTop: 6
@@ -220,7 +221,7 @@ export function NewOfferView({ navigation }) {
             {errors.opis && (
               <Text
                 style={{
-                  color: '#fc0303',
+                  color: Colors.reddish,
                   fontWeight: '500',
                   fontSize: 13,
                   marginTop: 6
@@ -248,7 +249,7 @@ export function NewOfferView({ navigation }) {
             <TouchableOpacity
               style={{
                 borderRadius: 5,
-                backgroundColor: '#68BAA6',
+                backgroundColor: Colors.buttons,
                 paddingHorizontal: 45,
                 paddingVertical: 10,
                 alignItems: 'center',
@@ -284,7 +285,7 @@ const styles = StyleSheet.create({
     width: '100%',
     borderWidth: 2,
     height: 50,
-    borderColor: '#393939',
+    borderColor: Colors.dark,
     paddingHorizontal: 20
   },
 
@@ -295,7 +296,7 @@ const styles = StyleSheet.create({
     maxHeight: 150,
     borderWidth: 2,
     height: 50,
-    borderColor: '#393939',
+    borderColor: Colors.dark,
     paddingHorizontal: 20,
     paddingVertical: 12
   }

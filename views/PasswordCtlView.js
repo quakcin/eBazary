@@ -1,43 +1,82 @@
-
 import { StatusBar } from 'expo-status-bar'
-import { StyleSheet, Text, View, Button, TextInput, ScrollView } from 'react-native'
+import { useState } from 'react'
+import {
+  StyleSheet,
+  Text,
+  View,
+  Button,
+  TextInput,
+  ScrollView,
+  TouchableOpacity
+} from 'react-native'
 import { useTailwind } from 'tailwind-rn'
+import { Colors } from '../utils/Colors'
 import { Viewport } from '../utils/Viewport'
 
-export function PasswordCtlView ({ navigation }) {
+export function PasswordCtlView({ navigation }) {
   const tw = useTailwind()
 
+  const [currentPassword, setCurrentPassword] = useState('')
+  const [newPassword, setNewPassword] = useState('')
+  const [repeatNewPassword, setRepeatNewPassword] = useState('')
+
   return (
-    <Viewport navigation={navigation} active="ProfileView">
+    <Viewport navigation={navigation} active='ProfileView'>
       <ScrollView>
         <View style={styles.container}>
           <TextInput
-            name="oldPas"
-            style={styles.input}
-            placeholder="Aktualne hasło"
+            style={[styles.defaultInput, styles.shortInput]}
+            onChangeText={(txt) => setCurrentPassword(txt)}
+            placeholder='Aktualne Hasło'
             secureTextEntry={true}
           />
+
           <TextInput
-            name="newPas1"
-            style={styles.input}
-            placeholder="Nowe hasło"
+            style={[styles.defaultInput, styles.shortInput]}
+            onChangeText={(txt) => setNewPassword(txt)}
+            placeholder='Nowe hasło'
             secureTextEntry={true}
           />
+
           <TextInput
-            name="newPas2"
-            style={styles.input}
-            placeholder="Powtórz nowe hasło"
+            style={[styles.defaultInput, styles.shortInput]}
+            onChangeText={(txt) => setRepeatNewPassword(txt)}
+            placeholder='Powtórz nowe hasło'
             secureTextEntry={true}
           />
         </View>
-        <View style={{padding: 35, marginTop: 10 }}>
-          <Button
-            title="Zmień hasło"
-            onPress={() => console.log('Zmiana hasła')}
-          />
-        </View>
+
+        <TouchableOpacity
+          style={{
+            borderRadius: 5,
+            backgroundColor: Colors.buttons,
+            paddingHorizontal: 45,
+            paddingVertical: 10,
+            alignItems: 'center',
+            width: '80%',
+            alignSelf: 'center'
+          }}
+          onPress={() => console.log('Zmiana hasła...')}
+        >
+          <Text
+            style={{
+              color: 'white',
+              fontSize: 15,
+              fontWeight: '400',
+              fontFamily: 'Karla_400Regular'
+            }}
+          >
+            Zmień hasło
+          </Text>
+        </TouchableOpacity>
+
         <View style={styles.info}>
-          <Text style={styles.info}>Utrata hasła spowoduje utratę dostępu do konta!</Text>
+          <Text style={{ marginTop: 18 }}>
+            <Text style={([styles.info], { color: Colors.reddish })}>
+              Utrata hasła
+            </Text>
+            <Text style={styles.info}> spowoduje utratę dostępu do konta!</Text>
+          </Text>
         </View>
       </ScrollView>
     </Viewport>
@@ -45,20 +84,29 @@ export function PasswordCtlView ({ navigation }) {
 }
 
 const styles = StyleSheet.create({
+  defaultInput: {
+    backgroundColor: 'white',
+    marginTop: 20,
+    fontFamily: 'Ubuntu_400Regular'
+  },
+
+  shortInput: {
+    width: '90%',
+    borderWidth: 2,
+    height: 40,
+    borderColor: Colors.dark,
+    paddingHorizontal: 20
+  },
+
   container: {
     padding: 25,
-    marginTop: 25
+    marginTop: 25,
+    alignItems: 'center'
   },
-  input: {
-    height: 40,
-    margin: 12,
-    padding: 10,
-    backgroundColor: "#bfbfbf"
-  },
+
   info: {
-    padding: 25,
-    fontSize: 18,
-    textAlign: "center",
+    fontSize: 14,
     lineHeight: 25,
+    alignSelf: 'center'
   }
-});
+})

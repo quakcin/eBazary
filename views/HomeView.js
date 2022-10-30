@@ -6,7 +6,8 @@ import {
   Image,
   ScrollView,
   TextInput,
-  Button
+  Button,
+  StyleSheet
 } from 'react-native'
 import { useTailwind } from 'tailwind-rn'
 import { Viewport } from '../utils/Viewport'
@@ -23,6 +24,7 @@ import {
   FunnelIcon
 } from 'react-native-heroicons/outline'
 import DropDownPicker from 'react-native-dropdown-picker'
+import { Colors } from '../utils/Colors'
 
 const Drawer = createDrawerNavigator()
 
@@ -80,18 +82,14 @@ export function HomeView({ navigation }) {
             marginTop: 15,
             marginLeft: '10%',
             flexDirection: 'row',
-            justifyContent: 'space-between'
+            alignItems: 'center'
           }}
         >
           <TextInput
-            style={{
-              backgroundColor: '#dedede',
-              padding: 3,
-              width: '90%',
-              fontFamily: 'Ubuntu_400Regular'
-            }}
+            style={[styles.defaultInput, styles.shortInput]}
             placeholder='Szukaj'
           />
+
           <TouchableOpacity>
             <FunnelIcon
               width={30}
@@ -127,13 +125,13 @@ export function HomeView({ navigation }) {
                   dropDownContainerStyle={{
                     marginLeft: 10,
                     borderRadius: 0,
-                    backgroundColor: '#dedede'
+                    backgroundColor: '#fff'
                   }}
                   listMode='SCROLLVIEW'
                   style={{
-                    backgroundColor: '#dedede',
+                    backgroundColor: '#fff',
                     borderRadius: 0,
-                    borderWidth: 0
+                    borderWidth: 2
                   }}
                 />
                 <DropDownPicker
@@ -150,12 +148,14 @@ export function HomeView({ navigation }) {
                   dropDownContainerStyle={{
                     marginLeft: 10,
                     borderRadius: 0,
-                    backgroundColor: '#dedede'
+                    backgroundColor: '#fff',
+                    borderWidth: 2
                   }}
                   style={{
-                    backgroundColor: '#dedede',
+                    backgroundColor: '#fff',
                     borderRadius: 0,
-                    borderWidth: 0
+                    borderWidth: 0,
+                    borderWidth: 2
                   }}
                 />
               </View>
@@ -166,26 +166,40 @@ export function HomeView({ navigation }) {
                   marginTop: 10
                 }}
               >
-                <Text style={{ fontSize: 16 }}>Cena </Text>
+                <Text style={{ fontSize: 16, fontFamily: 'Karla_400Regular' }}>
+                  Cena{' '}
+                </Text>
                 <TextInput
-                  style={{
-                    backgroundColor: '#dedede',
-                    width: 50,
-                    padding: 5,
-                    marginLeft: 5
-                  }}
+                  style={[
+                    styles.defaultInput,
+                    styles.shortInput,
+                    {
+                      width: 50
+                    }
+                  ]}
                   placeholder='0'
                 />
-                <Text style={{ fontSize: 16 }}> do </Text>
+
+                <Text style={{ fontSize: 16, fontFamily: 'Karla_400Regular' }}>
+                  {' '}
+                  do{' '}
+                </Text>
+
                 <TextInput
-                  style={{
-                    backgroundColor: '#dedede',
-                    width: 50,
-                    padding: 5
-                  }}
+                  style={[
+                    styles.defaultInput,
+                    styles.shortInput,
+                    {
+                      width: 50,
+                      paddingHorizontal: 12
+                    }
+                  ]}
                   placeholder='100'
                 />
-                <Text style={{ fontSize: 16 }}> zł </Text>
+                <Text style={{ fontSize: 16, fontFamily: 'Karla_400Regular' }}>
+                  {' '}
+                  zł{' '}
+                </Text>
               </View>
             </View>
           )}
@@ -237,3 +251,18 @@ export function HomeView({ navigation }) {
     </Viewport>
   )
 }
+
+const styles = StyleSheet.create({
+  defaultInput: {
+    backgroundColor: 'white',
+    fontFamily: 'Ubuntu_400Regular'
+  },
+
+  shortInput: {
+    width: '90%',
+    borderWidth: 2,
+    height: 40,
+    borderColor: Colors.dark,
+    paddingHorizontal: 20
+  }
+})

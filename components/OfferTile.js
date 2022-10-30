@@ -10,6 +10,7 @@ import {
 import { useTailwind } from 'tailwind-rn'
 import { useFonts, RobotoMono_500Medium } from '@expo-google-fonts/roboto-mono'
 import { Ubuntu_400Regular } from '@expo-google-fonts/ubuntu'
+import { Colors } from '../utils/Colors'
 
 const OfferTile = ({
   title,
@@ -34,11 +35,18 @@ const OfferTile = ({
         onPress={onTileClick}
         style={{ flexDirection: 'row', width: '80%', marginBottom: 20 }}
       >
-        <View>
+        <View style={{ marginRight: 20 }}>
           <Image style={{ width: 70, height: 70 }} source={{ uri: image }} />
         </View>
 
-        <View style={{ width: '70%', alignContent: 'center', height: 70 }}>
+        <View
+          style={{
+            width: '70%',
+            alignContent: 'center',
+            height: 70,
+            justifyContent: 'center'
+          }}
+        >
           <View>
             <Text
               style={{
@@ -62,7 +70,7 @@ const OfferTile = ({
               <Text
                 onPress={onSubtitleClick}
                 style={{
-                  color: '#b8215b',
+                  color: Colors.removeAndDate,
                   fontFamily: 'Ubuntu_400Regular',
                   fontSize: 11
                 }}

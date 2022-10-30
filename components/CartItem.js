@@ -2,6 +2,7 @@ import { View, Text, Image } from 'react-native'
 import React from 'react'
 import { useFonts, RobotoMono_500Medium } from '@expo-google-fonts/roboto-mono'
 import { Ubuntu_400Regular } from '@expo-google-fonts/ubuntu'
+import { Colors } from '../utils/Colors'
 
 const CartItem = ({ data }) => {
   let [fontsLoaded] = useFonts({
@@ -25,14 +26,19 @@ const CartItem = ({ data }) => {
       <View
         style={{
           paddingVertical: 15,
-          flexDirection: 'row'
+          flexDirection: 'row',
+          width: '90%'
         }}
       >
         <Image
           style={{ width: 80, height: 80, marginRight: 30 }}
           source={{ uri: data.image }}
         />
-        <View style={{ justifyContent: 'space-evenly' }}>
+        <View
+          style={{
+            justifyContent: 'space-evenly'
+          }}
+        >
           <Text
             style={{
               fontFamily: 'RobotoMono_500Medium',
@@ -52,7 +58,7 @@ const CartItem = ({ data }) => {
             <Text
               style={{
                 fontSize: 11,
-                color: '#C32FA3',
+                color: Colors.removeAndDate,
                 fontFamily: 'Ubuntu_400Regular'
               }}
               onPress={deleteItem}
