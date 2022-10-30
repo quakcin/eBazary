@@ -3,7 +3,7 @@ import { StatusBar } from 'expo-status-bar'
 import { StyleSheet, Text, View, Button } from 'react-native'
 
 import { NavigationContainer } from '@react-navigation/native'
-import { createNativeStackNavigator } from '@react-navigation/native-stack'
+import { createStackNavigator } from '@react-navigation/stack'
 
 import { TailwindProvider } from 'tailwind-rn'
 import utilities from './tailwind.json'
@@ -25,9 +25,9 @@ import { CreateAccountView } from './views/CreateAccountView'
 import { MyOffersView } from './views/MyOffersView'
 import { Karla_400Regular, useFonts } from '@expo-google-fonts/karla'
 import { createDrawerNavigator } from '@react-navigation/drawer'
+import Drawer from './utils/Drawer'
 
-const Stack = createNativeStackNavigator()
-const Drawer = createDrawerNavigator()
+const Stack = createStackNavigator()
 
 export default function App() {
   let [fontsLoaded] = useFonts({
@@ -38,6 +38,12 @@ export default function App() {
     <TailwindProvider utilities={utilities}>
       <NavigationContainer>
         <Stack.Navigator screenOptions={{ animation: 'none' }}>
+          <Stack.Screen
+            name='Drawer'
+            options={{ headerShown: false }}
+            component={Drawer}
+          />
+
           <Stack.Screen
             name='AuthView'
             options={{ title: 'Auth', headerShown: false }}

@@ -17,6 +17,8 @@ import {
 } from '@expo-google-fonts/roboto-mono'
 import { Ubuntu_400Regular } from '@expo-google-fonts/ubuntu'
 import { Karla_400Regular } from '@expo-google-fonts/karla'
+import { EditProfileView } from './EditProfileView'
+import { MyOffersView } from './MyOffersView'
 
 const serverResp = {
   name: 'Mariusz',
@@ -51,151 +53,153 @@ export function ProfileView({ navigation }) {
   if (!fontsLoaded) return null
 
   return (
-    <Viewport navigation={navigation} active='Profile'>
-      <ScrollView>
-        <View
-          style={{
-            padding: 30,
-            width: '100%'
-          }}
-        >
+    <>
+      <Viewport navigation={navigation} active='Profile'>
+        <ScrollView>
           <View
             style={{
-              flexDirection: 'row'
+              padding: 30,
+              width: '100%'
             }}
           >
-            <Image
-              source={{ uri: serverResp.image }}
-              style={{ width: 122, height: 122, borderRadius: 90 }}
-            />
             <View
               style={{
-                marginLeft: 20,
-                justifyContent: 'space-around',
-                flexShrink: 1
+                flexDirection: 'row'
               }}
             >
-              <Text
+              <Image
+                source={{ uri: serverResp.image }}
+                style={{ width: 122, height: 122, borderRadius: 90 }}
+              />
+              <View
                 style={{
-                  fontWeight: '600',
-                  fontSize: 16,
-                  fontFamily: 'RobotoMono_600SemiBold'
+                  marginLeft: 20,
+                  justifyContent: 'space-around',
+                  flexShrink: 1
                 }}
               >
-                {serverResp.user}
-              </Text>
-              <Text
-                style={{
-                  fontWeight: '400',
-                  fontSize: 13,
-                  fontFamily: 'Ubuntu_400Regular'
-                }}
-              >
-                {serverResp.desc}
-              </Text>
+                <Text
+                  style={{
+                    fontWeight: '600',
+                    fontSize: 16,
+                    fontFamily: 'RobotoMono_600SemiBold'
+                  }}
+                >
+                  {serverResp.user}
+                </Text>
+                <Text
+                  style={{
+                    fontWeight: '400',
+                    fontSize: 13,
+                    fontFamily: 'Ubuntu_400Regular'
+                  }}
+                >
+                  {serverResp.desc}
+                </Text>
+              </View>
             </View>
+
+            <TouchableOpacity
+              style={{
+                borderRadius: 5,
+                backgroundColor: '#68BAA6',
+                paddingHorizontal: 45,
+                paddingVertical: 10,
+                alignItems: 'center',
+                marginTop: 25
+              }}
+              onPress={() => {
+                navigation.navigate('MyOffersView')
+              }}
+            >
+              <Text
+                style={{
+                  color: 'white',
+                  fontSize: 15,
+                  fontWeight: '400',
+                  fontFamily: 'Karla_400Regular'
+                }}
+              >
+                Moje Oferty
+              </Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity
+              style={{
+                borderRadius: 5,
+                backgroundColor: '#68BAA6',
+                paddingHorizontal: 45,
+                paddingVertical: 10,
+                alignItems: 'center',
+                marginTop: 15
+              }}
+              onPress={() => {
+                navigation.navigate('MyShoppingView')
+              }}
+            >
+              <Text
+                style={{
+                  color: 'white',
+                  fontSize: 15,
+                  fontWeight: '400',
+                  fontFamily: 'Karla_400Regular'
+                }}
+              >
+                Moje Zakupy
+              </Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity
+              style={{
+                borderRadius: 5,
+                backgroundColor: '#68BAA6',
+                paddingHorizontal: 45,
+                paddingVertical: 10,
+                alignItems: 'center',
+                marginTop: 15
+              }}
+              onPress={() => {
+                navigation.navigate('EditProfileView')
+              }}
+            >
+              <Text
+                style={{
+                  color: 'white',
+                  fontSize: 15,
+                  fontWeight: '400',
+                  fontFamily: 'Karla_400Regular'
+                }}
+              >
+                Edytuj Profil
+              </Text>
+            </TouchableOpacity>
+
+            <Text
+              style={{
+                alignSelf: 'center',
+                marginTop: 22,
+                fontFamily: 'Karla_400Regular',
+                fontSize: 14
+              }}
+            >
+              Posiadasz{' '}
+              {<Text style={{ color: '#00A9B0', fontWeight: '600' }}>2</Text>}{' '}
+              opinie
+            </Text>
+
+            <Opinion
+              image={serverResp.comments[0].image}
+              rating={serverResp.comments[0].stars}
+              message={serverResp.comments[0].msg}
+            />
+            <Opinion
+              image={serverResp.comments[1].image}
+              rating={serverResp.comments[1].stars}
+              message={serverResp.comments[1].msg}
+            />
           </View>
-
-          <TouchableOpacity
-            style={{
-              borderRadius: 5,
-              backgroundColor: '#68BAA6',
-              paddingHorizontal: 45,
-              paddingVertical: 10,
-              alignItems: 'center',
-              marginTop: 25
-            }}
-            onPress={() => {
-              navigation.navigate('MyOffersView')
-            }}
-          >
-            <Text
-              style={{
-                color: 'white',
-                fontSize: 15,
-                fontWeight: '400',
-                fontFamily: 'Karla_400Regular'
-              }}
-            >
-              Moje Oferty
-            </Text>
-          </TouchableOpacity>
-
-          <TouchableOpacity
-            style={{
-              borderRadius: 5,
-              backgroundColor: '#68BAA6',
-              paddingHorizontal: 45,
-              paddingVertical: 10,
-              alignItems: 'center',
-              marginTop: 15
-            }}
-            onPress={() => {
-              navigation.navigate('MyShoppingView')
-            }}
-          >
-            <Text
-              style={{
-                color: 'white',
-                fontSize: 15,
-                fontWeight: '400',
-                fontFamily: 'Karla_400Regular'
-              }}
-            >
-              Moje Zakupy
-            </Text>
-          </TouchableOpacity>
-
-          <TouchableOpacity
-            style={{
-              borderRadius: 5,
-              backgroundColor: '#68BAA6',
-              paddingHorizontal: 45,
-              paddingVertical: 10,
-              alignItems: 'center',
-              marginTop: 15
-            }}
-            onPress={() => {
-              navigation.navigate('EditProfileView')
-            }}
-          >
-            <Text
-              style={{
-                color: 'white',
-                fontSize: 15,
-                fontWeight: '400',
-                fontFamily: 'Karla_400Regular'
-              }}
-            >
-              Edytuj Profil
-            </Text>
-          </TouchableOpacity>
-
-          <Text
-            style={{
-              alignSelf: 'center',
-              marginTop: 22,
-              fontFamily: 'Karla_400Regular',
-              fontSize: 14
-            }}
-          >
-            Posiadasz{' '}
-            {<Text style={{ color: '#00A9B0', fontWeight: '600' }}>2</Text>}{' '}
-            opinie
-          </Text>
-
-          <Opinion
-            image={serverResp.comments[0].image}
-            rating={serverResp.comments[0].stars}
-            message={serverResp.comments[0].msg}
-          />
-          <Opinion
-            image={serverResp.comments[1].image}
-            rating={serverResp.comments[1].stars}
-            message={serverResp.comments[1].msg}
-          />
-        </View>
-      </ScrollView>
-    </Viewport>
+        </ScrollView>
+      </Viewport>
+    </>
   )
 }
