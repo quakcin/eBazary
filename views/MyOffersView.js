@@ -22,7 +22,7 @@ export function MyOffersView({ navigation }) {
   }, [])
 
   return (
-    <Viewport navigation={navigation} active='Cart'>
+    <Viewport navigation={navigation} active='Profile'>
       <View style={{ alignItems: 'center' }}>
         <ScrollView style={{ height: '100%' }}>
           {offers.map((data, index) => (

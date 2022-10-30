@@ -72,172 +72,168 @@ export function HomeView({ navigation }) {
   if (!fontsLoaded) return null
 
   return (
-    <Drawer.Navigator initialRouteName='CartView'>
-      <Drawer.Screen name='CartView' component={CartView} />
-      <Drawer.Screen name='NewOfferView' component={NewOfferView} />
-    </Drawer.Navigator>
-    // <Viewport navigation={navigation} active='Home' isFullScreen={true}>
-    //   <ScrollView>
-    //     <View
-    //       style={{
-    //         width: '80%',
-    //         marginTop: 15,
-    //         marginLeft: '10%',
-    //         flexDirection: 'row',
-    //         justifyContent: 'space-between'
-    //       }}
-    //     >
-    //       <TextInput
-    //         style={{
-    //           backgroundColor: '#dedede',
-    //           padding: 3,
-    //           width: '90%',
-    //           fontFamily: 'Ubuntu_400Regular'
-    //         }}
-    //         placeholder='Szukaj'
-    //       />
-    //       <TouchableOpacity>
-    //         <FunnelIcon
-    //           width={30}
-    //           height={30}
-    //           style={{ color: '#000000', marginLeft: '10%' }}
-    //           onPress={(e) => {
-    //             setIsShowingFilters(!isShowingFilters)
-    //           }}
-    //         />
-    //       </TouchableOpacity>
-    //     </View>
-    //     <View
-    //       style={{
-    //         width: '80%',
-    //         marginLeft: '10%',
-    //         marginBottom: 20,
-    //         marginTop: 5
-    //       }}
-    //     >
-    //       {isShowingFilters && (
-    //         <View>
-    //           <View style={{ flexDirection: 'row' }}>
-    //             <DropDownPicker
-    //               items={categories}
-    //               setItems={setCateogries}
-    //               value={category}
-    //               setValue={setCategory}
-    //               open={openCategroy}
-    //               setOpen={setOpenCategory}
-    //               placeholder='Kategoria'
-    //               textStyle={{ fontSize: 14 }}
-    //               containerStyle={{ width: '50%', padding: 10 }}
-    //               dropDownContainerStyle={{
-    //                 marginLeft: 10,
-    //                 borderRadius: 0,
-    //                 backgroundColor: '#dedede'
-    //               }}
-    //               listMode='SCROLLVIEW'
-    //               style={{
-    //                 backgroundColor: '#dedede',
-    //                 borderRadius: 0,
-    //                 borderWidth: 0
-    //               }}
-    //             />
-    //             <DropDownPicker
-    //               items={filters}
-    //               setItems={setFilters}
-    //               value={filter}
-    //               setValue={setFilter}
-    //               open={openFilter}
-    //               setOpen={setOpenFilter}
-    //               placeholder='Filtr'
-    //               listMode='SCROLLVIEW'
-    //               textStyle={{ fontSize: 14 }}
-    //               containerStyle={{ width: '50%', padding: 10 }}
-    //               dropDownContainerStyle={{
-    //                 marginLeft: 10,
-    //                 borderRadius: 0,
-    //                 backgroundColor: '#dedede'
-    //               }}
-    //               style={{
-    //                 backgroundColor: '#dedede',
-    //                 borderRadius: 0,
-    //                 borderWidth: 0
-    //               }}
-    //             />
-    //           </View>
-    //           <View
-    //             style={{
-    //               flexDirection: 'row',
-    //               alignItems: 'center',
-    //               marginTop: 10
-    //             }}
-    //           >
-    //             <Text style={{ fontSize: 16 }}>Cena </Text>
-    //             <TextInput
-    //               style={{
-    //                 backgroundColor: '#dedede',
-    //                 width: 50,
-    //                 padding: 5,
-    //                 marginLeft: 5
-    //               }}
-    //               placeholder='0'
-    //             />
-    //             <Text style={{ fontSize: 16 }}> do </Text>
-    //             <TextInput
-    //               style={{
-    //                 backgroundColor: '#dedede',
-    //                 width: 50,
-    //                 padding: 5
-    //               }}
-    //               placeholder='100'
-    //             />
-    //             <Text style={{ fontSize: 16 }}> zł </Text>
-    //           </View>
-    //         </View>
-    //       )}
-    //     </View>
-    //     <View style={{ alignItems: 'center', marginTop: 15 }}>
-    //       {offers.map((o) => (
-    //         <OfferTile
-    //           title={o.title}
-    //           price={o.price}
-    //           subtitle={o.kind}
-    //           image={o.image}
-    //           onSubtitleClick={() => {
-    //             console.log('Do nothing cause ' + o.title)
-    //           }}
-    //           onTileClick={() => {
-    //             navigation.navigate('OfferView')
-    //           }}
-    //           key={o.title}
-    //         />
-    //       ))}
-    //     </View>
-    //     <View
-    //       style={{
-    //         marginBottom: 50,
-    //         marginTop: 25,
-    //         flexDirection: 'row',
-    //         alignContent: 'center',
-    //         justifyContent: 'center',
-    //         alignSelf: 'center'
-    //       }}
-    //     >
-    //       <TouchableOpacity>
-    //         <ArrowSmallLeftIcon
-    //           style={{ color: '#000000' }}
-    //           width='30'
-    //           height='30'
-    //         />
-    //       </TouchableOpacity>
-    //       <View style={{ width: '50%' }}></View>
-    //       <TouchableOpacity>
-    //         <ArrowSmallRightIcon
-    //           style={{ color: '#000000' }}
-    //           width='30'
-    //           height='30'
-    //         />
-    //       </TouchableOpacity>
-    //     </View>
-    //   </ScrollView>
-    // </Viewport>
+    <Viewport navigation={navigation} active='Home' isFullScreen={true}>
+      <ScrollView>
+        <View
+          style={{
+            width: '80%',
+            marginTop: 15,
+            marginLeft: '10%',
+            flexDirection: 'row',
+            justifyContent: 'space-between'
+          }}
+        >
+          <TextInput
+            style={{
+              backgroundColor: '#dedede',
+              padding: 3,
+              width: '90%',
+              fontFamily: 'Ubuntu_400Regular'
+            }}
+            placeholder='Szukaj'
+          />
+          <TouchableOpacity>
+            <FunnelIcon
+              width={30}
+              height={30}
+              style={{ color: '#000000', marginLeft: '10%' }}
+              onPress={(e) => {
+                setIsShowingFilters(!isShowingFilters)
+              }}
+            />
+          </TouchableOpacity>
+        </View>
+        <View
+          style={{
+            width: '80%',
+            marginLeft: '10%',
+            marginBottom: 20,
+            marginTop: 5
+          }}
+        >
+          {isShowingFilters && (
+            <View>
+              <View style={{ flexDirection: 'row' }}>
+                <DropDownPicker
+                  items={categories}
+                  setItems={setCateogries}
+                  value={category}
+                  setValue={setCategory}
+                  open={openCategroy}
+                  setOpen={setOpenCategory}
+                  placeholder='Kategoria'
+                  textStyle={{ fontSize: 14 }}
+                  containerStyle={{ width: '50%', padding: 10 }}
+                  dropDownContainerStyle={{
+                    marginLeft: 10,
+                    borderRadius: 0,
+                    backgroundColor: '#dedede'
+                  }}
+                  listMode='SCROLLVIEW'
+                  style={{
+                    backgroundColor: '#dedede',
+                    borderRadius: 0,
+                    borderWidth: 0
+                  }}
+                />
+                <DropDownPicker
+                  items={filters}
+                  setItems={setFilters}
+                  value={filter}
+                  setValue={setFilter}
+                  open={openFilter}
+                  setOpen={setOpenFilter}
+                  placeholder='Filtr'
+                  listMode='SCROLLVIEW'
+                  textStyle={{ fontSize: 14 }}
+                  containerStyle={{ width: '50%', padding: 10 }}
+                  dropDownContainerStyle={{
+                    marginLeft: 10,
+                    borderRadius: 0,
+                    backgroundColor: '#dedede'
+                  }}
+                  style={{
+                    backgroundColor: '#dedede',
+                    borderRadius: 0,
+                    borderWidth: 0
+                  }}
+                />
+              </View>
+              <View
+                style={{
+                  flexDirection: 'row',
+                  alignItems: 'center',
+                  marginTop: 10
+                }}
+              >
+                <Text style={{ fontSize: 16 }}>Cena </Text>
+                <TextInput
+                  style={{
+                    backgroundColor: '#dedede',
+                    width: 50,
+                    padding: 5,
+                    marginLeft: 5
+                  }}
+                  placeholder='0'
+                />
+                <Text style={{ fontSize: 16 }}> do </Text>
+                <TextInput
+                  style={{
+                    backgroundColor: '#dedede',
+                    width: 50,
+                    padding: 5
+                  }}
+                  placeholder='100'
+                />
+                <Text style={{ fontSize: 16 }}> zł </Text>
+              </View>
+            </View>
+          )}
+        </View>
+        <View style={{ alignItems: 'center', marginTop: 15 }}>
+          {offers.map((o) => (
+            <OfferTile
+              title={o.title}
+              price={o.price}
+              subtitle={o.kind}
+              image={o.image}
+              onSubtitleClick={() => {
+                console.log('Do nothing cause ' + o.title)
+              }}
+              onTileClick={() => {
+                navigation.navigate('OfferView')
+              }}
+              key={o.title}
+            />
+          ))}
+        </View>
+        <View
+          style={{
+            marginBottom: 50,
+            marginTop: 25,
+            flexDirection: 'row',
+            alignContent: 'center',
+            justifyContent: 'center',
+            alignSelf: 'center'
+          }}
+        >
+          <TouchableOpacity>
+            <ArrowSmallLeftIcon
+              style={{ color: '#000000' }}
+              width='30'
+              height='30'
+            />
+          </TouchableOpacity>
+          <View style={{ width: '50%' }}></View>
+          <TouchableOpacity>
+            <ArrowSmallRightIcon
+              style={{ color: '#000000' }}
+              width='30'
+              height='30'
+            />
+          </TouchableOpacity>
+        </View>
+      </ScrollView>
+    </Viewport>
   )
 }
