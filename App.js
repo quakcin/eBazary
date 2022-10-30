@@ -1,3 +1,4 @@
+import 'react-native-gesture-handler'
 import { StatusBar } from 'expo-status-bar'
 import { StyleSheet, Text, View, Button } from 'react-native'
 
@@ -23,8 +24,10 @@ import { PasswordCtlView } from './views/PasswordCtlView'
 import { CreateAccountView } from './views/CreateAccountView'
 import { MyOffersView } from './views/MyOffersView'
 import { Karla_400Regular, useFonts } from '@expo-google-fonts/karla'
+import { createDrawerNavigator } from '@react-navigation/drawer'
 
 const Stack = createNativeStackNavigator()
+const Drawer = createDrawerNavigator()
 
 export default function App() {
   let [fontsLoaded] = useFonts({

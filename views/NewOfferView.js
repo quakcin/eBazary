@@ -14,6 +14,9 @@ import MakePhotoWidget from '../components/MakePhotoWidget'
 import RemovePhotoWidget from '../components/RemovePhotoWidget'
 import SelectList from 'react-native-dropdown-select-list'
 import { useState } from 'react'
+import { useFonts, RobotoMono_500Medium } from '@expo-google-fonts/roboto-mono'
+import { Ubuntu_400Regular } from '@expo-google-fonts/ubuntu'
+import { Karla_400Regular } from '@expo-google-fonts/karla'
 
 export function NewOfferView({ navigation }) {
   const {
@@ -22,17 +25,25 @@ export function NewOfferView({ navigation }) {
     formState: { errors }
   } = useForm()
 
+  let [fontsLoaded] = useFonts({
+    Ubuntu_400Regular,
+    RobotoMono_500Medium,
+    Karla_400Regular
+  })
+
   const onSubmit = (data) => console.log(data)
 
-  const [selected, setSelected] = useState("");
+  const [selected, setSelected] = useState('')
   const data = [
-    {key:'1', value: 'Wszystkie'},
-    {key:'2', value: 'Dom'},
-    {key:'3', value: 'Elektronika'},
-    {key:'4', value: 'Moda'},
-    {key:'5', value: 'Motoryzacja'},
-    {key:'6', value: 'Pozostałe'},
-  ];
+    { key: '1', value: 'Wszystkie' },
+    { key: '2', value: 'Dom' },
+    { key: '3', value: 'Elektronika' },
+    { key: '4', value: 'Moda' },
+    { key: '5', value: 'Motoryzacja' },
+    { key: '6', value: 'Pozostałe' }
+  ]
+
+  if (!fontsLoaded) return null
 
   return (
     <Viewport navigation={navigation} active='NewOffer'>
@@ -42,7 +53,8 @@ export function NewOfferView({ navigation }) {
             style={{
               flexDirection: 'column',
               width: '70%',
-              paddingTop: 25
+              paddingTop: 25,
+              paddingBottom: 25
             }}
           >
             <Controller
@@ -81,14 +93,28 @@ export function NewOfferView({ navigation }) {
               }}
               render={({ field: { onChange, onBlur, selected } }) => (
                 <SelectList
-                  setSelected={setSelected} 
+                  setSelected={setSelected}
                   onBlur={onBlur}
                   onChangeText={onChange}
                   data={data}
                   search={false}
-                  placeholder = {"Kategoria"}
-                  boxStyles={{ borderRadius:0, backgroundColor: 'white', borderWidth:2, marginTop: 15 }}
-                  dropdownStyles={{ borderRadius:0, backgroundColor: 'white', borderWidth:2 }}
+                  placeholder={'Kategoria'}
+                  boxStyles={{
+                    borderRadius: 0,
+                    backgroundColor: 'white',
+                    borderWidth: 2,
+                    marginTop: 15,
+                    fontFamily: 'Ubuntu_400Regular'
+                  }}
+                  dropdownStyles={{
+                    borderRadius: 0,
+                    backgroundColor: 'white',
+                    borderWidth: 2,
+                    fontFamily: 'Ubuntu_400Regular'
+                  }}
+                  inputStyles={{
+                    fontFamily: 'Ubuntu_400Regular'
+                  }}
                 />
               )}
               name='kategoria'
@@ -121,7 +147,6 @@ export function NewOfferView({ navigation }) {
                     value: /^\d+(\.\d{1,10})?$/,
                     message: 'Niepoprawna cena!'
                   }
-                  //pattern: /^\d+(\.\d{1,10})?$/
                 }}
                 render={({ field: { onChange, onBlur, value } }) => (
                   <TextInput
@@ -231,7 +256,14 @@ export function NewOfferView({ navigation }) {
               }}
               onPress={handleSubmit(onSubmit)}
             >
-              <Text style={{ color: 'white', fontSize: 15, fontWeight: '500' }}>
+              <Text
+                style={{
+                  color: 'white',
+                  fontSize: 15,
+                  fontWeight: '400',
+                  fontFamily: 'Karla_400Regular'
+                }}
+              >
                 Dodaj Ogłoszenie
               </Text>
             </TouchableOpacity>
@@ -244,7 +276,8 @@ export function NewOfferView({ navigation }) {
 
 const styles = StyleSheet.create({
   defaultInput: {
-    backgroundColor: 'white'
+    backgroundColor: 'white',
+    fontFamily: 'Ubuntu_400Regular'
   },
 
   shortInput: {

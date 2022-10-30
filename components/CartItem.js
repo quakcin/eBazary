@@ -1,10 +1,19 @@
 import { View, Text, Image } from 'react-native'
 import React from 'react'
+import { useFonts, RobotoMono_500Medium } from '@expo-google-fonts/roboto-mono'
+import { Ubuntu_400Regular } from '@expo-google-fonts/ubuntu'
 
 const CartItem = ({ data }) => {
+  let [fontsLoaded] = useFonts({
+    Ubuntu_400Regular,
+    RobotoMono_500Medium
+  })
+
   const deleteItem = () => {
     console.log(`Removing ${JSON.stringify(data)}`)
   }
+
+  if (!fontsLoaded) return null
 
   return (
     <View
@@ -24,7 +33,15 @@ const CartItem = ({ data }) => {
           source={{ uri: data.image }}
         />
         <View style={{ justifyContent: 'space-evenly' }}>
-          <Text>{data.title}</Text>
+          <Text
+            style={{
+              fontFamily: 'RobotoMono_500Medium',
+              fontWeight: '500',
+              fontSize: 13
+            }}
+          >
+            {data.title}
+          </Text>
           <View
             style={{
               justifyContent: 'space-between',
@@ -33,12 +50,22 @@ const CartItem = ({ data }) => {
             }}
           >
             <Text
-              style={{ fontSize: 11, color: '#C32FA3' }}
+              style={{
+                fontSize: 11,
+                color: '#C32FA3',
+                fontFamily: 'Ubuntu_400Regular'
+              }}
               onPress={deleteItem}
             >
               usuń
             </Text>
-            <Text>{data.price}zł</Text>
+            <Text
+              style={{
+                fontFamily: 'Ubuntu_400Regular'
+              }}
+            >
+              {data.price}zł
+            </Text>
           </View>
         </View>
       </View>
