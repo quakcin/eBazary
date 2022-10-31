@@ -1,4 +1,4 @@
-import { createDrawerNavigator } from '@react-navigation/drawer'
+import { createDrawerNavigator, DrawerContentScrollView, DrawerItem, DrawerItemList } from '@react-navigation/drawer'
 import { AuthView } from '../views/AuthView'
 import { BellView } from '../views/BellView'
 import { CartView } from '../views/CartView'
@@ -11,8 +11,21 @@ import { NewOfferView } from '../views/NewOfferView'
 import { PasswordCtlView } from '../views/PasswordCtlView'
 import { ProfileView } from '../views/ProfileView'
 import { Karla_400Regular, useFonts } from '@expo-google-fonts/karla'
+import { Text } from 'react-native'
 
 const Drawer = createDrawerNavigator()
+
+function CustomDrawerContent(props) {
+  return (
+    <DrawerContentScrollView {...props}>
+      <DrawerItemList {...props} />
+      <DrawerItem label={() => <Text style={{ color: 'white' }}>Logout</Text>}
+        style={{backgroundColor: 'red'}} 
+        onPress={() => alert('Logged out')}
+      />
+    </DrawerContentScrollView>
+  );
+}
 
 export default function () {
   let [fontsLoaded] = useFonts({
@@ -22,7 +35,7 @@ export default function () {
   if (!fontsLoaded) return null
 
   return (
-    <Drawer.Navigator initialRouteName='HomeView' backBehavior='history'>
+    <Drawer.Navigator drawerContent={props => <CustomDrawerContent {...props} />} initialRouteName='HomeView' backBehavior='history'>
       <Drawer.Screen
         name='AuthView'
         options={{
