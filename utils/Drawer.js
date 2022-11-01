@@ -1,8 +1,12 @@
-import { createDrawerNavigator, DrawerContentScrollView, DrawerItem, DrawerItemList } from '@react-navigation/drawer'
+import {
+  createDrawerNavigator,
+  DrawerContentScrollView,
+  DrawerItem,
+  DrawerItemList
+} from '@react-navigation/drawer'
 import { AuthView } from '../views/AuthView'
 import { BellView } from '../views/BellView'
 import { CartView } from '../views/CartView'
-import { CreateAccountView } from '../views/CreateAccountView'
 import { EditProfileView } from '../views/EditProfileView'
 import { HomeView } from '../views/HomeView'
 import { MyOffersView } from '../views/MyOffersView'
@@ -11,20 +15,58 @@ import { NewOfferView } from '../views/NewOfferView'
 import { PasswordCtlView } from '../views/PasswordCtlView'
 import { ProfileView } from '../views/ProfileView'
 import { Karla_400Regular, useFonts } from '@expo-google-fonts/karla'
-import { Text } from 'react-native'
+import { Text, View } from 'react-native'
+import { Colors } from './Colors'
 
 const Drawer = createDrawerNavigator()
 
 function CustomDrawerContent(props) {
+  let [fontsLoaded] = useFonts({
+    Karla_400Regular
+  })
+
+  if (!fontsLoaded) return null
+
   return (
-    <DrawerContentScrollView {...props}>
-      <DrawerItemList {...props} />
-      <DrawerItem label={() => <Text style={{ color: 'white' }}>Logout</Text>}
-        style={{backgroundColor: 'red'}} 
-        onPress={() => alert('Logged out')}
-      />
+    <DrawerContentScrollView
+      {...props}
+      contentContainerStyle={{
+        minHeight: '100%'
+      }}
+    >
+      <View
+        style={{
+          flexDirection: 'column',
+          justifyContent: 'space-between'
+        }}
+      >
+        <View
+          style={{
+            height: '90%'
+          }}
+        >
+          <DrawerItemList {...props} />
+        </View>
+        <View
+          style={{
+            height: '10%'
+          }}
+        >
+          <DrawerItem
+            label={() => (
+              <Text style={{ color: '#FFF', fontFamily: 'Karla_400Regular' }}>
+                Wyloguj się
+              </Text>
+            )}
+            onPress={() => alert('Logged out')}
+            style={{
+              backgroundColor: '#82AFE1'
+            }}
+          />
+        </View>
+      </View>
     </DrawerContentScrollView>
-  );
+  )
 }
 
 export default function () {
@@ -35,11 +77,26 @@ export default function () {
   if (!fontsLoaded) return null
 
   return (
-    <Drawer.Navigator drawerContent={props => <CustomDrawerContent {...props} />} initialRouteName='HomeView' backBehavior='history'>
+    <Drawer.Navigator
+      drawerContent={(props) => <CustomDrawerContent {...props} />}
+      initialRouteName='HomeView'
+      backBehavior='history'
+      screenOptions={{
+        drawerActiveBackgroundColor: Colors.greenish,
+        drawerLabelStyle: {
+          fontFamily: 'Ubuntu_400Regular'
+        },
+        drawerStyle: {
+          backgroundColor: '#F1F1F1'
+        },
+        drawerActiveTintColor: '#FFFFFF',
+        drawerInactiveTintColor: Colors.dark
+      }}
+    >
       <Drawer.Screen
         name='AuthView'
         options={{
-          title: 'Auth',
+          title: 'Zaloguj się',
           headerShown: false,
           swipeEnabled: false,
           headerTitleStyle: {
