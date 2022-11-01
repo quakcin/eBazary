@@ -63,7 +63,7 @@ export function HomeView({ navigation }) {
   useEffect(() => {
     const resp = JSON.parse(serverResp)
     for (let r of resp)
-      if (r.title.length > 18) r.title = r.title.substr(0, 18) + '...'
+      if (r.title.length > 37) r.title = r.title.substr(0, 37) + '...'
     setOffers(resp)
   }, [])
 
