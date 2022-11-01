@@ -94,18 +94,6 @@ export default function () {
       }}
     >
       <Drawer.Screen
-        name='AuthView'
-        options={{
-          title: 'Zaloguj się',
-          headerShown: false,
-          swipeEnabled: false,
-          headerTitleStyle: {
-            fontFamily: 'Karla_400Regular'
-          }
-        }}
-        component={AuthView}
-      />
-      <Drawer.Screen
         name='CartView'
         options={{
           title: 'Mój Koszyk',
