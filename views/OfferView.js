@@ -70,6 +70,7 @@ export function OfferView({ navigation }) {
   }
 
   const [offer, setOffer] = useState({ images: [] })
+  const [coords, setCoords] = useState({latitude: 0, longitude: 0});
   const [lat, setLat] = useState(52.237049);
   const [lon, setLon] = useState(21.017532);
 
@@ -79,6 +80,7 @@ export function OfferView({ navigation }) {
     setOffer(serverResp);
     setLat(serverResp.lat);
     setLon(serverResp.lon);
+    setCoords({latitude: serverResp.lat, longitude: serverResp.lon});
 
   }, [])
 
@@ -162,7 +164,13 @@ export function OfferView({ navigation }) {
                   latitudeDelta: 0.0009,
                   longitudeDelta: 0.0009
                 }}
-              />
+              >
+                <MapView.Marker
+                    coordinate={coords}
+                    title={"Sprzedający"}
+                    description={"Adres sprzedającego"}
+                />
+              </MapView>
           </View>
           <Text
             style={{

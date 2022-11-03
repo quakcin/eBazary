@@ -11,6 +11,7 @@ import { Karla_400Regular, useFonts } from '@expo-google-fonts/karla'
 import Drawer from './utils/Drawer'
 import { CreateAccountView } from './views/CreateAccountView'
 import ShowImage from './utils/ShowImage'
+import { StatusBar } from 'expo-status-bar'
 
 const Stack = createStackNavigator()
 
@@ -21,6 +22,7 @@ export default function App() {
 
   return (
     <TailwindProvider utilities={utilities}>
+      <StatusBar  barStyle="light-content" translucent={true} />
       <NavigationContainer>
         <Stack.Navigator
           screenOptions={{ animation: 'none' }}

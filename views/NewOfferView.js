@@ -19,6 +19,12 @@ import { Ubuntu_400Regular } from '@expo-google-fonts/ubuntu'
 import { Karla_400Regular } from '@expo-google-fonts/karla'
 import { Colors } from '../utils/Colors'
 
+
+import * as Location from 'expo-location';
+import MapView from 'react-native-maps';
+
+import { useEffect, createRef } from 'react';
+
 export function NewOfferView({ navigation }) {
   const {
     control,
@@ -31,6 +37,38 @@ export function NewOfferView({ navigation }) {
     RobotoMono_500Medium,
     Karla_400Regular
   })
+  
+  // -- map 
+  const mapRef = createRef();
+  const [loc, setLoc] = useState(null);
+  const [coords, setCoords] = useState({latitude: 0, longitude: 0});
+
+  useEffect(() => 
+  {
+    (async () => 
+    {
+      let { status } = await Location.requestForegroundPermissionsAsync();
+      if (status !== 'granted') 
+      {
+        setErrorMsg('Permission to access location was denied');
+        return;
+      }
+
+      let location = await Location.getCurrentPositionAsync({});
+      setLoc(location);
+    })();
+  }, []);
+
+  useEffect(() => {
+    if (loc != null)
+    {
+      mapRef.current.animateToRegion
+      ({
+        latitude: loc.coords.latitude, longitude: loc.coords.longitude, latitudeDelta: 0.009, longitudeDelta: 0.009
+      });
+      setCoords({latitude: loc.coords.latitude, longitude: loc.coords.longitude});
+    }
+  }, [loc]);
 
   const onSubmit = (data) => console.log(data)
 
@@ -45,6 +83,9 @@ export function NewOfferView({ navigation }) {
   ]
 
   if (!fontsLoaded) return null
+
+  
+  // -- / map
 
   return (
     <Viewport navigation={navigation} active='NewOffer'>
@@ -246,6 +287,32 @@ export function NewOfferView({ navigation }) {
               <MakePhotoWidget />
               <MakePhotoWidget />
             </View>
+
+            { /* -- */ }
+            <View>
+                <MapView 
+                  ref = { mapRef }
+                  style = {{
+                    width: '100%',
+                    height: 200,
+                    marginTop: 60,
+                    marginBottom: 30
+                  }}
+                  initialRegion = {{
+                    latitude: 21,
+                    longitude: 51,
+                    latitudeDelta: 0.0009,
+                    longitudeDelta: 0.0009
+                  }}
+                >
+                  <MapView.Marker
+                      coordinate={coords}
+                      title={"Lokalizacja"}
+                      description={"Widoczna w ofercie."}
+                  />
+                </MapView>
+            </View>
+            { /* -- */ }
 
             <TouchableOpacity
               style={{
