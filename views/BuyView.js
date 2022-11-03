@@ -104,8 +104,6 @@ export function BuyView({ navigation }) {
   ]
 
   const [location, setLocation] = useState(null);
-  const [errorMsg, setErrorMsg] = useState(null);
-  const [coords, setCoords] = useState(null)
 
   useEffect(() => {
     (async () => {
@@ -121,17 +119,8 @@ export function BuyView({ navigation }) {
     })();
   }, []);
 
-  /*
-  let text = 'Waiting..';
-  if (errorMsg) {
-    text = errorMsg;
-  } else if (location) {
-    text = JSON.stringify(location);
-  }
-  */
 
   useEffect(() => {
-    // console.log("LOCATION HAS CHANGED", location);
     if (location != null)
     {
       console.log(location);
