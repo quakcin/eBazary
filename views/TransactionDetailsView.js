@@ -230,7 +230,7 @@ export function TransactionDetailsView({ navigation, route }) {
         <View style={{ marginTop: 25 }}>
           <TextInput
             style={{
-              backgroundColor: '#ffffff',
+              backgroundColor: '#fbfbfb',
               width: '80%',
               height: 150,
               marginLeft: '10%',
@@ -238,6 +238,7 @@ export function TransactionDetailsView({ navigation, route }) {
               textAlignVertical: 'top',
               fontFamily: 'Ubuntu_400Regular'
             }}
+            placeholder="Opinia kupującego"
             multiline={true}
             value={opinion}
             onChangeText={(t) => setOpinion(t)}

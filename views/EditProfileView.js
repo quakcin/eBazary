@@ -201,7 +201,7 @@ export function EditProfileView({ navigation }) {
             }}
             render={({ field: { onChange, onBlur, value } }) => (
               <TextInput
-                style={[styles.defaultInput, styles.longInput, {borderBottomWidth: 0, borderLeftWidth: 2}]}
+                style={[styles.defaultInput, styles.longInput, {borderBottomWidth: 0, borderLeftWidth: 5}]}
                 onBlur={onBlur}
                 onChangeText={onChange}
                 value={value}
