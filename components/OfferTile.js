@@ -12,6 +12,8 @@ import { useFonts, RobotoMono_500Medium } from '@expo-google-fonts/roboto-mono'
 import { Ubuntu_400Regular } from '@expo-google-fonts/ubuntu'
 import { Colors } from '../utils/Colors'
 
+const MMX_LENGTH = 37;
+
 const OfferTile = ({
   title,
   subtitle,
@@ -56,7 +58,7 @@ const OfferTile = ({
                 fontSize: 13
               }}
             >
-              {title}
+              {title.length > MMX_LENGTH ? title.substr(0, MMX_LENGTH ) + '...' :  title}
             </Text>
           </View>
           <View
@@ -72,7 +74,8 @@ const OfferTile = ({
                 style={{
                   color: Colors.removeAndDate,
                   fontFamily: 'Ubuntu_400Regular',
-                  fontSize: 11
+                  fontSize: 11,
+                  marginTop: 3
                 }}
               >
                 {subtitle}

@@ -32,7 +32,7 @@ const OffersListing = ({
   if (!infogram) return <View></View>
 
   return (
-    <View>
+    <View style={{marginTop: 50, marginBottom: 50}}>
       <ScrollView style={{width: '100%', marginLeft: '10%'}}>
         {infogram.map((o) => (
           <OfferTile

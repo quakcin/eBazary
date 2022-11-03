@@ -29,6 +29,9 @@ import { Colors } from '../utils/Colors'
 import MapView from 'react-native-maps';
 import LinearGradient from 'react-native-linear-gradient';
 
+import {
+  StarIcon, MapPinIcon, CubeIcon, BanknotesIcon, ShoppingBagIcon
+} from 'react-native-heroicons/outline'
 
 export function OfferView({ navigation }) {
   const tw = useTailwind()
@@ -100,24 +103,56 @@ export function OfferView({ navigation }) {
   return (
     <Viewport navigation={navigation} active='Home'>
       <ScrollView>
-        <Text
-          style={{
-            textAlign: 'center',
-            fontSize: 24,
-            marginTop: 25,
-            marginBottom: 12,
-            // fontFamily: 'RobotoMono_600SemiBold',
-            width: '80%',
-            marginLeft: '10%',
-            fontWeight: 'bold'
-          }}
-        >
-          {offer.title}
-        </Text>
+
+
+
+        <View style={{width: '80%', marginLeft: '10%'}}>
+          <View style={{flexDirection: 'row', marginTop: 50, marginBottom: 30, alignContent: 'flex-start'}}>
+            <View>
+              <ShoppingBagIcon width="50" height="50" style={{color: 'black'}}/>
+            </View>
+            <View>
+              <Text
+                style={{
+                  textAlign: 'center',
+                  fontSize: 28,
+                  fontFamily: 'Karla_500Medium',
+                  marginLeft: 10,
+                  textAlign: 'left',
+                  width: '55%'
+                }}
+              >
+                {offer.title}
+              </Text>
+            </View>
+          </View>
+        </View>
+
         <VerticalSlider pictures={offer.images} navigation={navigation} />
 
 
-        <View style={{width: '70%', marginLeft: '15%'}}>
+        <View style={{width: '80%', marginLeft: '10%'}}>
+
+
+          <View style={{flexDirection: 'row', marginTop: 50, marginBottom: 30, alignItems: 'center'}}>
+            <View>
+              <BanknotesIcon width="50" height="50" style={{color: 'black'}}/>
+            </View>
+            <View>
+              <Text
+                style={{
+                  textAlign: 'center',
+                  fontSize: 28,
+                  fontFamily: 'Karla_500Medium',
+                  marginLeft: 10
+                }}
+              >
+                Koszta i Opłaty 
+              </Text>
+            </View>
+          </View>
+
+
           {/* ZAKUPY */}
           <View style={{ width: '100%', marginTop: 40 }}>
             <View
@@ -130,7 +165,7 @@ export function OfferView({ navigation }) {
             >
               <Text
                 style={{
-                  fontSize: 20,
+                  fontSize: 24,
                   fontFamily: 'Ubuntu_700Bold'
                 }}
               >
@@ -142,7 +177,7 @@ export function OfferView({ navigation }) {
                   borderRadius: 5,
                   backgroundColor: Colors.buttons,
                   paddingHorizontal: 30,
-                  paddingVertical: 10,
+                  paddingVertical: 14,
                   alignItems: 'center'
                 }}
                 onPress={() => {
@@ -152,7 +187,7 @@ export function OfferView({ navigation }) {
                 <Text
                   style={{
                     color: 'white',
-                    fontSize: 15,
+                    fontSize: 20,
                     fontWeight: '400',
                     fontFamily: 'Karla_400Regular'
                   }}
@@ -168,7 +203,7 @@ export function OfferView({ navigation }) {
                   backgroundColor: Colors.buttons,
                   // backgroundColor: '#c91c48',
                   paddingHorizontal: 45,
-                  paddingVertical: 10,
+                  paddingVertical: 14,
                   alignItems: 'center'
                 }}
                 onPress={() => navigation.navigate('BuyView')}
@@ -176,7 +211,7 @@ export function OfferView({ navigation }) {
                 <Text
                   style={{
                     color: 'white',
-                    fontSize: 15,
+                    fontSize: 24,
                     fontWeight: '400',
                     fontFamily: 'Karla_400Regular'
                   }}
@@ -189,18 +224,28 @@ export function OfferView({ navigation }) {
         </View>
         {/* ZAKUPY */}
 
-        <View style={{ width: '80%', marginLeft: '10%' }}>
-          <Text
-            style={{
-              textAlign: 'center',
-              fontSize: 22,
-              fontFamily: 'Karla_500Medium',
-              marginTop: 30,
-              marginBottom: 30
-            }}
-          >
-            Opis
-          </Text>
+        <View style={{ width: '80%', marginLeft: '10%', alignContent: 'center' }}>
+
+
+          <View style={{flexDirection: 'row', marginTop: 50, marginBottom: 30, alignItems: 'center'}}>
+            <View>
+              <CubeIcon width="50" height="50" style={{color: 'black'}}/>
+            </View>
+            <View>
+              <Text
+                style={{
+                  textAlign: 'center',
+                  fontSize: 28,
+                  fontFamily: 'Karla_500Medium',
+                  marginLeft: 10
+                }}
+              >
+                Opis Oferty
+              </Text>
+            </View>
+          </View>
+
+
           <Text
             style={{
               textAlign: 'justify',
@@ -210,17 +255,26 @@ export function OfferView({ navigation }) {
           >
             {offer.desc}
           </Text>
-          <Text
-            style={{
-              textAlign: 'center',
-              fontSize: 22,
-              fontFamily: 'Karla_500Medium',
-              marginTop: 60,
-              marginBottom: 30
-            }}
-          >
-            Lokalizacja
-          </Text>
+          
+          <View style={{flexDirection: 'row', marginTop: 50, marginBottom: 30, alignItems: 'center'}}>
+            <View>
+              <MapPinIcon width="50" height="50" style={{color: 'black'}}/>
+            </View>
+            <View>
+              <Text
+                style={{
+                  textAlign: 'center',
+                  fontSize: 28,
+                  fontFamily: 'Karla_500Medium',
+                  marginLeft: 10
+                }}
+              >
+                Lokalizacja
+              </Text>
+            </View>
+          </View>
+
+
           <View style={{marginBottom: 60}}>
               <MapView 
                 style = {{
