@@ -85,17 +85,18 @@ export function PasswordCtlView({ navigation }) {
 
 const styles = StyleSheet.create({
   defaultInput: {
-    backgroundColor: 'white',
     marginTop: 20,
-    fontFamily: 'Ubuntu_400Regular'
+    fontFamily: 'Ubuntu_400Regular',
+    borderRadius: 5
   },
 
   shortInput: {
     width: '90%',
-    borderWidth: 2,
+    borderBottomWidth: 2,
+    borderBottomColor: '#424242',
     height: 40,
-    borderColor: Colors.dark,
-    paddingHorizontal: 20
+    paddingHorizontal: 20,
+    borderRadius: 5
   },
 
   container: {

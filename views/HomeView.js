@@ -125,13 +125,14 @@ export function HomeView({ navigation }) {
                   dropDownContainerStyle={{
                     marginLeft: 10,
                     borderRadius: 0,
-                    backgroundColor: '#fff'
+                    backgroundColor: '#e2e2e2'
                   }}
                   listMode='SCROLLVIEW'
                   style={{
-                    backgroundColor: '#fff',
+                    backgroundColor: '#f1f1f1',
+                    borderWidth: 0,
                     borderRadius: 0,
-                    borderWidth: 2
+                    borderBottomWidth: 2
                   }}
                 />
                 <DropDownPicker
@@ -148,14 +149,14 @@ export function HomeView({ navigation }) {
                   dropDownContainerStyle={{
                     marginLeft: 10,
                     borderRadius: 0,
-                    backgroundColor: '#fff',
-                    borderWidth: 2
+                    backgroundColor: '#e2e2e2'
                   }}
+                  listMode='SCROLLVIEW'
                   style={{
-                    backgroundColor: '#fff',
-                    borderRadius: 0,
+                    backgroundColor: '#f1f1f1',
                     borderWidth: 0,
-                    borderWidth: 2
+                    borderRadius: 0,
+                    borderBottomWidth: 2
                   }}
                 />
               </View>
@@ -254,15 +255,14 @@ export function HomeView({ navigation }) {
 
 const styles = StyleSheet.create({
   defaultInput: {
-    backgroundColor: 'white',
     fontFamily: 'Ubuntu_400Regular'
   },
 
   shortInput: {
     width: '90%',
-    borderWidth: 2,
+    borderBottomWidth: 2,
+    borderBottomColor: '#424242',
     height: 40,
-    borderColor: Colors.dark,
     paddingHorizontal: 20
   }
 })

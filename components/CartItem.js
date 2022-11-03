@@ -20,8 +20,7 @@ const CartItem = ({ data }) => {
     <View
       style={{
         minWidth: '100%',
-        alignItems: 'center',
-        marginLeft: 40
+        alignItems: 'center'
       }}
     >
       <View

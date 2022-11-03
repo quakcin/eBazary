@@ -11,7 +11,7 @@ const Opinion = ({ image, rating, message }) => {
 
   const MAX_STARS = 5
 
-  const lightMode = false
+  const lightMode = true
 
   const generateStarsJSX = () => {
     const stars = []

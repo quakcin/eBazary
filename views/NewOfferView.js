@@ -96,7 +96,7 @@ export function NewOfferView({ navigation }) {
               flexDirection: 'column',
               width: '70%',
               paddingTop: 25,
-              paddingBottom: 25
+              paddingBottom: 25,
             }}
           >
             <Controller
@@ -143,14 +143,15 @@ export function NewOfferView({ navigation }) {
                   placeholder={'Kategoria'}
                   boxStyles={{
                     borderRadius: 0,
-                    backgroundColor: 'white',
-                    borderWidth: 2,
+                    borderWidth: 0,
+                    borderBottomWidth: 2,
+                    borderBottomRightRadius: 5,
+                    borderBottomLeftRadius: 5,
                     marginTop: 15,
                     fontFamily: 'Ubuntu_400Regular'
                   }}
                   dropdownStyles={{
-                    borderRadius: 0,
-                    backgroundColor: 'white',
+                    borderRadius: 5,
                     borderWidth: 2,
                     fontFamily: 'Ubuntu_400Regular'
                   }}
@@ -178,7 +179,7 @@ export function NewOfferView({ navigation }) {
               style={{
                 flexDirection: 'row',
                 alignItems: 'center',
-                marginTop: 15
+                marginTop: 25
               }}
             >
               <Controller
@@ -195,7 +196,7 @@ export function NewOfferView({ navigation }) {
                     style={[
                       styles.defaultInput,
                       styles.shortInput,
-                      { width: '85%' }
+                      { width: '85%', borderBottomRightRadius: 0 }
                     ]}
                     keyboardType='numeric'
                     onBlur={onBlur}
@@ -248,7 +249,7 @@ export function NewOfferView({ navigation }) {
                   style={[
                     styles.defaultInput,
                     styles.longInput,
-                    { marginTop: 15 }
+                    { marginTop: 40, marginBottom: 30, border: 0, borderRadius: 0, borderLeftWidth: 5, borderColor: '#424242', backgroundColor: '#f4f4f4' }
                   ]}
                   textAlign={'left'}
                   textAlignVertical={'top'}
@@ -345,16 +346,18 @@ export function NewOfferView({ navigation }) {
 
 const styles = StyleSheet.create({
   defaultInput: {
-    backgroundColor: 'white',
-    fontFamily: 'Ubuntu_400Regular'
+    fontFamily: 'Ubuntu_400Regular',
+    marginBottom: 15
   },
 
   shortInput: {
     width: '100%',
-    borderWidth: 2,
     height: 50,
-    borderColor: Colors.dark,
-    paddingHorizontal: 20
+    marginBottom: 15,
+    borderBottomWidth: 2,
+    borderBottomColor: '#424242',
+    paddingHorizontal: 20,
+    borderRadius: 5
   },
 
   longInput: {
@@ -362,10 +365,10 @@ const styles = StyleSheet.create({
     minHeight: 150,
     height: 150,
     maxHeight: 150,
-    borderWidth: 2,
     height: 50,
-    borderColor: Colors.dark,
     paddingHorizontal: 20,
-    paddingVertical: 12
+    paddingVertical: 12,
+    borderRadius: 5,
+    marginBottom: 15
   }
 })

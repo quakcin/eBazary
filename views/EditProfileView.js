@@ -201,15 +201,16 @@ export function EditProfileView({ navigation }) {
             }}
             render={({ field: { onChange, onBlur, value } }) => (
               <TextInput
-                style={[styles.defaultInput, styles.longInput]}
+                style={[styles.defaultInput, styles.longInput, {borderBottomWidth: 0, borderLeftWidth: 2}]}
                 onBlur={onBlur}
                 onChangeText={onChange}
                 value={value}
                 defaultValue={serverResp.desc}
                 placeholder='Opis'
                 textAlign='left'
-                textAlignVertical='top'
+                textAlignVertical='bottom'
                 multiline={true}
+                numberOfLines={6}
               />
             )}
             name='opis'
@@ -274,15 +275,14 @@ export function EditProfileView({ navigation }) {
 
 const styles = StyleSheet.create({
   defaultInput: {
-    backgroundColor: 'white',
     marginTop: 15
   },
 
   shortInput: {
     width: '100%',
-    borderWidth: 2,
+    borderBottomWidth: 2,
+    borderBottomColor: '#424242',
     height: 40,
-    borderColor: Colors.dark,
     paddingHorizontal: 20
   },
 
@@ -291,9 +291,9 @@ const styles = StyleSheet.create({
     minHeight: 150,
     height: 150,
     maxHeight: 150,
-    borderWidth: 2,
+    borderBottomWidth: 2,
+    borderBottomColor: '#424242',
     height: 40,
-    borderColor: Colors.dark,
     paddingHorizontal: 20,
     paddingVertical: 12
   }

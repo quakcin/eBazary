@@ -49,7 +49,7 @@ export function ProfileView({ navigation }) {
     Karla_400Regular
   })
 
-  const lightMode = false
+  const lightMode = true
 
   if (!fontsLoaded) return null
 
@@ -199,7 +199,7 @@ export function ProfileView({ navigation }) {
               {
                 <Text
                   style={{
-                    color: lightMode ? Colors.greenish : Colors.blueishDarkMode,
+                    color: 'lightMode ? Colors.greenish : Colors.blueishDarkMode',
                     fontWeight: '600'
                   }}
                 >
