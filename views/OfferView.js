@@ -140,7 +140,7 @@ export function OfferView({ navigation }) {
                   fontFamily: 'Ubuntu_700Bold'
                 }}
               >
-                {offer.price}zł
+                {offer.price.toFixed(2)}zł
               </Text>
 
               <TouchableOpacity
