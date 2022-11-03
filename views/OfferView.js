@@ -27,6 +27,7 @@ import { Karla_400Regular, Karla_500Medium } from '@expo-google-fonts/karla'
 import { Colors } from '../utils/Colors'
 
 import MapView from 'react-native-maps';
+import LinearGradient from 'react-native-linear-gradient';
 
 
 export function OfferView({ navigation }) {
@@ -230,6 +231,7 @@ export function OfferView({ navigation }) {
                 style={{
                   borderRadius: 5,
                   backgroundColor: Colors.buttons,
+                  // backgroundColor: '#c91c48',
                   paddingHorizontal: 45,
                   paddingVertical: 10,
                   alignItems: 'center'
@@ -243,14 +245,14 @@ export function OfferView({ navigation }) {
                     fontWeight: '400',
                     fontFamily: 'Karla_400Regular'
                   }}
-                >
+                  >
                   Kup Teraz!
                 </Text>
               </TouchableOpacity>
+              </View>
             </View>
           </View>
-        </View>
-      </ScrollView>
-    </Viewport>
-  )
-}
+        </ScrollView>
+      </Viewport>
+    )
+  }

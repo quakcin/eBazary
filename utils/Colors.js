@@ -15,7 +15,8 @@ export const Colors = {
   blueishDarkMode: '#00B1FF',
 
   get buttons() {
-    return this.greenish
+    return '#c91c48'; // eye friendly
+    // return this.greenish
   },
   get buttonsDarkMode() {
     return this.blueishDarkMode
