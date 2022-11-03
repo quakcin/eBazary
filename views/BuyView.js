@@ -105,11 +105,14 @@ export function BuyView({ navigation }) {
 
   const [location, setLocation] = useState(null);
 
-  useEffect(() => {
-    (async () => {
+  useEffect(() => 
+  {
+    (async () => 
+    {
       
       let { status } = await Location.requestForegroundPermissionsAsync();
-      if (status !== 'granted') {
+      if (status !== 'granted') 
+      {
         setErrorMsg('Permission to access location was denied');
         return;
       }
@@ -120,7 +123,8 @@ export function BuyView({ navigation }) {
   }, []);
 
 
-  useEffect(() => {
+  useEffect(() => 
+  {
     if (location != null)
     {
       console.log(location);
