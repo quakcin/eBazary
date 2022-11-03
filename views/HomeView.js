@@ -15,8 +15,6 @@ import OfferTile from '../components/OfferTile'
 import { useEffect, useState } from 'react'
 import { Ubuntu_400Regular, useFonts } from '@expo-google-fonts/ubuntu'
 import { createDrawerNavigator } from '@react-navigation/drawer'
-import { CartView } from './CartView'
-import { NewOfferView } from './NewOfferView'
 
 import {
   ArrowSmallLeftIcon,
