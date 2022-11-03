@@ -186,6 +186,7 @@ export function BuyView({ navigation }) {
               ]}
               placeholder='Miasto'
               value={tbxMiasto}
+              onChangeText={setTbxMiasto}
             />
 
             <TextInput
@@ -200,6 +201,7 @@ export function BuyView({ navigation }) {
               ]}
               placeholder='Poczt.'
               value={tbxPoczt}
+              onChangeText={setTbxPoczt}
             />
           </View>
           <View style={{ padding: 10 }}>
@@ -213,6 +215,7 @@ export function BuyView({ navigation }) {
               ]}
               placeholder='Adres'
               value={tbxAdres}
+              onChangeText={setTbxAdres}
             />
           </View>
           <View style={{ padding: 10 }}>

@@ -18,7 +18,7 @@ export function Viewport({
   active,
   isFullScreen = false
 }) {
-  const lightMode = false
+  const lightMode = true;
 
 
 
