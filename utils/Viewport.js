@@ -6,8 +6,11 @@ import { NavigationContainer } from '@react-navigation/native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import { useTailwind } from 'tailwind-rn'
 
+import { useState, useEffect } from 'react';
+
 import NavBar from './NavBar'
 import { Colors } from './Colors'
+
 
 export function Viewport({
   children,
@@ -16,6 +19,8 @@ export function Viewport({
   isFullScreen = false
 }) {
   const lightMode = false
+
+
 
   return (
     <SafeAreaView

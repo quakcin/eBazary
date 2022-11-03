@@ -31,6 +31,8 @@ const serverResp = {
   ]
 }
 
+import * as Location from 'expo-location';
+
 export function BuyView({ navigation }) {
   let [fontsLoaded] = useFonts({
     RobotoMono_600SemiBold,
@@ -100,6 +102,43 @@ export function BuyView({ navigation }) {
     { key: 'ph', value: 'Kurier DHL' },
     { key: 'pi', value: 'Paczkomat InPost' }
   ]
+
+  const [location, setLocation] = useState(null);
+  const [errorMsg, setErrorMsg] = useState(null);
+  const [coords, setCoords] = useState(null)
+
+  useEffect(() => {
+    (async () => {
+      
+      let { status } = await Location.requestForegroundPermissionsAsync();
+      if (status !== 'granted') {
+        setErrorMsg('Permission to access location was denied');
+        return;
+      }
+
+      let location = await Location.getCurrentPositionAsync({});
+      setLocation(location);
+    })();
+  }, []);
+
+  /*
+  let text = 'Waiting..';
+  if (errorMsg) {
+    text = errorMsg;
+  } else if (location) {
+    text = JSON.stringify(location);
+  }
+  */
+
+  useEffect(() => {
+    // console.log("LOCATION HAS CHANGED", location);
+    if (location != null)
+    {
+      console.log(location);
+    }
+  }, [location])
+
+  // console.log(text);
 
   if (!fontsLoaded) return null
 
