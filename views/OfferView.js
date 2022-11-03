@@ -26,6 +26,9 @@ import {
 import { Karla_400Regular, Karla_500Medium } from '@expo-google-fonts/karla'
 import { Colors } from '../utils/Colors'
 
+import MapView from 'react-native-maps';
+
+
 export function OfferView({ navigation }) {
   const tw = useTailwind()
 
@@ -61,14 +64,22 @@ export function OfferView({ navigation }) {
     kind: 'Elektronika',
     seller: 'TanieIphonyPL',
     name: 'Mariusz',
-    surname: 'Bimber'
+    surname: 'Bimber',
+    lat: 54.35360365985268,  
+    lon: 18.648861800145415
   }
 
   const [offer, setOffer] = useState({ images: [] })
+  const [lat, setLat] = useState(52.237049);
+  const [lon, setLon] = useState(21.017532);
 
-  useEffect(() => {
+  useEffect(() => 
+  {
     navigation.setOptions({ title: `${serverResp.title}` })
-    setOffer(serverResp)
+    setOffer(serverResp);
+    setLat(serverResp.lat);
+    setLon(serverResp.lon);
+
   }, [])
 
   let [fontsLoaded] = useFonts({
@@ -103,15 +114,17 @@ export function OfferView({ navigation }) {
             fontFamily: 'Karla_500Medium'
           }}
         >
-          prezentuje
+          oferta
         </Text>
         <VerticalSlider pictures={offer.images} navigation={navigation} />
         <View style={{ width: '80%', marginLeft: '10%' }}>
           <Text
             style={{
               textAlign: 'center',
-              fontSize: 16,
-              fontFamily: 'Karla_500Medium'
+              fontSize: 22,
+              fontFamily: 'Karla_500Medium',
+              marginTop: 30,
+              marginBottom: 30
             }}
           >
             Opis
@@ -124,6 +137,43 @@ export function OfferView({ navigation }) {
             }}
           >
             {offer.desc}
+          </Text>
+          <Text
+            style={{
+              textAlign: 'center',
+              fontSize: 22,
+              fontFamily: 'Karla_500Medium',
+              marginTop: 60,
+              marginBottom: 30
+            }}
+          >
+            Lokalizacja
+          </Text>
+          <View>
+              <MapView 
+                style = {{
+                  width: '100%',
+                  height: 300
+                }}
+                zoom = {1000}
+                initialRegion = {{
+                  latitude: lat,
+                  longitude: lon,
+                  latitudeDelta: 0.0009,
+                  longitudeDelta: 0.0009
+                }}
+              />
+          </View>
+          <Text
+            style={{
+              textAlign: 'center',
+              fontSize: 22,
+              fontFamily: 'Karla_500Medium',
+              marginTop: 60,
+              marginBottom: 15
+            }}
+          >
+            Zakupy
           </Text>
           <View style={{ width: '100%', marginTop: 40 }}>
             <View

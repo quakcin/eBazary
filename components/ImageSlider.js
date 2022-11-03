@@ -19,7 +19,7 @@ const VerticalSlider = ({pictures, navigation}) => {
               }
             >
             <AutoHeightImage
-                width={300}
+                width={600}
                 source={{uri: item}}
                 style={{margin: 20}}
               />

@@ -66,6 +66,7 @@ export function BuyView({ navigation }) {
               flexDirection: 'row',
               justifyContent: 'space-between'
             }}
+            key = {n.name}
           >
             <View>
               <Text
