@@ -8,10 +8,13 @@ import {
   TextInput,
   Button,
   TouchableOpacity,
-  ScrollView
+  ScrollView,
+  useWindowDimensions,
+  ImageBackground
 } from 'react-native'
 import AutoHeightImage from 'react-native-auto-height-image'
 import { Colors } from '../utils/Colors'
+import Constants from 'expo-constants'
 import {
   useFonts,
   RobotoMono_600SemiBold
@@ -22,6 +25,8 @@ import { Karla_400Regular } from '@expo-google-fonts/karla'
 export function AuthView({ navigation }) {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+
+  const { height, width } = useWindowDimensions();
 
   let [fontsLoaded] = useFonts({
     RobotoMono_600SemiBold,
@@ -34,79 +39,73 @@ export function AuthView({ navigation }) {
   return (
     <ScrollView
       style={{
-        marginTop: '12%',
-        padding: 20,
+        marginTop: Constants.statusBarHeight,
         backgroundColor: Colors.background,
-        paddingTop: 50
       }}
     >
-      <View style={{ alignItems: 'center', marginBottom: '10%' }}>
-        <View style ={{alignItems: 'center', height: 210, width: 210, backgroundColor: '#c46060',  borderRadius: 300, paddingTop: 45}}>
-          <AutoHeightImage
-            width={180}
-            style={styles.image}
-            source={{ uri: 'https://i.postimg.cc/9fW1Sg1Y/clipart323390.png' }}
-          />
-        </View>
-        <View style={{ marginTop: 80, width: '100%', alignItems: 'center' }}>
-          <View style={{ width: '80%' }}>
-            <TextInput
-              style={[styles.defaultInput, styles.shortInput]}
-              onChangeText={(email) => setEmail(email)}
-              placeholder='Nazwa użytkownika'
-            />
+      <ImageBackground source={{uri:"https://u-rodziny.com.pl/wp-content/uploads/2019/10/435054-PE9UJW-727-937x1024.jpg"}} resizeMode="cover" style={{flex: 1, justifyContent: "center", width: "100%", height: "100%"}}>
+        <View style={{ alignItems: 'center' }}>
+          <View style={{ marginTop: 150, alignItems: 'center' }}>
+            <View style={{ width: width-130,  }}>
+              <TextInput
+                style={[styles.defaultInput, styles.shortInput]}
+                onChangeText={(email) => setEmail(email)}
+                placeholder='Nazwa użytkownika'
+                />
+            </View>
+
+            <View style={{ width: width-130 }}>
+              <TextInput
+                style={[styles.defaultInput, styles.shortInput]}
+                onChangeText={(password) => setPassword(password)}
+                placeholder='Hasło'
+                secureTextEntry={true}
+                />
+            </View>
           </View>
 
-          <View style={{ width: '80%' }}>
-            <TextInput
-              style={[styles.defaultInput, styles.shortInput]}
-              onChangeText={(password) => setPassword(password)}
-              placeholder='Hasło'
-              secureTextEntry={true}
-            />
-          </View>
-        </View>
-
-        <TouchableOpacity
-          style={{
-            borderRadius: 5,
-            backgroundColor: Colors.buttons,
-            paddingHorizontal: 45,
-            paddingVertical: 10,
-            alignItems: 'center',
-            marginTop: 60,
-            width: '80%'
-          }}
-          onPress={() => {
-            navigation.replace('Drawer')
-          }}
-        >
-          <Text
+          <TouchableOpacity
             style={{
-              color: 'white',
-              fontSize: 15,
-              fontWeight: '400',
-              fontFamily: 'Karla_400Regular'
+              borderRadius: 5,
+              backgroundColor: Colors.buttons,
+              paddingHorizontal: 45,
+              paddingVertical: 10,
+              alignItems: 'center',
+              marginTop: 60,
+              width: '80%'
             }}
-          >
-            Zaloguj
-          </Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity
-          onPress={() => {
-            navigation.navigate('CreateAccountView')
-          }}
-        >
-          <Text style={styles.createAccount}>
-            Jeśli nadal nie posiadasz konta w naszym serwisie, możesz je założyć
-            <Text style={[styles.createAccount, { color: Colors.reddish }]}>
-              {' '}
-              tutaj.
+            onPress={() => {
+              navigation.replace('Drawer')
+            }}
+            >
+            <Text
+              style={{
+                color: 'white',
+                fontSize: 15,
+                fontWeight: '400',
+                fontFamily: 'Karla_400Regular'
+              }}
+              >
+              Zaloguj
             </Text>
-          </Text>
-        </TouchableOpacity>
-      </View>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            onPress={() => {
+              navigation.navigate('CreateAccountView')
+            }}
+            >
+            <Text style={styles.createAccount}>
+              Jeśli nadal nie posiadasz konta w naszym serwisie, możesz je założyć
+              <Text style={[styles.createAccount, { color: Colors.reddish }]}>
+                {' '}
+                tutaj.
+              </Text>
+            </Text>
+          </TouchableOpacity>
+          
+        </View>
+      </ImageBackground>
     </ScrollView>
   )
 }
