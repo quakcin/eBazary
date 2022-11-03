@@ -104,7 +104,7 @@ export function CreateAccountView({ navigation }) {
             style={styles.checkbox}
             value={isChecked}
             onValueChange={setChecked}
-            color={isChecked ? Colors.greenish : undefined}
+            color={isChecked ? Colors.buttons : undefined}
           />
           <Text style={styles.info}>Akceptuję regulamin serwisu.</Text>
         </View>
@@ -137,7 +137,7 @@ export function CreateAccountView({ navigation }) {
           <Text style={styles.info}>
             Jeżeli posiadasz już konto kliknij
             <Text
-              style={[styles.info, { color: Colors.bluish }]}
+              style={[styles.info, { color: Colors.buttons }]}
               onPress={() => {
                 navigation.navigate('AuthView')
               }}
@@ -154,16 +154,16 @@ export function CreateAccountView({ navigation }) {
 
 const styles = StyleSheet.create({
   defaultInput: {
-    backgroundColor: 'white',
     marginTop: 20,
-    fontFamily: 'Ubuntu_400Regular'
+    fontFamily: 'Ubuntu_400Regular',
+    borderRadius: 5
   },
 
   shortInput: {
     width: '100%',
-    borderWidth: 2,
     height: 40,
-    borderColor: Colors.dark,
+    borderBottomWidth: 2,
+    borderBottomColor: '#424242',
     paddingHorizontal: 20
   },
 

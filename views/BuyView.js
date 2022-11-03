@@ -227,15 +227,16 @@ export function BuyView({ navigation }) {
               placeholder={'Rodzaj dostawy'}
               boxStyles={{
                 borderRadius: 0,
-                backgroundColor: '#fff',
-                borderWidth: 2,
-                borderColor: Colors.dark
+                backgroundColor: '#f1f1f1',
+                borderWidth: 0,
+                borderBottomWidth: 2,
+                borderBottomColor: '#424242',
               }}
               dropdownStyles={{
                 borderRadius: 0,
-                backgroundColor: '#fff',
+                backgroundColor: '#f3f3f3',
                 borderWidth: 2,
-                borderColor: Colors.dark
+                borderBottomColor: '#424242',
               }}
               inputStyles={{
                 fontFamily: 'Karla_400Regular'
@@ -256,7 +257,7 @@ export function BuyView({ navigation }) {
             alignItems: 'center',
             width: '75%',
             alignSelf: 'center',
-            marginTop: 10
+            marginTop: '12%'
           }}
           onPress={() => console.log('Płacenie...')}
         >
@@ -278,14 +279,13 @@ export function BuyView({ navigation }) {
 
 const styles = StyleSheet.create({
   defaultInput: {
-    backgroundColor: 'white',
     fontFamily: 'Ubuntu_400Regular'
   },
 
   shortInput: {
-    borderWidth: 2,
     height: 40,
-    borderColor: Colors.dark,
+    borderBottomWidth: 2,
+    borderBottomColor: '#424242',
     paddingHorizontal: 20
   }
 })
