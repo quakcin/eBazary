@@ -123,7 +123,6 @@ export function ProfileView({ navigation }) {
                   fontSize: 15,
                   fontWeight: '400',
                   fontFamily: 'Karla_400Regular',
-                  color: lightMode ? Colors.dark : Colors.textColorDarkMode
                 }}
               >
                 Moje Oferty
@@ -151,7 +150,6 @@ export function ProfileView({ navigation }) {
                   fontSize: 15,
                   fontWeight: '400',
                   fontFamily: 'Karla_400Regular',
-                  color: lightMode ? Colors.dark : Colors.textColorDarkMode
                 }}
               >
                 Moje Zakupy
@@ -179,7 +177,6 @@ export function ProfileView({ navigation }) {
                   fontSize: 15,
                   fontWeight: '400',
                   fontFamily: 'Karla_400Regular',
-                  color: lightMode ? Colors.dark : Colors.textColorDarkMode
                 }}
               >
                 Edytuj Profil

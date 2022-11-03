@@ -60,7 +60,7 @@ function CustomDrawerContent(props) {
             )}
             onPress={() => alert('Logged out')}
             style={{
-              backgroundColor: '#82AFE1'
+              backgroundColor: '#616161'
             }}
           />
         </View>
@@ -82,7 +82,7 @@ export default function () {
       initialRouteName='HomeView'
       backBehavior='history'
       screenOptions={{
-        drawerActiveBackgroundColor: Colors.greenish,
+        drawerActiveBackgroundColor: Colors.buttons,
         drawerLabelStyle: {
           fontFamily: 'Ubuntu_400Regular'
         },
