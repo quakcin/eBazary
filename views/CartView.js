@@ -9,7 +9,11 @@ import {
   TouchableOpacity
 } from 'react-native'
 import { useTailwind } from 'tailwind-rn'
-import CartItem from '../components/CartItem'
+
+// import CartItem from '../components/CartItem'
+import OfferTile from '../components/OfferTile'
+
+
 import { Viewport } from '../utils/Viewport'
 import { Karla_400Regular, useFonts } from '@expo-google-fonts/karla'
 import { Colors } from '../utils/Colors'
@@ -28,7 +32,7 @@ export function CartView({ navigation }) {
     // setOffers(resp.map((r) => r.title.length > 18 ? r.title.substr(0, 18) + '...' : r.title));
 
     for (let r of resp)
-      if (r.title.length > 18) r.title = r.title.substr(0, 18) + '...'
+      if (r.title.length > 24) r.title = r.title.substr(0, 24) + '...'
 
     setOffers(resp)
   }, [])
@@ -46,10 +50,24 @@ export function CartView({ navigation }) {
   return (
     <Viewport navigation={navigation} active='Cart'>
       <View style={{ alignItems: 'center', width: '100%', alignSelf: 'center' }}>
-        <ScrollView style={{ height: '90%', minWidth: '100%' }}>
-          {offers.map((data, index) => (
-            <CartItem data={data} key={index} />
-          ))}
+        <ScrollView style={{ height: '90%', width: '100%' }}>
+          <View style={{width: '100%', marginLeft: '10%', marginTop: 50, marginBottom: 75}}>
+            {offers.map((o) => (
+              <OfferTile
+                title={o.title}
+                price={o.price}
+                subtitle = 'zrezygnuj'
+                image={o.image}
+                onSubtitleClick={() => {
+                  console.log('handle item removal');
+                }}
+                onTileClick={() => {
+                  navigation.navigate('OfferView')
+                }}
+                key={o.title}
+              />
+            ))}
+          </View>
         </ScrollView>
 
         <View style={{ minHeight: '10%', justifyContent: 'center', width: '80%' }}>

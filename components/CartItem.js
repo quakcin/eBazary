@@ -18,31 +18,38 @@ const CartItem = ({ data }) => {
 
   return (
     <View
-      style={{
-        minWidth: '100%',
-        alignItems: 'center'
+      style=
+      {{
+        marginLeft: '10%',
+        width: '80%',
+        backgroundColor: 'blue'
+        // alignItems: 'center',
       }}
     >
       <View
         style={{
           paddingVertical: 15,
           flexDirection: 'row',
-          width: '95%'
+          width: '100%',
+          backgroundColor: 'yellow'
         }}
       >
-        <Image
-          style={{ width: 80, height: 80, marginRight: 30 }}
-          source={{ uri: data.image }}
-        />
+        <View style={{flex: 1}}>
+          <Image
+            style={{ width: 80, height: 80, marginRight: 30, borderRadius: 10 }}
+            source={{ uri: data.image }}
+          />
+        </View>
         <View
           style={{
+            flex: 2,
             justifyContent: 'space-evenly'
           }}
         >
           <Text
             style={{
-              fontFamily: 'RobotoMono_500Medium',
-              fontWeight: '500',
+              // fontFamily: 'RobotoMono_500Medium',
+              fontWeight: 'bold',
               fontSize: 13
             }}
           >
