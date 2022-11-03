@@ -105,11 +105,15 @@ export function BuyView({ navigation }) {
 
   const [location, setLocation] = useState(null);
 
+  const [tbxAdres, setTbxAdres] = useState('');
+  const [tbxMiasto, setTbxMiasto] = useState('');
+  const [tbxPoczt, setTbxPoczt] = useState('');
+
+
   useEffect(() => 
   {
     (async () => 
     {
-      
       let { status } = await Location.requestForegroundPermissionsAsync();
       if (status !== 'granted') 
       {
@@ -128,6 +132,18 @@ export function BuyView({ navigation }) {
     if (location != null)
     {
       console.log(location);
+
+      // prep request url
+      const apiRequest = `https://api.geoapify.com/v1/geocode/reverse?lat=${location.coords.latitude}&lon=${location.coords.longitude}&apiKey=24d24bff67b34d988d0adc504c1f8ed9`;
+
+      // make request
+      fetch(apiRequest)
+        .then((response) => response.json())
+        .then((resp) => {
+          setTbxAdres(`${resp.features[0].properties.street} ${resp.features[0].properties.housenumber}`);
+          setTbxMiasto(resp.features[0].properties.city);
+          setTbxPoczt(resp.features[0].properties.postcode);
+        });
     }
   }, [location])
 
@@ -169,6 +185,7 @@ export function BuyView({ navigation }) {
                 }
               ]}
               placeholder='Miasto'
+              value={tbxMiasto}
             />
 
             <TextInput
@@ -182,6 +199,7 @@ export function BuyView({ navigation }) {
                 }
               ]}
               placeholder='Poczt.'
+              value={tbxPoczt}
             />
           </View>
           <View style={{ padding: 10 }}>
@@ -194,6 +212,7 @@ export function BuyView({ navigation }) {
                 }
               ]}
               placeholder='Adres'
+              value={tbxAdres}
             />
           </View>
           <View style={{ padding: 10 }}>
