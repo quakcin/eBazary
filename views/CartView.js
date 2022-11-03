@@ -45,14 +45,14 @@ export function CartView({ navigation }) {
 
   return (
     <Viewport navigation={navigation} active='Cart'>
-      <View style={{ alignItems: 'center', width: '80%', alignSelf: 'center' }}>
-        <ScrollView style={{ height: '85%', minWidth: '100%' }}>
+      <View style={{ alignItems: 'center', width: '100%', alignSelf: 'center' }}>
+        <ScrollView style={{ height: '90%', minWidth: '100%' }}>
           {offers.map((data, index) => (
             <CartItem data={data} key={index} />
           ))}
         </ScrollView>
 
-        <View style={{ minHeight: '15%', justifyContent: 'center' }}>
+        <View style={{ minHeight: '10%', justifyContent: 'center', width: '80%' }}>
           <TouchableOpacity
             style={{
               borderRadius: 5,

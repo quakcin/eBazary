@@ -20,14 +20,15 @@ const CartItem = ({ data }) => {
     <View
       style={{
         minWidth: '100%',
-        alignItems: 'center'
+        alignItems: 'center',
+        marginLeft: 40
       }}
     >
       <View
         style={{
           paddingVertical: 15,
           flexDirection: 'row',
-          width: '90%'
+          width: '95%'
         }}
       >
         <Image

@@ -41,27 +41,30 @@ export function AuthView({ navigation }) {
       }}
     >
       <View style={{ alignItems: 'center', marginBottom: '10%' }}>
-        <AutoHeightImage
-          width={180}
-          style={styles.image}
-          source={{ uri: 'https://i.postimg.cc/9fW1Sg1Y/clipart323390.png' }}
-        />
-
-        <View style={{ width: '80%' }}>
-          <TextInput
-            style={[styles.defaultInput, styles.shortInput]}
-            onChangeText={(email) => setEmail(email)}
-            placeholder='Nazwa użytkownika'
+        <View style ={{alignItems: 'center', height: 210, width: 210, backgroundColor: '#c46060',  borderRadius: 300, paddingTop: 45}}>
+          <AutoHeightImage
+            width={180}
+            style={styles.image}
+            source={{ uri: 'https://i.postimg.cc/9fW1Sg1Y/clipart323390.png' }}
           />
         </View>
+        <View style={{ marginTop: 80, width: '100%', alignItems: 'center' }}>
+          <View style={{ width: '80%' }}>
+            <TextInput
+              style={[styles.defaultInput, styles.shortInput]}
+              onChangeText={(email) => setEmail(email)}
+              placeholder='Nazwa użytkownika'
+            />
+          </View>
 
-        <View style={{ width: '80%' }}>
-          <TextInput
-            style={[styles.defaultInput, styles.shortInput]}
-            onChangeText={(password) => setPassword(password)}
-            placeholder='Hasło'
-            secureTextEntry={true}
-          />
+          <View style={{ width: '80%' }}>
+            <TextInput
+              style={[styles.defaultInput, styles.shortInput]}
+              onChangeText={(password) => setPassword(password)}
+              placeholder='Hasło'
+              secureTextEntry={true}
+            />
+          </View>
         </View>
 
         <TouchableOpacity
@@ -71,7 +74,7 @@ export function AuthView({ navigation }) {
             paddingHorizontal: 45,
             paddingVertical: 10,
             alignItems: 'center',
-            marginTop: 20,
+            marginTop: 60,
             width: '80%'
           }}
           onPress={() => {
@@ -110,16 +113,16 @@ export function AuthView({ navigation }) {
 
 const styles = StyleSheet.create({
   defaultInput: {
-    backgroundColor: 'white',
     marginTop: 20,
-    fontFamily: 'Ubuntu_400Regular'
+    fontFamily: 'Ubuntu_400Regular',
+    borderRadius: 5
   },
 
   shortInput: {
     width: '100%',
-    borderWidth: 2,
+    borderBottomWidth: 2,
+    borderBottomColor: '#424242',
     height: 40,
-    borderColor: Colors.dark,
     paddingHorizontal: 20
   },
 
