@@ -36,9 +36,11 @@ export function OfferView({ navigation }) {
   const serverResp = {
     dbid: 0,
     images: [
-      'https://ireland.apollo.olxcdn.com/v1/files/omg4oi2a48ye3-PL/image;s=644x461',
-      'https://ireland.apollo.olxcdn.com/v1/files/frnhis0bnomh1-PL/image;s=644x461',
-      'https://ireland.apollo.olxcdn.com/v1/files/lu8wi8cn3cki1-PL/image;s=644x461'
+      'https://ireland.apollo.olxcdn.com/v1/files/wed4kza7piuy2-PL/image;s=1000x700',
+      'https://ireland.apollo.olxcdn.com/v1/files/dll29qfbh1g02-PL/image;s=1000x700',
+      'https://ireland.apollo.olxcdn.com/v1/files/ds0knw6hutf3-PL/image;s=1000x700',
+      'https://ireland.apollo.olxcdn.com/v1/files/6gelwgg39542-PL/image;s=1000x700',
+      'https://ireland.apollo.olxcdn.com/v1/files/jyxpeu8iog2b2-PL/image;s=1000x700'
     ],
     title: 'Apple iPhone 13 mini 128GB (zielony)',
     desc: `Zapraszamy do skorzystania z naszej oferty i zapoznania się z jej opisem.
@@ -77,7 +79,7 @@ export function OfferView({ navigation }) {
 
   useEffect(() => 
   {
-    navigation.setOptions({ title: `${serverResp.title}` })
+    navigation.setOptions({ title: `Oferta od ${serverResp.seller}` })
     setOffer(serverResp);
     setLat(serverResp.lat);
     setLon(serverResp.lon);
@@ -101,89 +103,22 @@ export function OfferView({ navigation }) {
         <Text
           style={{
             textAlign: 'center',
-            fontSize: 18,
+            fontSize: 24,
             marginTop: 25,
             marginBottom: 12,
-            fontFamily: 'RobotoMono_600SemiBold'
+            // fontFamily: 'RobotoMono_600SemiBold',
+            width: '80%',
+            marginLeft: '10%',
+            fontWeight: 'bold'
           }}
         >
-          {offer.seller}
-        </Text>
-        <Text
-          style={{
-            textAlign: 'center',
-            fontSize: 13,
-            marginBottom: 15,
-            fontFamily: 'Karla_500Medium'
-          }}
-        >
-          oferta
+          {offer.title}
         </Text>
         <VerticalSlider pictures={offer.images} navigation={navigation} />
-        <View style={{ width: '80%', marginLeft: '10%' }}>
-          <Text
-            style={{
-              textAlign: 'center',
-              fontSize: 22,
-              fontFamily: 'Karla_500Medium',
-              marginTop: 30,
-              marginBottom: 30
-            }}
-          >
-            Opis
-          </Text>
-          <Text
-            style={{
-              textAlign: 'center',
-              fontSize: 12,
-              fontFamily: 'Ubuntu_400Regular'
-            }}
-          >
-            {offer.desc}
-          </Text>
-          <Text
-            style={{
-              textAlign: 'center',
-              fontSize: 22,
-              fontFamily: 'Karla_500Medium',
-              marginTop: 60,
-              marginBottom: 30
-            }}
-          >
-            Lokalizacja
-          </Text>
-          <View>
-              <MapView 
-                style = {{
-                  width: '100%',
-                  height: 300
-                }}
-                zoom = {1000}
-                initialRegion = {{
-                  latitude: lat,
-                  longitude: lon,
-                  latitudeDelta: 0.0009,
-                  longitudeDelta: 0.0009
-                }}
-              >
-                <MapView.Marker
-                    coordinate={coords}
-                    title={"Sprzedający"}
-                    description={"Adres sprzedającego"}
-                />
-              </MapView>
-          </View>
-          <Text
-            style={{
-              textAlign: 'center',
-              fontSize: 22,
-              fontFamily: 'Karla_500Medium',
-              marginTop: 60,
-              marginBottom: 15
-            }}
-          >
-            Zakupy
-          </Text>
+
+
+        <View style={{width: '70%', marginLeft: '15%'}}>
+          {/* ZAKUPY */}
           <View style={{ width: '100%', marginTop: 40 }}>
             <View
               style={{
@@ -206,7 +141,7 @@ export function OfferView({ navigation }) {
                 style={{
                   borderRadius: 5,
                   backgroundColor: Colors.buttons,
-                  paddingHorizontal: 45,
+                  paddingHorizontal: 30,
                   paddingVertical: 10,
                   alignItems: 'center'
                 }}
@@ -249,7 +184,63 @@ export function OfferView({ navigation }) {
                   Kup Teraz!
                 </Text>
               </TouchableOpacity>
-              </View>
+            </View>
+          </View>
+        </View>
+        {/* ZAKUPY */}
+
+        <View style={{ width: '80%', marginLeft: '10%' }}>
+          <Text
+            style={{
+              textAlign: 'center',
+              fontSize: 22,
+              fontFamily: 'Karla_500Medium',
+              marginTop: 30,
+              marginBottom: 30
+            }}
+          >
+            Opis
+          </Text>
+          <Text
+            style={{
+              textAlign: 'justify',
+              fontSize: 16,
+              fontFamily: 'Ubuntu_400Regular'
+            }}
+          >
+            {offer.desc}
+          </Text>
+          <Text
+            style={{
+              textAlign: 'center',
+              fontSize: 22,
+              fontFamily: 'Karla_500Medium',
+              marginTop: 60,
+              marginBottom: 30
+            }}
+          >
+            Lokalizacja
+          </Text>
+          <View style={{marginBottom: 60}}>
+              <MapView 
+                style = {{
+                  width: '100%',
+                  height: 300
+                }}
+                zoom = {1000}
+                initialRegion = {{
+                  latitude: lat,
+                  longitude: lon,
+                  latitudeDelta: 0.0009,
+                  longitudeDelta: 0.0009
+                }}
+              >
+                <MapView.Marker
+                    coordinate={coords}
+                    title={"Sprzedający"}
+                    description={"Adres sprzedającego"}
+                />
+              </MapView>
             </View>
           </View>
         </ScrollView>
