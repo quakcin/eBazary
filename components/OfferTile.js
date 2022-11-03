@@ -36,7 +36,7 @@ const OfferTile = ({
         style={{ flexDirection: 'row', width: '80%', marginBottom: 20 }}
       >
         <View style={{ marginRight: 20 }}>
-          <Image style={{ width: 70, height: 70 }} source={{ uri: image }} />
+          <Image style={{ width: 70, height: 70, borderRadius: 10 }} source={{ uri: image }} />
         </View>
 
         <View
@@ -51,8 +51,8 @@ const OfferTile = ({
             <Text
               style={{
                 padding: 5,
-                fontFamily: 'RobotoMono_500Medium',
-                fontWeight: '500',
+                // fontFamily: 'RobotoMono_500Medium',
+                fontWeight: 'bold',
                 fontSize: 13
               }}
             >
