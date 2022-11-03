@@ -7,6 +7,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import { useTailwind } from 'tailwind-rn'
 
 import NavBar from './NavBar'
+import { Colors } from './Colors'
 
 export function Viewport({
   children,
@@ -14,11 +15,16 @@ export function Viewport({
   active,
   isFullScreen = false
 }) {
+  const lightMode = false
+
   return (
     <SafeAreaView
       style={{
         flex: 1,
-        marginTop: isFullScreen ? Constants.statusBarHeight : 0
+        marginTop: isFullScreen ? Constants.statusBarHeight : 0,
+        backgroundColor: lightMode
+          ? Colors.background
+          : Colors.backgroundDarkMode
       }}
     >
       <View style={{ flex: 1 }}>{children}</View>

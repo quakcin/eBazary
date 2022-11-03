@@ -49,6 +49,8 @@ export function ProfileView({ navigation }) {
     Karla_400Regular
   })
 
+  const lightMode = false
+
   if (!fontsLoaded) return null
 
   return (
@@ -81,7 +83,8 @@ export function ProfileView({ navigation }) {
                   style={{
                     fontWeight: '600',
                     fontSize: 16,
-                    fontFamily: 'RobotoMono_600SemiBold'
+                    fontFamily: 'RobotoMono_600SemiBold',
+                    color: lightMode ? Colors.dark : Colors.textColorDarkMode
                   }}
                 >
                   {serverResp.user}
@@ -90,7 +93,8 @@ export function ProfileView({ navigation }) {
                   style={{
                     fontWeight: '400',
                     fontSize: 13,
-                    fontFamily: 'Ubuntu_400Regular'
+                    fontFamily: 'Ubuntu_400Regular',
+                    color: lightMode ? Colors.dark : Colors.textColorDarkMode
                   }}
                 >
                   {serverResp.desc}
@@ -101,7 +105,9 @@ export function ProfileView({ navigation }) {
             <TouchableOpacity
               style={{
                 borderRadius: 5,
-                backgroundColor: Colors.buttons,
+                backgroundColor: lightMode
+                  ? Colors.buttons
+                  : Colors.buttonsDarkMode,
                 paddingHorizontal: 45,
                 paddingVertical: 10,
                 alignItems: 'center',
@@ -116,7 +122,8 @@ export function ProfileView({ navigation }) {
                   color: 'white',
                   fontSize: 15,
                   fontWeight: '400',
-                  fontFamily: 'Karla_400Regular'
+                  fontFamily: 'Karla_400Regular',
+                  color: lightMode ? Colors.dark : Colors.textColorDarkMode
                 }}
               >
                 Moje Oferty
@@ -126,7 +133,9 @@ export function ProfileView({ navigation }) {
             <TouchableOpacity
               style={{
                 borderRadius: 5,
-                backgroundColor: Colors.buttons,
+                backgroundColor: lightMode
+                  ? Colors.buttons
+                  : Colors.buttonsDarkMode,
                 paddingHorizontal: 45,
                 paddingVertical: 10,
                 alignItems: 'center',
@@ -141,7 +150,8 @@ export function ProfileView({ navigation }) {
                   color: 'white',
                   fontSize: 15,
                   fontWeight: '400',
-                  fontFamily: 'Karla_400Regular'
+                  fontFamily: 'Karla_400Regular',
+                  color: lightMode ? Colors.dark : Colors.textColorDarkMode
                 }}
               >
                 Moje Zakupy
@@ -151,7 +161,9 @@ export function ProfileView({ navigation }) {
             <TouchableOpacity
               style={{
                 borderRadius: 5,
-                backgroundColor: Colors.buttons,
+                backgroundColor: lightMode
+                  ? Colors.buttons
+                  : Colors.buttonsDarkMode,
                 paddingHorizontal: 45,
                 paddingVertical: 10,
                 alignItems: 'center',
@@ -166,7 +178,8 @@ export function ProfileView({ navigation }) {
                   color: 'white',
                   fontSize: 15,
                   fontWeight: '400',
-                  fontFamily: 'Karla_400Regular'
+                  fontFamily: 'Karla_400Regular',
+                  color: lightMode ? Colors.dark : Colors.textColorDarkMode
                 }}
               >
                 Edytuj Profil
@@ -178,12 +191,18 @@ export function ProfileView({ navigation }) {
                 alignSelf: 'center',
                 marginTop: 22,
                 fontFamily: 'Karla_400Regular',
-                fontSize: 14
+                fontSize: 14,
+                color: lightMode ? Colors.dark : Colors.textColorDarkMode
               }}
             >
               Posiadasz{' '}
               {
-                <Text style={{ color: Colors.greenish, fontWeight: '600' }}>
+                <Text
+                  style={{
+                    color: lightMode ? Colors.greenish : Colors.blueishDarkMode,
+                    fontWeight: '600'
+                  }}
+                >
                   2
                 </Text>
               }{' '}

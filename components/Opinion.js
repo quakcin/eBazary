@@ -11,13 +11,23 @@ const Opinion = ({ image, rating, message }) => {
 
   const MAX_STARS = 5
 
+  const lightMode = false
+
   const generateStarsJSX = () => {
     const stars = []
 
     for (let i = 0; i < MAX_STARS; i++)
       stars.push(
         <StarIcon
-          style={{ color: `${i < rating ? Colors.yellowish : 'black'}` }}
+          style={{
+            color: `${
+              i < rating
+                ? Colors.yellowish
+                : lightMode
+                ? 'black'
+                : Colors.textColorDarkMode
+            }`
+          }}
           width={18}
           height={18}
           key={i}
@@ -49,7 +59,8 @@ const Opinion = ({ image, rating, message }) => {
           style={{
             fontSize: 12,
             fontFamily: 'Nunito_400Regular',
-            fontWeight: '400'
+            fontWeight: '400',
+            color: lightMode ? Colors.dark : Colors.textColorDarkMode
           }}
         >
           {message}
