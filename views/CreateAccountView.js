@@ -8,11 +8,13 @@ import {
   Image,
   TextInput,
   TouchableOpacity,
-  Alert
+  Alert,
+  ImageBackground
 } from 'react-native'
 import AutoHeightImage from 'react-native-auto-height-image'
 import { Colors } from '../utils/Colors'
 import { Viewport } from '../utils/Viewport'
+import Constants from 'expo-constants'
 
 export function CreateAccountView({ navigation }) {
   const [name, setName] = useState('')
@@ -53,101 +55,98 @@ export function CreateAccountView({ navigation }) {
   )
 
   return (
-    <ScrollView style={{ marginTop: '12%', padding: 20 }}>
-      <View style={{ alignItems: 'center', marginBottom: '10%' }}>
-        <AutoHeightImage
-          source={{ uri: 'https://i.postimg.cc/9fW1Sg1Y/clipart323390.png' }}
-          width={130}
-          style={{ marginBottom: 10 }}
-        />
-        <View style={{ width: '82%', alignItems: 'center' }}>
-          <TextInput
-            style={[styles.defaultInput, styles.shortInput]}
-            onChangeText={(txt) => setName(txt)}
-            placeholder='Imię'
-          />
+    <ScrollView style={{ backgroundColor: 'white', }}>
+      <ImageBackground source={require('./../assets/prop2.png')} resizeMode="cover" style={{flex: 1, justifyContent: "center", width: "100%", height: "100%"}}>
+        <View style={{ alignItems: 'center', marginTop: '50%' }}>
+          <View style={{ width: '82%', alignItems: 'center' }}>
+            <TextInput
+              style={[styles.defaultInput, styles.shortInput]}
+              onChangeText={(txt) => setName(txt)}
+              placeholder='Imię'
+            />
 
-          <TextInput
-            style={[styles.defaultInput, styles.shortInput]}
-            onChangeText={(txt) => setSurname(txt)}
-            placeholder='Nazwisko'
-          />
+            <TextInput
+              style={[styles.defaultInput, styles.shortInput]}
+              onChangeText={(txt) => setSurname(txt)}
+              placeholder='Nazwisko'
+            />
 
-          <TextInput
-            style={[styles.defaultInput, styles.shortInput]}
-            onChangeText={(txt) => setUser(txt)}
-            placeholder='Nazwa użytkownika'
-          />
+            <TextInput
+              style={[styles.defaultInput, styles.shortInput]}
+              onChangeText={(txt) => setUser(txt)}
+              placeholder='Nazwa użytkownika'
+            />
 
-          <TextInput
-            style={[styles.defaultInput, styles.shortInput]}
-            onChangeText={(txt) => setMail(txt)}
-            placeholder='Adres e-mail'
-          />
+            <TextInput
+              style={[styles.defaultInput, styles.shortInput]}
+              onChangeText={(txt) => setMail(txt)}
+              placeholder='Adres e-mail'
+            />
 
-          <TextInput
-            style={[styles.defaultInput, styles.shortInput]}
-            onChangeText={(txt) => setPassword1(txt)}
-            placeholder='Hasło'
-            secureTextEntry={true}
-          />
+            <TextInput
+              style={[styles.defaultInput, styles.shortInput]}
+              onChangeText={(txt) => setPassword1(txt)}
+              placeholder='Hasło'
+              secureTextEntry={true}
+            />
 
-          <TextInput
-            style={[styles.defaultInput, styles.shortInput]}
-            onChangeText={(txt) => setPassword2(txt)}
-            placeholder='Powtórz hasło'
-            secureTextEntry={true}
-          />
-        </View>
-        <View style={styles.checkboxWrapper}>
-          <Checkbox
-            style={styles.checkbox}
-            value={isChecked}
-            onValueChange={setChecked}
-            color={isChecked ? Colors.buttons : undefined}
-          />
-          <Text style={styles.info}>Akceptuję regulamin serwisu.</Text>
-        </View>
-        <View style={styles.buttonArea}>
-          <TouchableOpacity
-            style={{
-              borderRadius: 5,
-              backgroundColor: Colors.buttons,
-              paddingHorizontal: 45,
-              paddingVertical: 10,
-              alignItems: 'center',
-              marginTop: 15,
-              width: '80%'
-            }}
-            onPress={() => console.log('Register...')}
-          >
-            <Text
+            <TextInput
+              style={[styles.defaultInput, styles.shortInput]}
+              onChangeText={(txt) => setPassword2(txt)}
+              placeholder='Powtórz hasło'
+              secureTextEntry={true}
+            />
+          </View>
+          <View style={styles.checkboxWrapper}>
+            <Checkbox
+              style={styles.checkbox}
+              value={isChecked}
+              onValueChange={setChecked}
+              color={isChecked ? Colors.buttons : undefined}
+            />
+            <Text style={styles.info}>Akceptuję regulamin serwisu.</Text>
+          </View>
+          <View style={styles.buttonArea}>
+            <TouchableOpacity
               style={{
-                color: 'white',
-                fontSize: 15,
-                fontWeight: '400',
-                fontFamily: 'Karla_400Regular'
+                borderRadius: 5,
+                backgroundColor: Colors.buttons,
+                paddingHorizontal: 45,
+                paddingVertical: 10,
+                alignItems: 'center',
+                marginTop: 15,
+                width: '60%'
               }}
+              onPress={() => console.log('Register...')}
             >
-              Zarejestruj się
+              <Text
+                style={{
+                  color: 'white',
+                  fontSize: 15,
+                  fontWeight: '400',
+                  fontFamily: 'Karla_400Regular'
+                }}
+              >
+                Zarejestruj się
+              </Text>
+            </TouchableOpacity>
+          </View>
+          <View style={styles.info}>
+            <Text style={styles.info}>
+              Jeżeli posiadasz już konto kliknij
+              <Text
+                style={[styles.info, { color: Colors.buttons }]}
+                onPress={() => {
+                  navigation.navigate('AuthView')
+                }}
+              >
+                {' '}
+                tutaj.{' '}
+              </Text>
             </Text>
-          </TouchableOpacity>
+          </View>
         </View>
-        <View style={styles.info}>
-          <Text style={styles.info}>
-            Jeżeli posiadasz już konto kliknij
-            <Text
-              style={[styles.info, { color: Colors.buttons }]}
-              onPress={() => {
-                navigation.navigate('AuthView')
-              }}
-            >
-              {' '}
-              tutaj.{' '}
-            </Text>
-          </Text>
-        </View>
-      </View>
+      </ImageBackground>
     </ScrollView>
   )
 }
@@ -160,7 +159,7 @@ const styles = StyleSheet.create({
   },
 
   shortInput: {
-    width: '100%',
+    width: '90%',
     height: 40,
     borderBottomWidth: 2,
     borderBottomColor: '#424242',

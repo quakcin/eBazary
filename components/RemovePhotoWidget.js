@@ -10,7 +10,7 @@ const RemovePhotoWidget = ({ uri }) => {
         width: 50,
         height: 50,
         position: 'relative',
-        justifyContent: 'center'
+        justifyContent: 'center',
       }}
     >
       <Image
@@ -20,7 +20,8 @@ const RemovePhotoWidget = ({ uri }) => {
           height: 50,
           position: 'absolute',
           zIndex: 1,
-          opacity: 0.6
+          opacity: 0.6,
+          borderRadius: 8
         }}
       />
       <MinusCircleIcon

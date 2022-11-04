@@ -29,7 +29,7 @@ export default function App() {
           initialRouteName='AuthView'
         >
           <Stack.Screen
-            name='Drawer'
+            name='Cofnij'
             options={{
               headerShown: false,
               headerTitleStyle: {

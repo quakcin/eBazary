@@ -38,14 +38,11 @@ export function AuthView({ navigation }) {
 
   return (
     <ScrollView
-      style={{
-        marginTop: Constants.statusBarHeight,
-        backgroundColor: Colors.background,
-      }}
+      style={{ backgroundColor: 'white' }}
     >
-      <ImageBackground source={{uri:"https://u-rodziny.com.pl/wp-content/uploads/2019/10/435054-PE9UJW-727-937x1024.jpg"}} resizeMode="cover" style={{flex: 1, justifyContent: "center", width: "100%", height: "100%"}}>
+      <ImageBackground source={require('./../assets/prop1.png')} resizeMode="cover" style={{flex: 1, justifyContent: "center", width: "100%", height: "100%"}}>
         <View style={{ alignItems: 'center' }}>
-          <View style={{ marginTop: 150, alignItems: 'center' }}>
+          <View style={{ marginTop: "95%", alignItems: 'center' }}>
             <View style={{ width: width-130,  }}>
               <TextInput
                 style={[styles.defaultInput, styles.shortInput]}
@@ -72,10 +69,11 @@ export function AuthView({ navigation }) {
               paddingVertical: 10,
               alignItems: 'center',
               marginTop: 60,
-              width: '80%'
+              marginBottom: 60,
+              width: '60%'
             }}
             onPress={() => {
-              navigation.replace('Drawer')
+              navigation.replace('Cofnij')
             }}
             >
             <Text

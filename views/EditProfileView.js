@@ -201,16 +201,16 @@ export function EditProfileView({ navigation }) {
             }}
             render={({ field: { onChange, onBlur, value } }) => (
               <TextInput
-                style={[styles.defaultInput, styles.longInput, {borderBottomWidth: 0, borderLeftWidth: 5}]}
+                style={[styles.defaultInput, styles.longInput, {borderBottomWidth: 0, borderLeftWidth: 5, marginTop: 35, marginBottom: 20}]}
                 onBlur={onBlur}
                 onChangeText={onChange}
                 value={value}
                 defaultValue={serverResp.desc}
                 placeholder='Opis'
                 textAlign='left'
-                textAlignVertical='bottom'
+                textAlignVertical='top'
                 multiline={true}
-                numberOfLines={6}
+                numberOfLines={5}
               />
             )}
             name='opis'
@@ -288,12 +288,9 @@ const styles = StyleSheet.create({
 
   longInput: {
     width: '100%',
-    minHeight: 150,
-    height: 150,
-    maxHeight: 150,
+    height: 100,
     borderBottomWidth: 2,
     borderBottomColor: '#424242',
-    height: 40,
     paddingHorizontal: 20,
     paddingVertical: 12
   }

@@ -122,8 +122,9 @@ export function HomeView({ navigation }) {
                   containerStyle={{ width: '50%', padding: 10 }}
                   dropDownContainerStyle={{
                     marginLeft: 10,
-                    borderRadius: 0,
-                    backgroundColor: '#e2e2e2'
+                    borderRadius: 10,
+                    borderWidth: 0,
+                    backgroundColor: Colors.background
                   }}
                   listMode='SCROLLVIEW'
                   style={{
@@ -146,10 +147,10 @@ export function HomeView({ navigation }) {
                   containerStyle={{ width: '50%', padding: 10 }}
                   dropDownContainerStyle={{
                     marginLeft: 10,
-                    borderRadius: 0,
-                    backgroundColor: '#e2e2e2'
+                    borderRadius: 10,
+                    borderWidth: 0,
+                    backgroundColor: Colors.background
                   }}
-                  listMode='SCROLLVIEW'
                   style={{
                     backgroundColor: '#f1f1f1',
                     borderWidth: 0,

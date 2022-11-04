@@ -29,7 +29,7 @@ export default function Notification({ kind, source, navigation }) {
         <StarIcon
           width={iconSize}
           height={iconSize}
-          style={{ color: Colors.yellowish }}
+          style={{ color: 'black' }}
         />
       )
     },
@@ -40,7 +40,7 @@ export default function Notification({ kind, source, navigation }) {
         <EyeIcon
           width={iconSize}
           height={iconSize}
-          style={{ color: Colors.bluish }}
+          style={{ color: 'black' }}
         />
       )
     },
@@ -51,7 +51,7 @@ export default function Notification({ kind, source, navigation }) {
         <HeartIcon
           width={iconSize}
           height={iconSize}
-          style={{ color: Colors.reddish }}
+          style={{ color: 'black' }}
         />
       )
     },
@@ -62,7 +62,7 @@ export default function Notification({ kind, source, navigation }) {
         <ExclamationTriangleIcon
           width={iconSize}
           height={iconSize}
-          style={{ color: Colors.reddish }}
+          style={{ color: 'black' }}
         />
       )
     },
@@ -73,7 +73,7 @@ export default function Notification({ kind, source, navigation }) {
         <MegaphoneIcon
           width={iconSize}
           height={iconSize}
-          style={{ color: Colors.greenish }}
+          style={{ color: 'black' }}
         />
       )
     }
@@ -113,16 +113,16 @@ export default function Notification({ kind, source, navigation }) {
           }}
         >
           <View style={{ marginRight: 10 }}>{kinds[kind].icon}</View>
-          <View style={{ alignContent: 'center' }}>
+          <View style={{ alignContent: 'center'}}>
             <View>
               <Text
-                style={{ fontSize: 15, fontFamily: 'RobotoMono_600SemiBold' }}
+                style={{ fontSize: 18, fontWeight: 'bold' }}
               >
                 {kinds[kind].title}
               </Text>
             </View>
             <View>
-              <Text style={{ fontSize: 12, fontFamily: 'Karla_400Regular' }}>
+              <Text style={{ fontSize: 15, fontFamily: 'Karla_400Regular' }}>
                 {kinds[kind].subtitle}
               </Text>
             </View>
