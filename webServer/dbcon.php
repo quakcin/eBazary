@@ -12,6 +12,8 @@
                          'db700311'       /* db    */
     );
 
+    mysqli_set_charset($hw, "utf8");
+
     if (!$hw)
       return NULL;
 
@@ -30,8 +32,7 @@
       if (array_key_exists($names[$i], $_GET) == false)
         return "";
       else
-        $inj = $inj . "\$" . $names[$i] . " = " . $_GET[$names[$i]] . ";\n";
-
+        $inj = $inj . "\$" . $names[$i] . " = '" . $_GET[$names[$i]] . "';\n";
     return $inj;
   }
     
