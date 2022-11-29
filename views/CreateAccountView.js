@@ -16,6 +16,8 @@ import { Colors } from '../utils/Colors'
 import { Viewport } from '../utils/Viewport'
 import Constants from 'expo-constants'
 
+import servRequest from '../utils/Server'
+
 export function CreateAccountView({ navigation }) {
   const [name, setName] = useState('')
   const [user, setUser] = useState('')
@@ -25,6 +27,29 @@ export function CreateAccountView({ navigation }) {
   const [password1, setPassword1] = useState('')
   const [password2, setPassword2] = useState('')
   const hasUnsavedChanges = Boolean(true)
+
+  const onRegister = function (e)
+  {
+    servRequest
+    (
+      'register', 
+      {
+        username: user,
+        password: password1,
+        mail: mail,
+        name: name,
+        surname: surname
+      },
+      (s) => 
+      {
+        console.log(`Registration successfull: ${s}`);
+      },
+      (e) => 
+      {
+        console.log(`Server failure: ${e}`);
+      }
+    );
+  }
 
   React.useEffect(
     () =>
@@ -117,7 +142,7 @@ export function CreateAccountView({ navigation }) {
                 marginTop: 15,
                 width: '60%'
               }}
-              onPress={() => console.log('Register...')}
+              onPress={() => onRegister() }
             >
               <Text
                 style={{

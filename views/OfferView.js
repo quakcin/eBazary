@@ -37,7 +37,7 @@ export function OfferView({ navigation }) {
   const tw = useTailwind()
 
   const serverResp = {
-    dbid: 0,
+    id: 0,
     images: [
       'https://ireland.apollo.olxcdn.com/v1/files/wed4kza7piuy2-PL/image;s=1000x700',
       'https://ireland.apollo.olxcdn.com/v1/files/dll29qfbh1g02-PL/image;s=1000x700',
@@ -46,7 +46,7 @@ export function OfferView({ navigation }) {
       'https://ireland.apollo.olxcdn.com/v1/files/jyxpeu8iog2b2-PL/image;s=1000x700'
     ],
     title: 'Apple iPhone 13 mini 128GB (zielony)',
-    desc: `Zapraszamy do skorzystania z naszej oferty i zapoznania się z jej opisem.
+    descr: `Zapraszamy do skorzystania z naszej oferty i zapoznania się z jej opisem.
 
     Dostępne kolory:
     
@@ -147,7 +147,7 @@ export function OfferView({ navigation }) {
                   marginLeft: 10
                 }}
               >
-                Koszta i Opłaty 
+                Koszty i Opłaty 
               </Text>
             </View>
           </View>
@@ -253,7 +253,7 @@ export function OfferView({ navigation }) {
               fontFamily: 'Ubuntu_400Regular'
             }}
           >
-            {offer.desc}
+            {offer.descr}
           </Text>
           
           <View style={{flexDirection: 'row', marginTop: 50, marginBottom: 30, alignItems: 'center'}}>
@@ -292,7 +292,7 @@ export function OfferView({ navigation }) {
                 <MapView.Marker
                     coordinate={coords}
                     title={"Sprzedający"}
-                    description={"Adres sprzedającego"}
+                    descrription={"Adres sprzedającego"}
                 />
               </MapView>
             </View>

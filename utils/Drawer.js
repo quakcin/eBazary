@@ -69,7 +69,7 @@ function CustomDrawerContent(props) {
   )
 }
 
-export default function () {
+export default function ({ navigation, route }) {
   let [fontsLoaded] = useFonts({
     Karla_400Regular
   })
@@ -102,6 +102,7 @@ export default function () {
           }
         }}
         component={CartView}
+        initialParams = {{ userId: route.params.userId }}
         onPress={() => {
           this.navigate('CardView')
         }}
@@ -115,6 +116,7 @@ export default function () {
           }
         }}
         component={NewOfferView}
+        initialParams = {{ userId: route.params.userId }}
       />
       <Drawer.Screen
         name='HomeView'
@@ -126,6 +128,7 @@ export default function () {
           }
         }}
         component={HomeView}
+        initialParams = {{ userId: route.params.userId }}
       />
       <Drawer.Screen
         name='BellView'
@@ -136,6 +139,7 @@ export default function () {
           }
         }}
         component={BellView}
+        initialParams = {{ userId: route.params.userId }}
       />
 
       {fontsLoaded ? (
@@ -148,6 +152,7 @@ export default function () {
             }
           }}
           component={ProfileView}
+        initialParams = {{ userId: route.params.userId }}
         />
       ) : (
         <></>
@@ -161,6 +166,7 @@ export default function () {
           }
         }}
         component={MyShoppingView}
+        initialParams = {{ userId: route.params.userId }}
       />
       <Drawer.Screen
         name='MyOffersView'
@@ -171,6 +177,7 @@ export default function () {
           }
         }}
         component={MyOffersView}
+        initialParams = {{ userId: route.params.userId }}
       />
       <Drawer.Screen
         name='EditProfileView'
@@ -181,6 +188,7 @@ export default function () {
           }
         }}
         component={EditProfileView}
+        initialParams = {{ userId: route.params.userId }}
       />
       <Drawer.Screen
         name='PassCtrlView'
@@ -191,6 +199,7 @@ export default function () {
           }
         }}
         component={PasswordCtlView}
+        initialParams = {{ userId: route.params.userId }}
       />
     </Drawer.Navigator>
   )

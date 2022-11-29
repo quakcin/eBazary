@@ -36,11 +36,13 @@ export default function App() {
                 fontFamily: 'Karla_400Regular'
               }
             }}
+            initialParams={{ userId: '' }}
             component={Drawer}
           />
 
           <Stack.Screen
             name='AuthView'
+
             options={{
               title: 'Auth',
               headerShown: false,
@@ -49,6 +51,7 @@ export default function App() {
               }
             }}
             component={AuthView}
+            initialParams={{ userId: '' }}
           />
 
           <Stack.Screen
@@ -59,7 +62,7 @@ export default function App() {
                 fontFamily: 'Karla_400Regular'
               }
             }}
-            initialParams={{ source: null }}
+            initialParams={{ source: null, userId: '' }}
             component={TransactionDetailsView}
           />
 
@@ -72,6 +75,7 @@ export default function App() {
               }
             }}
             component={OfferView}
+            initialParams={{ userId: '' }}
           />
 
           <Stack.Screen
@@ -83,6 +87,7 @@ export default function App() {
               }
             }}
             component={BuyView}
+            initialParams={{ userId: '' }}
           />
 
           <Stack.Screen
@@ -96,11 +101,13 @@ export default function App() {
               }
             }}
             component={CreateAccountView}
+            initialParams={{ userId: '' }}
           />
           <Stack.Screen
             name='showImage'
             options={{ headerShown: false }}
             component={ShowImage}
+            initialParams={{ userId: '' }}
           />
         </Stack.Navigator>
       </NavigationContainer>

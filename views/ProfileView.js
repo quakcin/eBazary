@@ -18,40 +18,64 @@ import {
 import { Ubuntu_400Regular } from '@expo-google-fonts/ubuntu'
 import { Karla_400Regular } from '@expo-google-fonts/karla'
 import { Colors } from '../utils/Colors'
+import servRequest from '../utils/Server';
 
-const serverResp = {
-  name: 'Mariusz',
-  surname: 'Kowalski',
-  user: 'TanieIphonyPL',
-  mail: 'tanieiphony@gmail.com',
-  desc: 'Właścicielem konta OleOle_pl jest Euro-net  Sp. z o.o. z siedzibą w Warszawie, przy ul. Muszkieterów.',
-  image:
-    'https://ath2.unileverservices.com/wp-content/uploads/sites/3/2017/09/professional-mens-hairstyles-light-styling-min.jpg',
-  comments: [
-    {
-      image: 'https://bi.im-g.pl/im/5f/c1/1a/z28053599ICR.jpg',
-      stars: 3,
-      msg: 'W takiej cenie może być, ale wysyłka długa!'
-    },
-    {
-      image:
-        'https://www.muzeumjazzu.pl/wp-content/uploads/2021/09/40-Basia-Trzetrzelewska-1976.jpg',
-      stars: 5,
-      msg: 'Fantastyczna obsługa, produkt się zgadza - polecam!'
-    }
-  ]
-}
+import { useState, useEffect } from 'react';
 
-export function ProfileView({ navigation }) {
-  let [fontsLoaded] = useFonts({
+export function ProfileView({ route, navigation }) 
+{
+  /*
+  let [fontsLoaded] = useFonts
+  ({
     RobotoMono_600SemiBold,
     Ubuntu_400Regular,
     Karla_400Regular
   })
+  */
 
   const lightMode = true
 
-  if (!fontsLoaded) return null
+  // if (!fontsLoaded) return null
+
+  /*
+    States for website renderer
+  */
+
+    const [user, setUser] = useState('');
+    const [descr, setDescr] = useState('');
+    const [image, setImage] = useState('');
+  
+  /*
+    Request user info from the server:
+  */
+
+  useEffect (() => 
+  {
+    console.log('userId: ', route.params.userId); 
+    servRequest
+    (
+      'userInfo',
+      {
+        id: route.params.userId
+      },
+      (s) =>
+      {
+        console.log("Refreshing Data!")
+        setUser(s.user.user);
+        setDescr(s.user.descr);;
+        setImage(s.user.image);
+      },
+      (e) =>
+      {
+        console.log('err!');
+      }
+    );
+
+    return () => {
+      console.log('bye');
+    }
+
+  }, []);
 
   return (
     <>
@@ -69,7 +93,7 @@ export function ProfileView({ navigation }) {
               }}
             >
               <Image
-                source={{ uri: serverResp.image }}
+                source={{ uri: image }}
                 style={{ width: 122, height: 122, borderRadius: 90 }}
               />
               <View
@@ -87,7 +111,7 @@ export function ProfileView({ navigation }) {
                     color: lightMode ? Colors.dark : Colors.textColorDarkMode
                   }}
                 >
-                  {serverResp.user}
+                  {user}
                 </Text>
                 <Text
                   style={{
@@ -97,7 +121,7 @@ export function ProfileView({ navigation }) {
                     color: lightMode ? Colors.dark : Colors.textColorDarkMode
                   }}
                 >
-                  {serverResp.desc}
+                  {descr}
                 </Text>
               </View>
             </View>
@@ -206,6 +230,8 @@ export function ProfileView({ navigation }) {
               opinie
             </Text>
 
+            {/*
+
             <Opinion
               image={serverResp.comments[0].image}
               rating={serverResp.comments[0].stars}
@@ -216,6 +242,7 @@ export function ProfileView({ navigation }) {
               rating={serverResp.comments[1].stars}
               message={serverResp.comments[1].msg}
             />
+            */}
           </View>
         </ScrollView>
       </Viewport>

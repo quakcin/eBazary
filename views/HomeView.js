@@ -26,7 +26,7 @@ import { Colors } from '../utils/Colors'
 
 const Drawer = createDrawerNavigator()
 
-export function HomeView({ navigation }) {
+export function HomeView({ route, navigation }) {
   const tw = useTailwind()
 
   const [offers, setOffers] = useState([])

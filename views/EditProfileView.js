@@ -14,25 +14,73 @@ import { Viewport } from '../utils/Viewport'
 import { PencilIcon } from 'react-native-heroicons/outline'
 import { Controller, useForm } from 'react-hook-form'
 import { Colors } from '../utils/Colors'
+import servRequest from '../utils/Server';
 
-const serverResp = {
-  name: 'Mariusz',
-  surname: 'Kowalski',
-  user: 'TanieIphonyPL',
-  mail: 'tanieiphony@gmail.com',
-  desc: 'Właścicielem konta OleOle_pl jest Euro-net  Sp. z o.o. z siedzibą w Warszawie, przy ul. Muszkieterów.',
-  image:
-    'https://ath2.unileverservices.com/wp-content/uploads/sites/3/2017/09/professional-mens-hairstyles-light-styling-min.jpg'
-}
 
-export function EditProfileView({ navigation }) {
+
+import { useEffect, useState } from 'react'
+
+
+export function EditProfileView({ route, navigation }) {
   const {
     control,
     handleSubmit,
     formState: { errors }
   } = useForm()
 
-  const onSubmit = (data) => console.log(data)
+  const onSubmit = (obj) => {
+    obj['userId'] = route.params.userId;
+    obj['image'] = image;
+    // add image!
+
+    servRequest
+    (
+      'editUser', obj,
+      (s) =>
+      {
+        console.log('updated user with this datagram: ', obj);
+        console.log('edited user data!\n');
+      },
+      (e) =>
+      {
+        console.log('fail to editUser, pls handle me!');
+      }
+    )
+  }
+
+
+  const [userName, setUserName] = useState('');
+  const [mail, setMail] = useState('');
+  const [descr, setDescr] = useState('');
+  const [image, setImage] = useState('');
+  const [name, setName] = useState('');
+  const [surname, setSurname] = useState('');
+
+  useEffect(() =>
+  {
+
+    servRequest
+    (
+      'userInfo',
+      {
+        id: route.params.userId
+      },
+      (s) =>
+      {
+        setName(s.user.name);
+        setSurname(s.user.surname);
+        setMail(s.user.mail);
+        setDescr(s.user.descr);
+        setImage(s.user.image);
+        setUserName(s.user.user);
+      },
+      (e) =>
+      {
+        console.log('failed to fetch user info, pls handle me')
+      }
+    )
+
+  }, []);
 
   const onDeleteAccount = () => console.log('Removing account...')
 
@@ -54,7 +102,7 @@ export function EditProfileView({ navigation }) {
             }}
           >
             <Image
-              source={{ uri: serverResp.image }}
+              source={{ uri: image }}
               style={{
                 width: 130,
                 height: 130,
@@ -85,11 +133,11 @@ export function EditProfileView({ navigation }) {
                 onBlur={onBlur}
                 onChangeText={onChange}
                 value={value}
-                defaultValue={serverResp.name}
+                defaultValue={name}
                 placeholder='Imie'
               />
             )}
-            name='imie'
+            name='name'
           />
           {errors.imie && (
             <Text
@@ -115,11 +163,11 @@ export function EditProfileView({ navigation }) {
                 onBlur={onBlur}
                 onChangeText={onChange}
                 value={value}
-                defaultValue={serverResp.surname}
+                defaultValue={surname}
                 placeholder='Nazwisko'
               />
             )}
-            name='nazwisko'
+            name='surname'
           />
           {errors.nazwisko && (
             <Text
@@ -145,11 +193,11 @@ export function EditProfileView({ navigation }) {
                 onBlur={onBlur}
                 onChangeText={onChange}
                 value={value}
-                defaultValue={serverResp.user}
+                defaultValue={userName}
                 placeholder='Nazwa użytkownika'
               />
             )}
-            name='nazwa_uzytkownika'
+            name='username'
           />
           {errors.nazwa_uzytkownika && (
             <Text
@@ -175,11 +223,11 @@ export function EditProfileView({ navigation }) {
                 onBlur={onBlur}
                 onChangeText={onChange}
                 value={value}
-                defaultValue={serverResp.mail}
+                defaultValue={mail}
                 placeholder='Email'
               />
             )}
-            name='email'
+            name='mail'
           />
           {errors.email && (
             <Text
@@ -205,7 +253,7 @@ export function EditProfileView({ navigation }) {
                 onBlur={onBlur}
                 onChangeText={onChange}
                 value={value}
-                defaultValue={serverResp.desc}
+                defaultValue={descr}
                 placeholder='Opis'
                 textAlign='left'
                 textAlignVertical='top'
@@ -213,7 +261,7 @@ export function EditProfileView({ navigation }) {
                 numberOfLines={5}
               />
             )}
-            name='opis'
+            name='descr'
           />
           {errors.opis && (
             <Text

@@ -21,6 +21,7 @@ import {
 } from '@expo-google-fonts/roboto-mono'
 import { Ubuntu_400Regular } from '@expo-google-fonts/ubuntu'
 import { Karla_400Regular } from '@expo-google-fonts/karla'
+import servRequest from '../utils/Server';
 
 export function AuthView({ navigation }) {
   const [email, setEmail] = useState('')
@@ -73,7 +74,26 @@ export function AuthView({ navigation }) {
               width: '60%'
             }}
             onPress={() => {
-              navigation.replace('Cofnij')
+              servRequest
+              (
+                'login',
+                {
+                  username: email,
+                  password: password
+                },
+                (s) =>
+                {
+                  // navigation.setParams({ userId: s.id });
+                  navigation.replace('Cofnij', { userId: s.id });
+
+                  // navigation.navigate('Cofnij', { userId: s.id });
+                },
+                (e) =>
+                {
+                  console.log('nie udalo sie zalogowac! blad: ' + e.msg);
+                }
+              );
+
             }}
             >
             <Text
@@ -109,7 +129,7 @@ export function AuthView({ navigation }) {
 }
 
 const styles = StyleSheet.create({
-  defaultInput: {
+  defaultInput:{
     marginTop: 20,
     fontFamily: 'Ubuntu_400Regular',
     borderRadius: 5
@@ -141,3 +161,4 @@ const styles = StyleSheet.create({
     fontFamily: 'Karla_400Regular'
   }
 })
+
