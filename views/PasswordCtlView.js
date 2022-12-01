@@ -12,8 +12,9 @@ import {
 import { useTailwind } from 'tailwind-rn'
 import { Colors } from '../utils/Colors'
 import { Viewport } from '../utils/Viewport'
+import servRequest from '../utils/Server';
 
-export function PasswordCtlView({ navigation }) {
+export function PasswordCtlView({ route, navigation }) {
   const tw = useTailwind()
 
   const [currentPassword, setCurrentPassword] = useState('')
@@ -56,7 +57,32 @@ export function PasswordCtlView({ navigation }) {
             width: '80%',
             alignSelf: 'center'
           }}
-          onPress={() => console.log('Zmiana hasła...')}
+          onPress={() => 
+          {
+            /* password cahnge */
+            if (newPassword !== repeatNewPassword)
+            {
+              console.log('passwords dont mach!, handle me!')
+              return;
+            }
+            servRequest
+            (
+              'pwdChange',
+              {
+                userId: route.params.userId,
+                curPwd: currentPassword,
+                newPwd: newPassword,
+              },
+              (s) =>
+              {
+                console.log('password has been cahnged!'); // TODO:ALERT
+              },
+              (e) =>
+              {
+                console.log('failed to change password', JSON.stringify(e)); //TODO:ALERT
+              }
+            )
+          }}
         >
           <Text
             style={{

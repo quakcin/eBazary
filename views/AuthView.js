@@ -90,7 +90,7 @@ export function AuthView({ navigation }) {
                 },
                 (e) =>
                 {
-                  console.log('nie udalo sie zalogowac! blad: ' + e.msg);
+                  console.log('nie udalo sie zalogowac! blad: ' + e.msg); // TODO:ALERT
                 }
               );
 

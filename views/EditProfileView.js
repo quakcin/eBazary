@@ -38,12 +38,12 @@ export function EditProfileView({ route, navigation }) {
       'editUser', obj,
       (s) =>
       {
-        console.log('updated user with this datagram: ', obj);
-        console.log('edited user data!\n');
+        console.log('updated user with this datagram: ', obj); // TODO:ALERT
+        console.log('edited user data!\n'); // TODO:ALERT
       },
       (e) =>
       {
-        console.log('fail to editUser, pls handle me!');
+        console.log('fail to editUser, pls handle me!'); // TODO:ALERT
       }
     )
   }
@@ -76,13 +76,30 @@ export function EditProfileView({ route, navigation }) {
       },
       (e) =>
       {
-        console.log('failed to fetch user info, pls handle me')
+        console.log('failed to fetch user info, pls handle me') // TODO:ALERT
       }
     )
 
   }, []);
 
-  const onDeleteAccount = () => console.log('Removing account...')
+  const onDeleteAccount = () =>
+  {
+    servRequest
+    (
+      'rmUser',
+      {
+        userId: route.params.userId
+      },
+      (s) => 
+      {
+        console.log('removed user'); // TODO:ALERT
+      },
+      (e) =>
+      {
+        console.log('failed ', JSON.stringify(e)); // TODO:ALERT
+      }
+    )
+  }
 
   const onPasswordChange = () => {
     navigation.navigate('PassCtrlView')
