@@ -245,7 +245,7 @@ export function HomeView({ route, navigation }) {
               }}
               onTileClick={(n) => {
                 // console.log('navigation to offerId: ', o.offerId);
-                navigation.navigate('OfferView', {offerId: o.offerId})
+                navigation.navigate('OfferView', {offerId: o.offerId, userId: route.params.userId})
               }}
               key={o.offerId}
             />

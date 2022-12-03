@@ -192,8 +192,27 @@ export function OfferView({ route, navigation }) {
                   paddingVertical: 14,
                   alignItems: 'center'
                 }}
-                onPress={() => {
-                  console.log('Do koszyka...')
+                onPress={() => 
+                {
+                  console.log('do koszyka', route.params.offerId);
+                  servRequest
+                  (
+                    'addToCart',
+                    {
+                      userId: route.params.userId,
+                      offerId: route.params.offerId
+                    },
+                    (s) => 
+                    {
+                      /* do nothing */
+                      console.log('succes', s);
+                    },
+                    (e) =>
+                    {
+                      // FIXME:ALERT
+                      console.log('fail', e);
+                    }
+                  )
                 }}
               >
                 <Text
