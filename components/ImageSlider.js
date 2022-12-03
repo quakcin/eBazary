@@ -3,12 +3,19 @@ import AutoHeightImage from 'react-native-auto-height-image';
  
  
 const VerticalSlider = ({pictures, navigation}) => {
+  
+
+  const picts = [];
+  for (let p of pictures)
+    if (p !== '')
+      picts.push(p);
+
   return (
     <SafeAreaView style={{flex: 1}}>
       <ScrollView
         horizontal={true}
         showsHorizontalScrollIndicator={false}>
-        {pictures.map((item) => (
+        {picts.map((item) => (
           <TouchableOpacity 
             activeOpacity={1}
             style={{justifyContent: "center"}}
@@ -19,7 +26,7 @@ const VerticalSlider = ({pictures, navigation}) => {
               }
             >
             <AutoHeightImage
-                width={500}
+                width={300}
                 source={{uri: item}}
                 style={{margin: 20}}
               />

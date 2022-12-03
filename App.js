@@ -75,7 +75,7 @@ export default function App() {
               }
             }}
             component={OfferView}
-            initialParams={{ userId: '' }}
+            initialParams={{ userId: '', offerId: '' }}
           />
 
           <Stack.Screen

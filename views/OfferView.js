@@ -28,65 +28,76 @@ import { Colors } from '../utils/Colors'
 
 import MapView from 'react-native-maps';
 import LinearGradient from 'react-native-linear-gradient';
+import servRequest from '../utils/Server';
 
 import {
   StarIcon, MapPinIcon, CubeIcon, BanknotesIcon, ShoppingBagIcon
 } from 'react-native-heroicons/outline'
 
-export function OfferView({ navigation }) {
+export function OfferView({ route, navigation }) {
   const tw = useTailwind()
 
-  const serverResp = {
-    id: 0,
-    images: [
-      'https://ireland.apollo.olxcdn.com/v1/files/wed4kza7piuy2-PL/image;s=1000x700',
-      'https://ireland.apollo.olxcdn.com/v1/files/dll29qfbh1g02-PL/image;s=1000x700',
-      'https://ireland.apollo.olxcdn.com/v1/files/ds0knw6hutf3-PL/image;s=1000x700',
-      'https://ireland.apollo.olxcdn.com/v1/files/6gelwgg39542-PL/image;s=1000x700',
-      'https://ireland.apollo.olxcdn.com/v1/files/jyxpeu8iog2b2-PL/image;s=1000x700'
-    ],
-    title: 'Apple iPhone 13 mini 128GB (zielony)',
-    descr: `Zapraszamy do skorzystania z naszej oferty i zapoznania się z jej opisem.
-
-    Dostępne kolory:
-    
-    CZARNY
-    FIOLETOWY
-    BIAŁY
-    CZERWONY
-    ZIELONY
-    ŻÓŁTY
-    Pamiętaj o podaniu koloru przedmiotu podczas składnia zamówienia.
-    
-    Przekaż informację podczas składania zamówienia lub w wiadomości do sprzedającego.
-    Zamówienie może zostać wstrzymane do momentu otrzymania informacji.
-    PREMIUM APPLE IPHONE 11 128GB RÓŻNE KOLORY KL. A+ Słuchawki w komplecie tak
-    Co oznacza klasa A+ urządzenia?
-    Jest to najwyższa dostępna na rynku klasa urządzenia, która jest idealnym kompromisem pomiędzy urządzeniem używanym a nowym! Zadowalający stan techniczny i wizualny.
-    Każdy z naszych klientów otrzymuje urządzenie sprawne technicznie, sprawdzone przez sztab specjalistów pod każdym możliwym kątem sprawności telefonu.
-    Nie powstydzisz się kupując telefon dla siebie lub kogoś bliskiego! Stan wizualny to wygląd, który zadowoli nawet najbardziej wymagających konsumentów.
-    Idealny pomysł na prezent w najkorzystniejszej cenie na rynku!`,
-    price: 2299.5,
-    kind: 'Elektronika',
-    seller: 'TanieIphonyPL',
-    name: 'Mariusz',
-    surname: 'Bimber',
-    lat: 54.35360365985268,  
-    lon: 18.648861800145415
-  }
-
-  const [offer, setOffer] = useState({ images: [] })
+  const [offer, setOffer] = useState({ imgs: [], price: 0, title: '', descr: '' })
   const [coords, setCoords] = useState({latitude: 0, longitude: 0});
-  const [lat, setLat] = useState(52.237049);
-  const [lon, setLon] = useState(21.017532);
+  const [lat, setLat] = useState()
+  const [lon, setLon] = useState()
+  const [isRenderingMap, setIsRenderingMap] = useState(false);
 
+  const renderMap = (lat, lon, coords) => <View>
+      <MapView 
+        style = {{
+          width: '100%',
+          height: 300
+        }}
+        zoom = {1000}
+        initialRegion = {{
+          latitude: lat,
+          longitude: lon,
+          latitudeDelta: 0.09,
+          longitudeDelta: 0.09
+        }}
+      >
+        <MapView.Marker
+          coordinate={coords}
+          title={"Sprzedający"}
+          descrription={"Adres sprzedającego"}
+          />
+      </MapView>
+    </View>
   useEffect(() => 
   {
-    navigation.setOptions({ title: `Oferta od ${serverResp.seller}` })
-    setOffer(serverResp);
-    setLat(serverResp.lat);
-    setLon(serverResp.lon);
-    setCoords({latitude: serverResp.lat, longitude: serverResp.lon});
+    // console.log('offerId', route.params.offerId)
+    // setOffer(serverResp);
+    // setLat(serverResp.lat);
+    // setLon(serverResp.lon);
+    // setCoords({latitude: serverResp.lat, longitude: serverResp.lon});
+
+    // const offerId = '013a0dd0-732f-11ed-8b10-4ccc6a8f7f0f';
+    
+    servRequest
+    (
+      'getOffer',
+      {
+        offerId: route.params.offerId
+      },
+      (s) =>
+      {
+        navigation.setOptions({ title: `Oferta od ${s.user}` })
+        setOffer(s);
+        setLat(s.lat);
+        setLon(s.lon);
+        setCoords({latitude: s.lat, longitude: s.lon});
+        setIsRenderingMap(true);
+        console.log(lat, lon, coords);
+      },
+      (e) =>
+      {
+        console.log(e);
+      }
+    )
+
+    return () => {
+    }
 
   }, [])
 
@@ -128,7 +139,7 @@ export function OfferView({ navigation }) {
           </View>
         </View>
 
-        <VerticalSlider pictures={offer.images} navigation={navigation} />
+        <VerticalSlider pictures={offer.imgs} navigation={navigation} />
 
 
         <View style={{width: '80%', marginLeft: '10%'}}>
@@ -274,30 +285,11 @@ export function OfferView({ navigation }) {
             </View>
           </View>
 
-
           <View style={{marginBottom: 60}}>
-              <MapView 
-                style = {{
-                  width: '100%',
-                  height: 300
-                }}
-                zoom = {1000}
-                initialRegion = {{
-                  latitude: lat,
-                  longitude: lon,
-                  latitudeDelta: 0.0009,
-                  longitudeDelta: 0.0009
-                }}
-              >
-                <MapView.Marker
-                    coordinate={coords}
-                    title={"Sprzedający"}
-                    descrription={"Adres sprzedającego"}
-                />
-              </MapView>
-            </View>
+            {isRenderingMap && renderMap(lat, lon, coords)}
           </View>
-        </ScrollView>
-      </Viewport>
+        </View>
+      </ScrollView>
+    </Viewport>
     )
   }
