@@ -18,6 +18,8 @@ import { useFonts, RobotoMono_500Medium } from '@expo-google-fonts/roboto-mono'
 import { Ubuntu_400Regular } from '@expo-google-fonts/ubuntu'
 import { Karla_400Regular } from '@expo-google-fonts/karla'
 import { Colors } from '../utils/Colors'
+import servRequest from '../utils/Server';
+import UUIDGenerator from 'react-native-uuid-generator';
 
 
 import * as Location from 'expo-location';
@@ -70,7 +72,7 @@ export function NewOfferView({ navigation }) {
     }
   }, [loc]);
 
-  const onSubmit = (data) => console.log(data)
+  const onSubmit = (data) => console.log('subm', data)
 
   const [selected, setSelected] = useState('')
   const data = [
