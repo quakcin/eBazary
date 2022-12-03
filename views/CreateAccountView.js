@@ -28,8 +28,97 @@ export function CreateAccountView({ navigation }) {
   const [password2, setPassword2] = useState('')
   const hasUnsavedChanges = Boolean(true)
 
+
+  const validate = () => {
+    if(name.length == 0) 
+    {
+      Alert.alert(
+        "Edycja użytkownika",
+        "Pole imię nie może być puste!",
+        [
+          { text: "OK" }
+        ]
+      );
+      return false;
+    }
+    if(surname.length == 0) 
+    {
+      Alert.alert(
+        "Edycja użytkownika",
+        "Pole nazwisko nie może być puste!",
+        [
+          { text: "OK" }
+        ]
+      );
+      return false;
+    }
+    if(user.length == 0) 
+    {
+      Alert.alert(
+        "Edycja użytkownika",
+        "Pole nazwa użytkownika nie może być puste!",
+        [
+          { text: "OK" }
+        ]
+      );
+      return false;
+    }
+
+    let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w\w+)+$/;
+    if (reg.test(mail) === false || mail.length == 0) {
+      Alert.alert(
+        "Edycja użytkownika",
+        "Niepoprawny adres e-mail!",
+        [
+          { text: "OK" }
+        ]
+      );
+      return false;
+    }
+     
+    if(!isChecked)
+    {
+      Alert.alert(
+        "Rejestracja",
+        "Aby utworzyć konto należy potwierdzić regulamin",
+        [
+          { text: "OK" }
+        ]
+      );
+      return false;
+    }
+
+    if(password1.length == 0 || password2.length == 0) 
+    {
+      Alert.alert(
+        "Rejestracja",
+        "Pole hasło nie może być puste!",
+        [
+          { text: "OK" }
+        ]
+      );
+      return false;
+    }
+
+    if(password1 !== password2 ) 
+    {
+      Alert.alert(
+        "Rejestracja",
+        "Podane hasła są niezgodne!",
+        [
+          { text: "OK" }
+        ]
+      );
+      return false;
+    }
+    
+    return true;
+  }
+
   const onRegister = function (e)
   {
+    if(validate() == false)
+      return
     servRequest
     (
       'register', 
@@ -63,30 +152,6 @@ export function CreateAccountView({ navigation }) {
       }
     );
   }
-
-  /*React.useEffect(
-    () =>
-      navigation.addListener('beforeRemove', (e) => {
-        if (!hasUnsavedChanges) {
-          // If we don't have unsaved changes, then we don't need to do anything
-          return
-        }
-        e.preventDefault()
-        Alert.alert(
-          'Czy chcesz przerwać rejestrację?',
-          'Posiadasz niezapisane dane, jeżeli przerwiesz proces rejestracji Twoje konto nie zostanie utworzone!',
-          [
-            { text: 'Nie, pozostań', style: 'cancel', onPress: () => {} },
-            {
-              text: 'Tak, anuluj',
-              style: 'destructive',
-              onPress: () => navigation.dispatch(e.data.action)
-            }
-          ]
-        )
-      }),
-    [navigation, hasUnsavedChanges]
-  )*/
 
   return (
     <ScrollView style={{ backgroundColor: 'white', }}>
