@@ -5,6 +5,7 @@ import {
   View,
   Button,
   Image,
+  Alert,
   ScrollView,
   TextInput,
   TouchableOpacity
@@ -38,8 +39,13 @@ export function EditProfileView({ route, navigation }) {
       'editUser', obj,
       (s) =>
       {
-        console.log('updated user with this datagram: ', obj); // TODO:ALERT
-        console.log('edited user data!\n'); // TODO:ALERT
+        Alert.alert(
+          "Edycja użytkownika",
+          "Pomyślnie edytowano informacje o użytkowniku",
+          [
+            { text: "OK" }
+          ]
+        );
       },
       (e) =>
       {
@@ -84,6 +90,21 @@ export function EditProfileView({ route, navigation }) {
 
   const onDeleteAccount = () =>
   {
+    Alert.alert(
+      'Czy chcesz usunąć konto?',
+      'Jest to operacja nieodwracalnam utracisz wszystkie dane oraz historię zakupów w serwisie e-Bazary!',
+      [
+        { text: 'Nie, anuluj', style: 'cancel', onPress: () => {} },
+        {
+          text: 'Tak, usuń',
+          style: 'destructive',
+          onPress: () => delUser()
+        }
+      ]
+    )
+  }
+
+  const delUser = () =>
     servRequest
     (
       'rmUser',
@@ -92,14 +113,14 @@ export function EditProfileView({ route, navigation }) {
       },
       (s) => 
       {
-        console.log('removed user'); // TODO:ALERT
+        navigation.navigate("AuthView")
+        //console.log('removed user'); // TODO:ALERT
       },
       (e) =>
       {
         console.log('failed ', JSON.stringify(e)); // TODO:ALERT
       }
     )
-  }
 
   const onPasswordChange = () => {
     navigation.navigate('PassCtrlView')

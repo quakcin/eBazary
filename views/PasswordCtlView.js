@@ -7,7 +7,8 @@ import {
   Button,
   TextInput,
   ScrollView,
-  TouchableOpacity
+  TouchableOpacity,
+  Alert
 } from 'react-native'
 import { useTailwind } from 'tailwind-rn'
 import { Colors } from '../utils/Colors'
@@ -62,7 +63,13 @@ export function PasswordCtlView({ route, navigation }) {
             /* password cahnge */
             if (newPassword !== repeatNewPassword)
             {
-              console.log('passwords dont mach!, handle me!')
+              Alert.alert(
+                "Zmiana hasła",
+                "Hasła się nie zgadzają!",
+                [
+                  { text: "OK" }
+                ]
+              );
               return;
             }
             servRequest
@@ -75,11 +82,24 @@ export function PasswordCtlView({ route, navigation }) {
               },
               (s) =>
               {
-                console.log('password has been cahnged!'); // TODO:ALERT
+                Alert.alert(
+                  "Zmiana hasła",
+                  "Pomyślnie zmieniono hasło",
+                  [
+                    { text: "OK", onPress: () => navigation.navigate("ProfileView", { userId: route.params.userId }) }
+                  ]
+                );
               },
               (e) =>
               {
-                console.log('failed to change password', JSON.stringify(e)); //TODO:ALERT
+                //console.log('failed to change password', JSON.stringify(e));
+                Alert.alert(
+                  "Zmiana hasła",
+                  "Aktualne hasło nie jest poprawne!",
+                  [
+                    { text: "OK" }
+                  ]
+                );
               }
             )
           }}

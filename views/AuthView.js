@@ -10,7 +10,8 @@ import {
   TouchableOpacity,
   ScrollView,
   useWindowDimensions,
-  ImageBackground
+  ImageBackground,
+  Alert
 } from 'react-native'
 import AutoHeightImage from 'react-native-auto-height-image'
 import { Colors } from '../utils/Colors'
@@ -90,7 +91,13 @@ export function AuthView({ navigation }) {
                 },
                 (e) =>
                 {
-                  console.log('nie udalo sie zalogowac! blad: ' + e.msg); // TODO:ALERT
+                  Alert.alert(
+                    "Logowanie",
+                    "Nie udało się zalogować!\n Błędny login lub hasło.",
+                    [
+                      { text: "OK" }
+                    ]
+                  );
                 }
               );
 

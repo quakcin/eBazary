@@ -42,27 +42,36 @@ export function CreateAccountView({ navigation }) {
       },
       (s) => 
       {
-        console.log(`Registration successfull: ${s}`);
+        
+        Alert.alert(
+          "Rejestracja",
+          "Dodano nowe konto!\n Zaloguj się.",
+          [
+            { text: "OK", onPress: navigation.navigate("AuthView") }
+          ]
+        );
       },
       (e) => 
       {
-        console.log(`Server failure: ${e}`);
+        Alert.alert(
+          "Błąd rejestracji!",
+          e.msg,
+          [
+            { text: "OK" }
+          ]
+        );
       }
     );
   }
 
-  React.useEffect(
+  /*React.useEffect(
     () =>
       navigation.addListener('beforeRemove', (e) => {
         if (!hasUnsavedChanges) {
           // If we don't have unsaved changes, then we don't need to do anything
           return
         }
-
-        // Prevent default behavior of leaving the screen
         e.preventDefault()
-
-        // Prompt the user before leaving the screen
         Alert.alert(
           'Czy chcesz przerwać rejestrację?',
           'Posiadasz niezapisane dane, jeżeli przerwiesz proces rejestracji Twoje konto nie zostanie utworzone!',
@@ -77,7 +86,7 @@ export function CreateAccountView({ navigation }) {
         )
       }),
     [navigation, hasUnsavedChanges]
-  )
+  )*/
 
   return (
     <ScrollView style={{ backgroundColor: 'white', }}>
