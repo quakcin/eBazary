@@ -29,27 +29,92 @@ export function EditProfileView({ route, navigation }) {
     formState: { errors }
   } = useForm()
 
-  const onSubmit = (obj) => {
-    obj['userId'] = route.params.userId;
-    obj['image'] = image;
-    // add image!
+  const validate = () => {
+    if(name.length == 0) 
+    {
+      Alert.alert(
+        "Edycja użytkownika",
+        "Pole imię nie może być puste!",
+        [
+          { text: "OK" }
+        ]
+      );
+      return false;
+    }
+    if(surname.length == 0) 
+    {
+      Alert.alert(
+        "Edycja użytkownika",
+        "Pole nazwisko nie może być puste!",
+        [
+          { text: "OK" }
+        ]
+      );
+      return false;
+    }
+    if(userName.length == 0) 
+    {
+      Alert.alert(
+        "Edycja użytkownika",
+        "Pole nazwa użytkownika nie może być puste!",
+        [
+          { text: "OK" }
+        ]
+      );
+      return false;
+    }
+    let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w\w+)+$/;
+    if (reg.test(mail) === false || mail.length == 0) {
+      Alert.alert(
+        "Edycja użytkownika",
+        "Niepoprawny adres e-mail!",
+        [
+          { text: "OK" }
+        ]
+      );
+      return false;
+    }
+     
+
+    
+    return true;
+  }
+
+  const onSubmit = () => {
+    if(validate() == false)
+      return;
 
     servRequest
     (
-      'editUser', obj,
+      'editUser', 
+      {
+        userId: route.params.userId,
+        image: image,
+        username: userName,
+        name: name,
+        surname: surname,
+        mail: mail,
+        descr: descr,
+      },
       (s) =>
       {
         Alert.alert(
           "Edycja użytkownika",
           "Pomyślnie edytowano informacje o użytkowniku",
           [
-            { text: "OK" }
+            { text: "OK", onPress: () => { navigation.navigate("ProfileView", { userId: route.params.userId }) } }
           ]
         );
       },
       (e) =>
       {
-        console.log('fail to editUser, pls handle me!'); // TODO:ALERT
+        Alert.alert(
+          "Error",
+           e.msg,
+          [
+            { text: "OK" }
+          ]
+        );
       }
     )
   }
@@ -113,7 +178,7 @@ export function EditProfileView({ route, navigation }) {
       },
       (s) => 
       {
-        navigation.navigate("AuthView")
+        navigation.replace("AuthView")
         //console.log('removed user'); // TODO:ALERT
       },
       (e) =>
@@ -160,159 +225,45 @@ export function EditProfileView({ route, navigation }) {
             />
           </View>
 
-          <Controller
-            control={control}
-            rules={{
-              required: true
-            }}
-            render={({ field: { onChange, onBlur, value } }) => (
               <TextInput
                 style={[styles.defaultInput, styles.shortInput]}
-                onBlur={onBlur}
-                onChangeText={onChange}
-                value={value}
-                defaultValue={name}
+                onChangeText={(txt) => setName(txt)}
+                value={name}
                 placeholder='Imie'
               />
-            )}
-            name='name'
-          />
-          {errors.imie && (
-            <Text
-              style={{
-                color: Colors.reddish,
-                fontWeight: '500',
-                fontSize: 13,
-                marginTop: 6
-              }}
-            >
-              Imie jest wymagane!
-            </Text>
-          )}
 
-          <Controller
-            control={control}
-            rules={{
-              required: true
-            }}
-            render={({ field: { onChange, onBlur, value } }) => (
               <TextInput
                 style={[styles.defaultInput, styles.shortInput]}
-                onBlur={onBlur}
-                onChangeText={onChange}
-                value={value}
-                defaultValue={surname}
+                onChangeText={(txt) => setSurname(txt)}
+                value={surname}
                 placeholder='Nazwisko'
               />
-            )}
-            name='surname'
-          />
-          {errors.nazwisko && (
-            <Text
-              style={{
-                color: Colors.reddish,
-                fontWeight: '500',
-                fontSize: 13,
-                marginTop: 6
-              }}
-            >
-              Nazwisko jest wymagane!
-            </Text>
-          )}
 
-          <Controller
-            control={control}
-            rules={{
-              required: true
-            }}
-            render={({ field: { onChange, onBlur, value } }) => (
               <TextInput
                 style={[styles.defaultInput, styles.shortInput]}
-                onBlur={onBlur}
-                onChangeText={onChange}
-                value={value}
-                defaultValue={userName}
+                onChangeText={(txt) => setUserName(txt)}
+                value={userName}
                 placeholder='Nazwa użytkownika'
               />
-            )}
-            name='username'
-          />
-          {errors.nazwa_uzytkownika && (
-            <Text
-              style={{
-                color: Colors.reddish,
-                fontWeight: '500',
-                fontSize: 13,
-                marginTop: 6
-              }}
-            >
-              Nazwa użytkownika jest wymagana!
-            </Text>
-          )}
 
-          <Controller
-            control={control}
-            rules={{
-              required: true
-            }}
-            render={({ field: { onChange, onBlur, value } }) => (
               <TextInput
                 style={[styles.defaultInput, styles.shortInput]}
-                onBlur={onBlur}
-                onChangeText={onChange}
-                value={value}
-                defaultValue={mail}
+                onChangeText={(txt) => setMail(txt)}
+                value={mail}
                 placeholder='Email'
+                keyboardType='email-address'
               />
-            )}
-            name='mail'
-          />
-          {errors.email && (
-            <Text
-              style={{
-                color: Colors.reddish,
-                fontWeight: '500',
-                fontSize: 13,
-                marginTop: 6
-              }}
-            >
-              Email jest wymagany!
-            </Text>
-          )}
 
-          <Controller
-            control={control}
-            rules={{
-              required: true
-            }}
-            render={({ field: { onChange, onBlur, value } }) => (
               <TextInput
                 style={[styles.defaultInput, styles.longInput, {borderBottomWidth: 0, borderLeftWidth: 5, marginTop: 35, marginBottom: 20}]}
-                onBlur={onBlur}
-                onChangeText={onChange}
-                value={value}
-                defaultValue={descr}
+                onChangeText={(txt) => setDescr(txt)}
+                value={descr}
                 placeholder='Opis'
                 textAlign='left'
                 textAlignVertical='top'
                 multiline={true}
                 numberOfLines={5}
               />
-            )}
-            name='descr'
-          />
-          {errors.opis && (
-            <Text
-              style={{
-                color: Colors.reddish,
-                fontWeight: '500',
-                fontSize: 13,
-                marginTop: 6
-              }}
-            >
-              Opis jest wymagany!
-            </Text>
-          )}
 
           <TouchableOpacity
             style={{

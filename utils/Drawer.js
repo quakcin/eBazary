@@ -58,7 +58,7 @@ function CustomDrawerContent(props) {
                 Wyloguj się
               </Text>
             )}
-            onPress={() => alert('Logged out')}
+            onPress={() => props.navigation.replace("AuthView")}
             style={{
               backgroundColor: '#616161'
             }}
