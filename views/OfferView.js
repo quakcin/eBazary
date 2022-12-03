@@ -139,7 +139,8 @@ export function OfferView({ route, navigation }) {
           </View>
         </View>
 
-        <VerticalSlider pictures={offer.imgs} navigation={navigation} />
+        {/* FIXED: EB1-I14 */}
+        <VerticalSlider pictures={offer.imgs} navigation={navigation} /> 
 
 
         <View style={{width: '80%', marginLeft: '10%'}}>

@@ -113,7 +113,7 @@ export function EditProfileView({ route, navigation }) {
       },
       (s) => 
       {
-        navigation.navigate("AuthView")
+        navigation.replace("AuthView")
         //console.log('removed user'); // TODO:ALERT
       },
       (e) =>

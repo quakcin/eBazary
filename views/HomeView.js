@@ -37,6 +37,11 @@ export function HomeView({ route, navigation }) {
   const [openCategroy, setOpenCategory] = useState(false)
   const [openFilter, setOpenFilter] = useState(false)
 
+  const [pageCount, setPageCount] = useState(0);
+  const [page, setPage] = useState(0);
+
+  const [query, setQuery] = useState('');
+
   const [categories, setCateogries] = useState([
     { label: 'Wszystkie', value: 0 },
     { label: 'Dom', value: 1 },
@@ -55,16 +60,20 @@ export function HomeView({ route, navigation }) {
 
   // fix drop down hooks
 
-
-  useEffect(() => 
+  const perfSearch = (custom = null) => 
   {
+    setOffers([]);
     servRequest
     (
       'search',
-      {},
+      {
+        page: page,
+        query: custom !== null ? custom : query,
+      },
       (s) => 
       {
         setOffers(s.offers);
+        setPageCount(s.pages)
         // console.log(s.offers);
       },
       (e) =>
@@ -72,7 +81,11 @@ export function HomeView({ route, navigation }) {
         console.log('error', JSON.stringify(e));
       }
     )
+  }
 
+  useEffect(() => 
+  {
+    perfSearch();
   }, [])
 
   let [fontsLoaded] = useFonts({
@@ -96,6 +109,12 @@ export function HomeView({ route, navigation }) {
           <TextInput
             style={[styles.defaultInput, styles.shortInput]}
             placeholder='Szukaj'
+            value={query}
+            onChangeText={(txt) => 
+            {
+              setQuery(txt);
+              perfSearch(txt); /* FIXED: EB1-I12 */
+            }}
           />
 
           <TouchableOpacity>
@@ -242,17 +261,27 @@ export function HomeView({ route, navigation }) {
             alignSelf: 'center'
           }}
         >
-          <TouchableOpacity>
+          <TouchableOpacity onPress={(e) => {
+            if (page <= 0)
+              return;
+            setPage(page - 1);
+            perfSearch();
+          }}>
             <ArrowSmallLeftIcon
-              style={{ color: '#000000' }}
+              style={{ color: page <= 0 ? '#ffffff' : '#000000' }} /* EB1-I11 */
               width='30'
               height='30'
             />
           </TouchableOpacity>
           <View style={{ width: '50%' }}></View>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={(e) => {
+            if (page >= pageCount)
+              return;
+            setPage(page + 1);
+            perfSearch();
+          }}>
             <ArrowSmallRightIcon
-              style={{ color: '#000000' }}
+              style={{ color: page >= pageCount ? '#ffffff' : '#000000' }} /* EB1-I11 */
               width='30'
               height='30'
             />

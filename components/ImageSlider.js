@@ -4,7 +4,6 @@ import AutoHeightImage from 'react-native-auto-height-image';
  
 const VerticalSlider = ({pictures, navigation}) => {
   
-
   const picts = [];
   for (let p of pictures)
     if (p !== '')
@@ -15,10 +14,12 @@ const VerticalSlider = ({pictures, navigation}) => {
       <ScrollView
         horizontal={true}
         showsHorizontalScrollIndicator={false}>
-        {picts.map((item) => (
+       {/* FIXED: EB1-I14 */}
+        {picts.map((item, idx) => (
           <TouchableOpacity 
             activeOpacity={1}
             style={{justifyContent: "center"}}
+            key={idx}
             onPress={() =>
               navigation.navigate('showImage', {
                 url: item
