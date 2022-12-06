@@ -15,7 +15,6 @@ import {
 } from 'react-native'
 import AutoHeightImage from 'react-native-auto-height-image'
 import { Colors } from '../utils/Colors'
-import Constants from 'expo-constants'
 import {
   useFonts,
   RobotoMono_600SemiBold

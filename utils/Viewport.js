@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar'
 import { StyleSheet, Text, View, Button, SafeAreaView } from 'react-native'
-import Constants from 'expo-constants'
+//import Constants from 'expo-constants'
 
 import { NavigationContainer } from '@react-navigation/native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
@@ -26,7 +26,7 @@ export function Viewport({
     <SafeAreaView
       style={{
         flex: 1,
-        marginTop: isFullScreen ? Constants.statusBarHeight : 0,
+        //marginTop: isFullScreen ? Constants.statusBarHeight : 0,
         backgroundColor: lightMode
           ? Colors.background
           : Colors.backgroundDarkMode

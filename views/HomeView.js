@@ -24,6 +24,7 @@ import {
 } from 'react-native-heroicons/outline'
 import DropDownPicker from 'react-native-dropdown-picker'
 import { Colors } from '../utils/Colors'
+import { Dropdown } from 'react-native-element-dropdown'
 
 const Drawer = createDrawerNavigator()
 
@@ -32,31 +33,29 @@ export function HomeView({ route, navigation }) {
 
   const [offers, setOffers] = useState([])
   const [isShowingFilters, setIsShowingFilters] = useState(false)
-  const [category, setCategory] = useState('')
-  const [filter, setFilter] = useState('')
-  const [openCategroy, setOpenCategory] = useState(false)
-  const [openFilter, setOpenFilter] = useState(false)
-
+  
   const [pageCount, setPageCount] = useState(0);
   const [page, setPage] = useState(0);
-
   const [query, setQuery] = useState('');
+  
+  const [filterVal, setFilter] = useState(null)
+  const [kategoriaVal, setKategoria] = useState(null)
 
-  const [categories, setCateogries] = useState([
+  const kategoria = [
     { label: 'Wszystkie', value: 0 },
     { label: 'Dom', value: 1 },
     { label: 'Elektronika', value: 2 },
     { label: 'Moda', value: 3 },
     { label: 'Motoryzacja', value: 4 },
     { label: 'Inne', value: 5 }
-  ])
+  ];
 
-  const [filters, setFilters] = useState([
+  const filter = [
     { label: 'Tranfość', value: 0 },
     { label: 'Ocena', value: 1 },
     { label: 'Oszczędnie', value: 2 },
     { label: 'Bogato', value: 3 }
-  ])
+  ]
 
   // fix drop down hooks
 
@@ -139,31 +138,37 @@ export function HomeView({ route, navigation }) {
           {isShowingFilters && (
             <View>
               <View style={{ flexDirection: 'row' }}>
-                <DropDownPicker
-                  items={categories}
-                  setItems={setCateogries}
-                  value={category}
-                  setValue={setCategory}
-                  open={openCategroy}
-                  setOpen={setOpenCategory}
-                  placeholder='Kategoria'
-                  textStyle={{ fontSize: 14 }}
-                  containerStyle={{ width: '50%', padding: 10 }}
-                  dropDownContainerStyle={{
-                    marginLeft: 10,
-                    borderRadius: 10,
-                    borderWidth: 0,
-                    backgroundColor: Colors.background
-                  }}
-                  listMode='SCROLLVIEW'
-                  style={{
-                    backgroundColor: '#f1f1f1',
-                    borderWidth: 0,
-                    borderRadius: 0,
-                    borderBottomWidth: 2
+                <Dropdown
+                  style={{margin: 10, marginLeft: 0, height: 50, width: '40%', borderBottomWidth: 2}}
+                  placeholderStyle={{fontSize: 14}}
+                  selectedTextStyle={{fontSize: 14}}
+                  containerStyle = {{backgroundColor: '#f1f1f1'}}
+                  data={kategoria}
+                  maxHeight={300}
+                  labelField="label"
+                  valueField="value"
+                  placeholder="Kategoria"
+                  value={kategoriaVal}
+                  onChange={item => {
+                    setKategoria(item.value);
                   }}
                 />
-                <DropDownPicker
+                <Dropdown
+                  style={{margin: 10, marginLeft: '7%', height: 50, width: '40%', borderBottomWidth: 2}}
+                  placeholderStyle={{fontSize: 14}}
+                  selectedTextStyle={{fontSize: 14}}
+                  containerStyle = {{backgroundColor: '#f1f1f1'}}
+                  data={filter}
+                  maxHeight={300}
+                  labelField="label"
+                  valueField="value"
+                  placeholder="Filtr"
+                  value={filterVal}
+                  onChange={item => {
+                    setFilter(item.value);
+                  }}
+                />
+                {/*<DropDownPicker
                   items={filters}
                   setItems={setFilters}
                   value={filter}
@@ -186,7 +191,7 @@ export function HomeView({ route, navigation }) {
                     borderRadius: 0,
                     borderBottomWidth: 2
                   }}
-                />
+                />*/}
               </View>
               <View
                 style={{
@@ -233,7 +238,7 @@ export function HomeView({ route, navigation }) {
             </View>
           )}
         </View>
-        <View style={{ alignItems: 'center', marginTop: 15 }}>
+        <View style={{ alignItems: 'center', marginTop: 15}}>
           {offers.filter((n) => Object.keys(n).includes('title')).map((o) => (
             <OfferTile
               title={o.title}
@@ -258,7 +263,7 @@ export function HomeView({ route, navigation }) {
             flexDirection: 'row',
             alignContent: 'center',
             justifyContent: 'center',
-            alignSelf: 'center'
+            alignSelf: 'center',
           }}
         >
           <TouchableOpacity onPress={(e) => {

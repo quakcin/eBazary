@@ -14,7 +14,6 @@ import {
 import AutoHeightImage from 'react-native-auto-height-image'
 import { Colors } from '../utils/Colors'
 import { Viewport } from '../utils/Viewport'
-import Constants from 'expo-constants'
 
 import servRequest from '../utils/Server'
 
