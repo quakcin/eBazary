@@ -29,6 +29,7 @@ export function EditProfileView({ route, navigation }) {
     handleSubmit,
     formState: { errors }
   } = useForm()
+  const fallBackImage = `data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEBLAEsAAD//gBqTm8gaW1hZ2UgYXZhaWxhYmxlIHNpZ24uIEludGVybmV0IHdlYiBpY29uIHRvIGluZGljYXRlIHRoZSBhYnNlbmNlIG9mIGltYWdlIHVudGlsIGl0IHdpbGwgYmUgZG93bmxvYWRlZC7/2wBDAB4UFhoWEx4aGBohHx4jLEowLCkpLFtBRDZKa15xb2leaGZ2haqQdn6hgGZolMqWobC1v8C/c47R4M+53qq7v7f/2wBDAR8hISwnLFcwMFe3emh6t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7f/wgARCABAAEADAREAAhEBAxEB/8QAGQAAAwEBAQAAAAAAAAAAAAAAAAECAwQF/8QAFAEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEAMQAAAB9EAIGUAAZnMUAjpLAxOcYyTpNQMTmNQMjqNQEZAAGowJJGICigEIQAUMBCAAGM//xAAgEAACAQMFAQEAAAAAAAAAAAAAARECECEDEhMgMjFB/9oACAEBAAEFAryTnpU4W+oSqGqkTBS5VtTzTmqpy6HDqw9PzbU8rDdO4S220/Nnk40caONHGj5dmT9yZF0kkknrBBBF/wD/xAAUEQEAAAAAAAAAAAAAAAAAAABg/9oACAEDAQE/AQH/xAAUEQEAAAAAAAAAAAAAAAAAAABg/9oACAECAQE/AQH/xAAbEAACAgMBAAAAAAAAAAAAAAAAEQEwAiExUP/aAAgBAQAGPwKro2hmpueI58T/xAAgEAADAAEEAwEBAAAAAAAAAAAAAREhEDFBYSBRcbHh/9oACAEBAAE/IdZrUbhOGU/HPrQNexzTcFnNLh5OcEt6/sLBMc3oYlcMSq8H9hoP0UU34E5vxDdbfvwUSRn1O1naz6iSSLVLBBp/Bs5LXf8ACudXgg24GZE6rq1SCCSNf//aAAwDAQACAAMAAAAQAEAAEkAAEgAAEkgAAkkAAkggEEkgEkkg/8QAFBEBAAAAAAAAAAAAAAAAAAAAYP/aAAgBAwEBPxAB/8QAFBEBAAAAAAAAAAAAAAAAAAAAYP/aAAgBAgEBPxAB/8QAJRABAAICAQQBBAMAAAAAAAAAAQARITEQQWFxkVEggcHwseHx/9oACAEBAAE/EOWqo2o1BAxGrN/Sz7LoneeiXeJkqlyudegtUSMqMOiKqU6edfhB0Rcy9nCoPibyLSQR9DiavLz/ABo5O1cBiOymkY7Ws0uVju7VzV5eVJ2PSd/3hdj2z/Zne94ZCg0cu6YTI/DAAwj0pwZzcRhYnNeH+pRBkoW3pzf4jQLbvzj9MIGz9zlUV6QaqvP7+IlTsXAFAtEK+9ShtKx13dwCGnkBTNeNCb+Zvw57zsvvvc7T5uBRXH//2Q==`;
 
   const validate = () => {
     if(name.length == 0) 
@@ -206,7 +207,7 @@ export function EditProfileView({ route, navigation }) {
             }}
           >
             <Image
-              source={{ uri: image }}
+              source={{ uri: image !== '' ? image : fallBackImage}}
               style={{
                 width: 130,
                 height: 130,
