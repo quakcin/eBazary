@@ -33,6 +33,7 @@ import servRequest from '../utils/Server';
 import {
   StarIcon, MapPinIcon, CubeIcon, BanknotesIcon, ShoppingBagIcon
 } from 'react-native-heroicons/outline'
+import { useIsFocused } from '@react-navigation/native'
 
 export function OfferView({ route, navigation }) {
   const tw = useTailwind()
@@ -42,6 +43,8 @@ export function OfferView({ route, navigation }) {
   const [lat, setLat] = useState()
   const [lon, setLon] = useState()
   const [isRenderingMap, setIsRenderingMap] = useState(false);
+  const isFocused = useIsFocused()
+
 
   const renderMap = (lat, lon, coords) => <View>
       <MapView 
@@ -99,7 +102,7 @@ export function OfferView({ route, navigation }) {
     return () => {
     }
 
-  }, [])
+  }, [isFocused])
 
   let [fontsLoaded] = useFonts({
     RobotoMono_600SemiBold,

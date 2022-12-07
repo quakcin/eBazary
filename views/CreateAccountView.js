@@ -130,6 +130,7 @@ export function CreateAccountView({ navigation }) {
       },
       (s) => 
       {
+        console.log(s)
         
         Alert.alert(
           "Rejestracja",

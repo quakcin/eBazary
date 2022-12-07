@@ -13,6 +13,7 @@ import { HomeView } from '../views/HomeView';
 import { NewOfferView } from '../views/NewOfferView';
 import { BellView } from '../views/BellView';
 import { ProfileView } from '../views/ProfileView';
+import { OfferView } from '../views/OfferView';
 
 
 const Tab = createBottomTabNavigator();
@@ -61,6 +62,14 @@ export default function ({route, params}) // won't work anyways
           tabBarLabel: 'Mój Profil'
         }}
         initialParams={{ userId: route.params.userId }}
+      />
+
+      <Tab.Screen
+        name='OfferView'
+        options={{
+          tabBarButton: (props) => null,
+        }}
+        component={OfferView}
       />
 
 

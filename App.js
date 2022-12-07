@@ -77,19 +77,6 @@ export default function App() {
             initialParams={{ source: null, userId: '' }}
             component={TransactionDetailsView}
           />
-
-          <Stack.Screen
-            name='OfferView'
-            options={{
-              title: 'Oferta',
-              headerTitleStyle: {
-                fontFamily: 'Karla_400Regular'
-              }
-            }}
-            component={OfferView}
-            initialParams={{ userId: '', offerId: '' }}
-          />
-
           <Stack.Screen
             name='BuyView'
             options={{
