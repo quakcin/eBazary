@@ -444,7 +444,7 @@ export function NewOfferView({ navigation })
 
   return (
     <Viewport navigation={navigation} active='NewOffer'>
-      <View style={{width: '100%', height: 500}} >
+      <View style={{width: '100%'}} >
         {(disp.current !== undefined 
           ? dispMap[disp.current]() 
           : <Text>Please wait</Text>
