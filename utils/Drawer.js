@@ -206,7 +206,32 @@ export default function MainDrawer ({ navigation, route})
         component={EditProfileView}
         initialParams = {{ userId: route.params.userId }}
       /> */}
+
       <Drawer.Screen
+        name='EditProfileRouter'
+        options={{
+          title: 'Edytuj Profil',
+          headerTitleStyle: {
+            fontFamily: 'Karla_400Regular'
+          }
+        }}
+        component={RouterScreen}
+        initialParams = {{ userId: route.params.userId, reroute: 'EditProfileView' }}
+      />
+
+      <Drawer.Screen
+        name='PassCtlRouter'
+        options={{
+          title: 'Zmień Hasło',
+          headerTitleStyle: {
+            fontFamily: 'Karla_400Regular'
+          }
+        }}
+        component={RouterScreen}
+        initialParams = {{ userId: route.params.userId, reroute: 'PassCtrlView' }}
+      />
+
+      {/* <Drawer.Screen
         name='PassCtrlView'
         options={{
           title: 'Zmiana hasła',
@@ -216,7 +241,10 @@ export default function MainDrawer ({ navigation, route})
         }}
         component={PasswordCtlView}
         initialParams = {{ userId: route.params.userId }}
-      />
+      /> */}
+
+
+
     </Drawer.Navigator>
   )
 }

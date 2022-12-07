@@ -20,6 +20,7 @@ import { ScreenStackHeaderBackButtonImage } from 'react-native-screens';
 import { HeaderBackButton, HeaderShownContext } from '@react-navigation/elements';
 import { DrawerToggleButton } from '@react-navigation/drawer';
 import { EditProfileView } from '../views/EditProfileView';
+import { PasswordCtlView } from '../views/PasswordCtlView';
 
 
 const Tab = createBottomTabNavigator();
@@ -30,10 +31,10 @@ export default function ({route, navigation}) // won't work anyways
   return (
     <Tab.Navigator
       initialRouteName='HomeView'
-      tabBarOptions=
+      screenOptions=
       {{ 
         showLabel: __doShowLabel,
-        activeTintColor: '#d9144b'
+        tabBarActiveTintColor: '#d9144b'
       }}
     >
       <Tab.Screen
@@ -42,7 +43,7 @@ export default function ({route, navigation}) // won't work anyways
         options=
         {{
           headerTitle: 'Mój Koszyk',
-          tabBarLabel: 'Hasiok',
+          tabBarLabel: 'Koszyk',
           tabBarIcon: ({color, size}) => (
             <ShoppingCartIcon style={{color: color}} width={30} height={30}/>
           ),
@@ -60,7 +61,7 @@ export default function ({route, navigation}) // won't work anyways
         options=
         {{
           headerTitle: 'Dodaj Nową Ofertę',
-          tabBarLabel: 'Opyl',
+          tabBarLabel: 'Sprzedaj',
           tabBarIcon: ({color, size}) => (
             <PlusIcon style={{color: color}} width={30} height={30}/>
           ),
@@ -91,7 +92,7 @@ export default function ({route, navigation}) // won't work anyways
         options=
         {{
           headerTitle: 'Centrum Powiadomień',
-          tabBarLabel: 'Pierdolety',
+          tabBarLabel: 'Reakcje',
           tabBarIcon: ({color, size}) => (
             <BellIcon style={{color: color}} width={30} height={30}/>
           ),
@@ -110,7 +111,7 @@ export default function ({route, navigation}) // won't work anyways
         options=
         {{
           headerTitle: 'Mój Profil',
-          tabBarLabel: 'Luft',
+          tabBarLabel: 'Profil',
           tabBarIcon: ({color, size}) => (
             <UserCircleIcon style={{color: color}} width={30} height={30}/>
           ),
@@ -150,6 +151,22 @@ export default function ({route, navigation}) // won't work anyways
           )
         }}
         component={EditProfileView}
+        initialParams={route.params}
+      />
+
+
+      <Tab.Screen
+        name='PassCtrlView'
+        options=
+        {{
+          tabBarButton: (props) => null,
+          headerLeft: () => (
+            <HeaderBackButton
+              onPress={(e, o = navigation) => o.navigate('EditProfileView')}
+            />
+          )
+        }}
+        component={PasswordCtlView}
         initialParams={route.params}
       />
 

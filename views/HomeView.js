@@ -42,12 +42,12 @@ export function HomeView({ route, navigation }) {
   const [kategoriaVal, setKategoria] = useState(null)
 
   const kategoria = [
-    { label: 'Wszystkie', value: 0 },
-    { label: 'Dom', value: 1 },
-    { label: 'Elektronika', value: 2 },
-    { label: 'Moda', value: 3 },
-    { label: 'Motoryzacja', value: 4 },
-    { label: 'Inne', value: 5 }
+    { label: 'Wszystkie' },
+    { label: 'Dom'},
+    { label: 'Elektronika' },
+    { label: 'Moda' },
+    { label: 'Motoryzacja'},
+    { label: 'Inne' }
   ];
 
   const filter = [
@@ -59,7 +59,7 @@ export function HomeView({ route, navigation }) {
 
   // fix drop down hooks
 
-  const perfSearch = (custom = null) => 
+  const perfSearch = (custom = null, kind = null) => 
   {
     setOffers([]);
     servRequest
@@ -67,7 +67,15 @@ export function HomeView({ route, navigation }) {
       'search',
       {
         page: page,
-        query: custom !== null ? custom : query,
+        query: custom !== null 
+          ? custom 
+          : query,
+
+        kind: kind != null 
+          ? kind 
+          : kategoriaVal === null 
+            ? 'Wszystkie' 
+            : kategoriaVal
       },
       (s) => 
       {
@@ -150,7 +158,9 @@ export function HomeView({ route, navigation }) {
                   placeholder="Kategoria"
                   value={kategoriaVal}
                   onChange={item => {
-                    setKategoria(item.value);
+                    setKategoria(item.label);
+                    console.log('risen for', item.label)
+                    perfSearch(query, item.label);
                   }}
                 />
                 <Dropdown
