@@ -31,6 +31,7 @@ import { useEffect, createRef, useRef } from 'react';
 import * as ImageManipulator from 'expo-image-manipulator';
 import { useFocusEffect } from '@react-navigation/native'
 import { ArrowsUpDownIcon } from 'react-native-heroicons/outline'
+import { Dropdown } from 'react-native-element-dropdown'
 
 
 export function NewOfferView({ navigation }) 
@@ -51,6 +52,7 @@ export function NewOfferView({ navigation })
   const [imgBuffer, setImgBuffer] = useState(Array(5).fill(null))
   const [imgIdx, setImgIdx] = useState(0);
   const [rerender, setRerender] = useState(0);
+
 
 
   useEffect(() => 
@@ -83,14 +85,13 @@ export function NewOfferView({ navigation })
 
   const onSubmit = (data) => console.log('subm', data)
 
-  const [selected, setSelected] = useState('')
+  const [value, setValue] = useState(null);
   const data = [
-    { key: '1', value: 'Wszystkie' },
-    { key: '2', value: 'Dom' },
-    { key: '3', value: 'Elektronika' },
-    { key: '4', value: 'Moda' },
-    { key: '5', value: 'Motoryzacja' },
-    { key: '6', value: 'Pozostałe' }
+    { label: 'Dom' },
+    { label: 'Elektronika' },
+    { label: 'Moda' },
+    { label: 'Motoryzacja' },
+    { label: 'Inna' }
   ]
 
   /*
@@ -142,53 +143,46 @@ export function NewOfferView({ navigation })
               </Text>
             )}
 
-            <Controller
-              control={control}
-              rules={{
-                required: true
+            {/*<SelectList
+              setSelected={setSelected}
+              onBlur={onBlur}
+              onChangeText={onChange}
+              data={data}
+              search={false}
+              placeholder={'Kategoria'}
+              boxStyles={{
+                borderRadius: 0,
+                borderWidth: 0,
+                borderBottomWidth: 2,
+                borderBottomRightRadius: 5,
+                borderBottomLeftRadius: 5,
+                marginTop: 15,
+                fontFamily: 'Ubuntu_400Regular'
               }}
-              render={({ field: { onChange, onBlur, selected } }) => (
-                <SelectList
-                  setSelected={setSelected}
-                  onBlur={onBlur}
-                  onChangeText={onChange}
-                  data={data}
-                  search={false}
-                  placeholder={'Kategoria'}
-                  boxStyles={{
-                    borderRadius: 0,
-                    borderWidth: 0,
-                    borderBottomWidth: 2,
-                    borderBottomRightRadius: 5,
-                    borderBottomLeftRadius: 5,
-                    marginTop: 15,
-                    fontFamily: 'Ubuntu_400Regular'
-                  }}
-                  dropdownStyles={{
-                    borderRadius: 5,
-                    borderWidth: 2,
-                    fontFamily: 'Ubuntu_400Regular'
-                  }}
-                  inputStyles={{
-                    fontFamily: 'Ubuntu_400Regular'
-                  }}
-                />
-              )}
-              name='kategoria'
+              dropdownStyles={{
+                borderRadius: 5,
+                borderWidth: 2,
+                fontFamily: 'Ubuntu_400Regular'
+              }}
+              inputStyles={{
+                fontFamily: 'Ubuntu_400Regular'
+              }}
+            />*/}
+            <Dropdown
+              style={{margin: 10, marginLeft: 0, height: 50, borderBottomWidth: 2}}
+              placeholderStyle={{fontSize: 14}}
+              selectedTextStyle={{fontSize: 14 }}
+              data={data}
+              search={false}
+              maxHeight={400}
+              labelField="label"
+              valueField="value"
+              placeholder="Select item"r
+              value={value}
+              onChange={item => {
+                setValue(item.value);
+              }}
             />
-            {errors.kategoria && (
-              <Text
-                style={{
-                  color: Colors.reddish,
-                  fontWeight: '500',
-                  fontSize: 13,
-                  marginTop: 6
-                }}
-              >
-                Kategoria jest wymagana!
-              </Text>
-            )}
-
             <View
               style={{
                 flexDirection: 'row',
@@ -200,10 +194,6 @@ export function NewOfferView({ navigation })
                 control={control}
                 rules={{
                   required: 'Cena jest wymagana!',
-                  pattern: {
-                    value: /^\d+(\.\d{1,10})?$/,
-                    message: 'Niepoprawna cena!'
-                  }
                 }}
                 render={({ field: { onChange, onBlur, value } }) => (
                   <TextInput
