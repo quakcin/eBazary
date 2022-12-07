@@ -95,7 +95,7 @@ export function NewOfferView({ route, navigation })
         userId: route.params.userId,
         offerId: offerId,
         price: data.cena.replaceAll(',', '.'),
-        descr: data.opis,
+        descr: data.opis.replaceAll('\n', ' '),
         title: data.tytul,
         lat: loc.coords.latitude,
         lon: loc.coords.longitude,
@@ -120,8 +120,8 @@ export function NewOfferView({ route, navigation })
             (s) => {}, (e) => {}
           )
           const packets = [];
-          for (let i = 0; i < img.length; i += 1900)
-            packets.push(img.substr(i, i + 1800));
+          for (let i = 0; i < img.length; i += 1500)
+            packets.push(img.substr(i, i + 1500));
 
           for (let p = 0; p < packets.length; p++)
             setTimeout((id = imgId, pc = p, pak = packets[p]) => {
@@ -142,7 +142,7 @@ export function NewOfferView({ route, navigation })
                   console.log('failed to upload image', id, e);
                 }
               )
-            }, p * 250);
+            }, p * 500);
         }
       },
       (e) =>
