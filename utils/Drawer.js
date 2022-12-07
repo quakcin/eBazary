@@ -17,6 +17,8 @@ import { ProfileView } from '../views/ProfileView'
 import { Karla_400Regular, useFonts } from '@expo-google-fonts/karla'
 import { Text, View } from 'react-native'
 import { Colors } from './Colors'
+import Tabs from './Tabs'
+import { useEffect, useState } from 'react'
 
 const Drawer = createDrawerNavigator()
 
@@ -69,7 +71,19 @@ function CustomDrawerContent(props) {
   )
 }
 
-export default function ({ navigation, route }) {
+
+const RouterScreen = function ({ navigation, route })
+{
+    navigation.navigate(route.params.reroute, route.params);
+    return (
+    <View>
+      <Text>Please wait..</Text>
+    </View>
+  )
+}
+
+export default function MainDrawer ({ navigation, route}) 
+{
   let [fontsLoaded] = useFonts({
     Karla_400Regular
   })
@@ -79,7 +93,7 @@ export default function ({ navigation, route }) {
   return (
     <Drawer.Navigator
       drawerContent={(props) => <CustomDrawerContent {...props} />}
-      initialRouteName='HomeView'
+      initialRouteName={'HomeView' }
       backBehavior='history'
       screenOptions={{
         drawerActiveBackgroundColor: Colors.buttons,
@@ -94,69 +108,71 @@ export default function ({ navigation, route }) {
       }}
     >
       <Drawer.Screen
-        name='CartView'
+        name='HomeViewDrawer'
+        options={{
+          title: 'eBazary',
+          headerShown: false,
+          headerTitleStyle: {
+            fontFamily: 'Karla_400Regular'
+          }
+        }}
+        component={Tabs}
+        initialParams = {{ userId: route.params.userId }}
+      />
+      <Drawer.Screen
+        name='CartViewRouter'
         options={{
           title: 'Mój Koszyk',
           headerTitleStyle: {
             fontFamily: 'Karla_400Regular'
           }
         }}
-        component={CartView}
-        initialParams = {{ userId: route.params.userId }}
-        onPress={() => {
-          this.navigate('CardView')
-        }}
+        component={RouterScreen}
+        initialParams = {{ userId: route.params.userId, reroute: 'CartView' }}
       />
       <Drawer.Screen
-        name='NewOfferView'
+        name='NewOfferViewRouter'
         options={{
           title: 'Dodaj Ofertę',
           headerTitleStyle: {
             fontFamily: 'Karla_400Regular'
           }
         }}
-        component={NewOfferView}
-        initialParams = {{ userId: route.params.userId }}
+        component={RouterScreen}
+        initialParams = {{ userId: route.params.userId, reroute: 'NewOfferView' }}
       />
+
+
       <Drawer.Screen
-        name='HomeView'
+        name='BellViewRouter'
         options={{
-          title: 'Home',
+          title: 'Powiadomienia',
           headerShown: false,
           headerTitleStyle: {
             fontFamily: 'Karla_400Regular'
           }
         }}
-        component={HomeView}
-        initialParams = {{ userId: route.params.userId }}
+        component={RouterScreen}
+        initialParams = {{ userId: route.params.userId, reroute: 'BellView' }}
       />
-      <Drawer.Screen
-        name='BellView'
-        options={{
-          title: 'Powiadomienia',
-          headerTitleStyle: {
-            fontFamily: 'Karla_400Regular'
-          }
-        }}
-        component={BellView}
-        initialParams = {{ userId: route.params.userId }}
-      />
+
 
       {fontsLoaded ? (
         <Drawer.Screen
-          name='ProfileView'
+          name='ProfileViewRouter'
           options={{
             title: 'Mój Profil',
             headerTitleStyle: {
               fontFamily: 'Karla_400Regular'
             }
           }}
-          component={ProfileView}
-        initialParams = {{ userId: route.params.userId }}
+          component={RouterScreen}
+          initialParams = {{ userId: route.params.userId, reroute: 'ProfileView' }}
         />
       ) : (
         <></>
       )}
+      
       <Drawer.Screen
         name='MyShoppingView'
         options={{
@@ -204,3 +220,5 @@ export default function ({ navigation, route }) {
     </Drawer.Navigator>
   )
 }
+
+

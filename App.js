@@ -8,7 +8,19 @@ import { OfferView } from './views/OfferView'
 import { BuyView } from './views/BuyView'
 import { TransactionDetailsView } from './views/TransactionDetailsView'
 import { Karla_400Regular, useFonts } from '@expo-google-fonts/karla'
-import Drawer from './utils/Drawer'
+
+
+
+
+
+// co?
+import MainDrawer from './utils/Drawer'
+
+
+
+
+
+import Tabs from './utils/Tabs'
 import { CreateAccountView } from './views/CreateAccountView'
 import ShowImage from './utils/ShowImage'
 import { StatusBar } from 'expo-status-bar'
@@ -37,7 +49,7 @@ export default function App() {
               }
             }}
             initialParams={{ userId: '' }}
-            component={Drawer}
+            component={MainDrawer}
           />
 
           <Stack.Screen

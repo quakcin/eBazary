@@ -33,7 +33,7 @@ export function Viewport({
       }}
     >
       <View style={{ flex: 1 }}>{children}</View>
-      <NavBar navigation={navigation} active={active} />
+      {/* <NavBar navigation={navigation} active={active} /> */}
     </SafeAreaView>
   )
 }
