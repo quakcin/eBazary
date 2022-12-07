@@ -21,6 +21,7 @@ import { Colors } from '../utils/Colors'
 import servRequest from '../utils/Server';
 
 import { useState, useEffect } from 'react';
+import { useIsFocused } from '@react-navigation/native'
 
 export function ProfileView({ route, navigation }) 
 {
@@ -34,6 +35,8 @@ export function ProfileView({ route, navigation })
   */
 
   const lightMode = true
+  const isFocused = useIsFocused()
+
 
   // if (!fontsLoaded) return null
 
@@ -75,7 +78,7 @@ export function ProfileView({ route, navigation })
       console.log('bye');
     }
 
-  }, []);
+  }, [isFocused]);
 
   return (
     <>
