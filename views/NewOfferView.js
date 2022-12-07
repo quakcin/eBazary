@@ -6,7 +6,8 @@ import {
   Button,
   TextInput,
   ScrollView,
-  TouchableOpacity
+  TouchableOpacity,
+  Alert
 } from 'react-native'
 import { Viewport } from '../utils/Viewport'
 import { useForm, Controller } from 'react-hook-form'
@@ -37,12 +38,6 @@ import { v4 as uuid } from 'uuid'
 
 export function NewOfferView({ route, navigation }) 
 {
-  const {
-    control,
-    handleSubmit,
-    formState: { errors }
-  } = useForm()
-  
   // -- map 
   // const [disp, setDisp] = useState({current: 'cameraView'})
   const [disp, setDisp] = useState({current: 'normalView'})
@@ -54,7 +49,9 @@ export function NewOfferView({ route, navigation })
   const [imgIdx, setImgIdx] = useState(0);
   const [rerender, setRerender] = useState(0);
 
-
+  const [tytul, setTytul] = useState('');
+  const [cena, setCena] = useState('');
+  const [opis, setOpis] = useState('');
   const [value, setValue] = useState(null);
 
   useEffect(() => 
@@ -85,7 +82,7 @@ export function NewOfferView({ route, navigation })
   }, [loc, rerender]);
 
 
-  const onSubmit = function (data) 
+  const addOffer = function (e) 
   {
     const offerId = uuid();
     servRequest
@@ -94,9 +91,9 @@ export function NewOfferView({ route, navigation })
       {
         userId: route.params.userId,
         offerId: offerId,
-        price: data.cena.replaceAll(',', '.'),
-        descr: data.opis.replaceAll('\n', ' '),
-        title: data.tytul,
+        price: cena,
+        descr: opis.replaceAll('\n', ' '),
+        title: tytul,
         lat: loc.coords.latitude,
         lon: loc.coords.longitude,
         kind: value
@@ -144,12 +141,21 @@ export function NewOfferView({ route, navigation })
               )
             }, p * 500);
         }
+        Alert.alert(
+          "Dodano ogłoszenie",
+          "Pomyślnie ogłoszenie w serwisie e-Bazary",
+          [
+            { text: "OK", onPress: () => { navigation.navigate("OfferView", { userId: route.params.userId, offerId: offerId }) } }
+          ])
       },
       (e) =>
       {
         console.log('newOffer', e);
       }
     )
+    setTytul("")
+    setOpis("")
+    setCena("")
   }
 
   const data = [
@@ -179,61 +185,13 @@ export function NewOfferView({ route, navigation })
               paddingTop: 25,
               paddingBottom: 25,
             }}
-          >
-            <Controller
-              control={control}
-              rules={{
-                required: true
-              }}
-              render={({ field: { onChange, onBlur, value } }) => (
-                <TextInput
-                  style={[styles.defaultInput, styles.shortInput]}
-                  onBlur={onBlur}
-                  onChangeText={onChange}
-                  value={value}
-                  placeholder='Tytuł'
-                />
-              )}
-              name='tytul'
+      >
+            <TextInput
+              style={[styles.defaultInput, styles.shortInput]}
+              onChangeText={setTytul}
+              value={tytul}
+              placeholder='Tytuł'
             />
-            {errors.tytul && (
-              <Text
-                style={{
-                  color: Colors.reddish,
-                  fontWeight: '500',
-                  fontSize: 13,
-                  marginTop: 6
-                }}
-              >
-                Tytuł jest wymagany!
-              </Text>
-            )}
-
-            {/*<SelectList
-              setSelected={setSelected}
-              onBlur={onBlur}
-              onChangeText={onChange}
-              data={data}
-              search={false}
-              placeholder={'Kategoria'}
-              boxStyles={{
-                borderRadius: 0,
-                borderWidth: 0,
-                borderBottomWidth: 2,
-                borderBottomRightRadius: 5,
-                borderBottomLeftRadius: 5,
-                marginTop: 15,
-                fontFamily: 'Ubuntu_400Regular'
-              }}
-              dropdownStyles={{
-                borderRadius: 5,
-                borderWidth: 2,
-                fontFamily: 'Ubuntu_400Regular'
-              }}
-              inputStyles={{
-                fontFamily: 'Ubuntu_400Regular'
-              }}
-            />*/}
             <Dropdown
               style={{margin: 10, marginLeft: 0, height: 50, borderBottomWidth: 2}}
               placeholderStyle={{fontSize: 14}}
@@ -243,7 +201,7 @@ export function NewOfferView({ route, navigation })
               maxHeight={400}
               labelField="label"
               valueField="value"
-              placeholder="Select item"r
+              placeholder="Wybierz kategorię"r
               value={value}
               onChange={item => setValue(item.label)}
             />
@@ -254,94 +212,34 @@ export function NewOfferView({ route, navigation })
                 marginTop: 25
               }}
             >
-              <Controller
-                control={control}
-                rules={{
-                  required: 'Cena jest wymagana!',
-                }}
-                render={({ field: { onChange, onBlur, value } }) => (
-                  <TextInput
-                    style={[
-                      styles.defaultInput,
-                      styles.shortInput,
-                      { width: '85%', borderBottomRightRadius: 0 }
-                    ]}
-                    keyboardType='numeric'
-                    onBlur={onBlur}
-                    onChangeText={onChange}
-                    value={value}
-                    placeholder='Cena'
-                  />
-                )}
-                name='cena'
+              <TextInput
+                style={[
+                  styles.defaultInput,
+                  styles.shortInput,
+                  { width: '85%', borderBottomRightRadius: 0 }
+                ]}
+                keyboardType='numeric'
+                onChangeText={setCena}
+                value={cena}
+                placeholder='Cena'
               />
-
               <View style={{ width: '15%', alignItems: 'center' }}>
                 <Text style={{ fontWeight: '500', fontSize: 14 }}>PLN</Text>
               </View>
             </View>
-
-            {errors.cena?.message && (
-              <Text
-                style={{
-                  color: Colors.reddish,
-                  fontWeight: '500',
-                  fontSize: 13,
-                  marginTop: 6
-                }}
-              >
-                {errors.cena?.message}
-              </Text>
-            )}
-            {errors.cena?.required && (
-              <Text
-                style={{
-                  color: Colors.reddish,
-                  fontWeight: '500',
-                  fontSize: 13,
-                  marginTop: 6
-                }}
-              >
-                {errors.cena?.required}
-              </Text>
-            )}
-
-            <Controller
-              control={control}
-              rules={{
-                required: true
-              }}
-              render={({ field: { onChange, onBlur, value } }) => (
-                <TextInput
-                  placeholder='Opis (max 500 znaków)'
-                  style={[
-                    styles.defaultInput,
-                    styles.longInput,
-                    { marginTop: 40, marginBottom: 30, border: 0, borderRadius: 0, borderLeftWidth: 5, borderColor: '#424242', backgroundColor: '#f4f4f4' }
-                  ]}
-                  textAlign={'left'}
-                  textAlignVertical={'top'}
-                  multiline={true}
-                  onBlur={onBlur}
-                  onChangeText={onChange}
-                  value={value}
-                />
-              )}
-              name='opis'
-            />
-            {errors.opis && (
-              <Text
-                style={{
-                  color: Colors.reddish,
-                  fontWeight: '500',
-                  fontSize: 13,
-                  marginTop: 6
-                }}
-              >
-                Opis jest wymagany!
-              </Text>
-            )}
-
+              <TextInput
+                placeholder='Opis (max 500 znaków)'
+                style={[
+                  styles.defaultInput,
+                  styles.longInput,
+                  { marginTop: 40, marginBottom: 30, border: 0, borderRadius: 0, borderLeftWidth: 5, borderColor: '#424242', backgroundColor: '#f4f4f4' }
+                ]}
+                textAlign={'left'}
+                textAlignVertical={'top'}
+                multiline={true}
+                onChangeText={setOpis}
+                value={opis}
+              />
             <View
               style={{
                 flexDirection: 'row',
@@ -398,7 +296,7 @@ export function NewOfferView({ route, navigation })
                 alignItems: 'center',
                 marginTop: 25
               }}
-              onPress={handleSubmit(onSubmit)}
+              onPress={addOffer}
             >
               <Text
                 style={{
