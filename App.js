@@ -8,7 +8,7 @@ import { OfferView } from './views/OfferView'
 import { BuyView } from './views/BuyView'
 import { TransactionDetailsView } from './views/TransactionDetailsView'
 import { Karla_400Regular, useFonts } from '@expo-google-fonts/karla'
-
+import 'react-native-get-random-values'
 
 
 

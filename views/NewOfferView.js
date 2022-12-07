@@ -32,9 +32,10 @@ import * as ImageManipulator from 'expo-image-manipulator';
 import { useFocusEffect } from '@react-navigation/native'
 import { ArrowsUpDownIcon } from 'react-native-heroicons/outline'
 import { Dropdown } from 'react-native-element-dropdown'
+import { v4 as uuid } from 'uuid'
 
 
-export function NewOfferView({ navigation }) 
+export function NewOfferView({ route, navigation }) 
 {
   const {
     control,
@@ -54,6 +55,7 @@ export function NewOfferView({ navigation })
   const [rerender, setRerender] = useState(0);
 
 
+  const [value, setValue] = useState(null);
 
   useEffect(() => 
   {
@@ -83,9 +85,73 @@ export function NewOfferView({ navigation })
   }, [loc, rerender]);
 
 
-  const onSubmit = (data) => console.log('subm', data)
+  const onSubmit = function (data) 
+  {
+    const offerId = uuid();
+    servRequest
+    (
+      'newOffer',
+      {
+        userId: route.params.userId,
+        offerId: offerId,
+        price: data.cena.replaceAll(',', '.'),
+        descr: data.opis,
+        title: data.tytul,
+        lat: loc.coords.latitude,
+        lon: loc.coords.longitude,
+        kind: value
+      },
+      (s) =>
+      {
+        for (let img of imgBuffer)
+        {
+          if (img == null)
+            continue;
+          
+          const imgId = uuid();
 
-  const [value, setValue] = useState(null);
+          servRequest
+          (
+            'addImageToOffer',
+            {
+              imageId: imgId,
+              offerId: offerId
+            },
+            (s) => {}, (e) => {}
+          )
+          const packets = [];
+          for (let i = 0; i < img.length; i += 1900)
+            packets.push(img.substr(i, i + 1800));
+
+          for (let p = 0; p < packets.length; p++)
+            setTimeout((id = imgId, pc = p, pak = packets[p]) => {
+              servRequest
+              (
+                'uploadImage',
+                {
+                  imageId: id,
+                  packetId: pc,
+                  content: pak
+                },
+                (s) => 
+                {
+                  console.log('finished uploading image!', id)
+                },
+                (e) =>
+                {
+                  console.log('failed to upload image', id, e);
+                }
+              )
+            }, p * 250);
+        }
+      },
+      (e) =>
+      {
+        console.log('newOffer', e);
+      }
+    )
+  }
+
   const data = [
     { label: 'Dom' },
     { label: 'Elektronika' },
@@ -179,9 +245,7 @@ export function NewOfferView({ navigation })
               valueField="value"
               placeholder="Select item"r
               value={value}
-              onChange={item => {
-                setValue(item.value);
-              }}
+              onChange={item => setValue(item.label)}
             />
             <View
               style={{
