@@ -121,7 +121,7 @@ export default function ({route, navigation}) // won't work anyways
             />
           )
         }}
-        initialParams={{ userId: route.params.userId }}
+        initialParams={{ userId: route.params.userId, profileOverride: route.params.profileOverride }}
       />
 
       <Tab.Screen

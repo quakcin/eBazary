@@ -91,7 +91,6 @@ export function OfferView({ route, navigation }) {
         setLon(s.lon);
         setCoords({latitude: s.lat, longitude: s.lon});
         setIsRenderingMap(true);
-        console.log(lat, lon, coords);
       },
       (e) =>
       {
@@ -327,14 +326,22 @@ export function OfferView({ route, navigation }) {
 
           <Text
             style={{
-              textAlign: 'justify',
+              textAlign: 'center',
               fontSize: 16,
               fontFamily: 'Ubuntu_400Regular'
             }}
           >
-            Wszystkie przedmioty sprzedającego
+            <Button 
+              title="Sprzedający"
+              onPress={(e, z = offer.sellerId) => navigation.navigate('ProfileView', {
+                userId: route.params.userId, profileOverride: z
+              })}
+            />
+            <Button 
+              title="Inne Aukcje"
+            />
           </Text>
-        
+            
         </View>
       </ScrollView>
     </Viewport>

@@ -58,11 +58,16 @@ export function ProfileView({ route, navigation })
   useEffect (() => 
   {
     console.log('userId: ', route.params.userId); 
+    console.log('override: ', route.params.profileOverride);
+
+    const override = route.params.profileOverride;
+    navigation.setParams({userId: route.params.userId, profileOverride: null})
+
     servRequest
     (
       'userInfo',
       {
-        id: route.params.userId
+        id: override == null ? route.params.userId : override
       },
       (s) =>
       {
