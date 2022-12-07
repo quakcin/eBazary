@@ -19,6 +19,7 @@ import { Button } from 'react-native';
 import { ScreenStackHeaderBackButtonImage } from 'react-native-screens';
 import { HeaderBackButton, HeaderShownContext } from '@react-navigation/elements';
 import { DrawerToggleButton } from '@react-navigation/drawer';
+import { EditProfileView } from '../views/EditProfileView';
 
 
 const Tab = createBottomTabNavigator();
@@ -29,7 +30,11 @@ export default function ({route, navigation}) // won't work anyways
   return (
     <Tab.Navigator
       initialRouteName='HomeView'
-      tabBarOptions={{ showLabel: __doShowLabel }}
+      tabBarOptions=
+      {{ 
+        showLabel: __doShowLabel,
+        activeTintColor: '#d9144b'
+      }}
     >
       <Tab.Screen
         name="CartView"
@@ -37,9 +42,9 @@ export default function ({route, navigation}) // won't work anyways
         options=
         {{
           headerTitle: 'Mój Koszyk',
-          tabBarLabel: 'Koszyk',
+          tabBarLabel: 'Hasiok',
           tabBarIcon: ({color, size}) => (
-            <ShoppingCartIcon style={{color: '#000000'}} width={30} height={30}/>
+            <ShoppingCartIcon style={{color: color}} width={30} height={30}/>
           ),
           headerLeft: () => (
             <DrawerToggleButton
@@ -55,9 +60,9 @@ export default function ({route, navigation}) // won't work anyways
         options=
         {{
           headerTitle: 'Dodaj Nową Ofertę',
-          tabBarLabel: 'Spzrzedaj',
+          tabBarLabel: 'Opyl',
           tabBarIcon: ({color, size}) => (
-            <PlusIcon style={{color: '#000000'}} width={30} height={30}/>
+            <PlusIcon style={{color: color}} width={30} height={30}/>
           ),
           headerLeft: () => (
             <DrawerToggleButton
@@ -75,7 +80,7 @@ export default function ({route, navigation}) // won't work anyways
           headerShown: false,
           tabBarLabel: 'eBazary',
           tabBarIcon: ({color, size}) => (
-            <ShoppingBagIcon style={{color: '#000000'}} width={30} height={30}/>
+            <ShoppingBagIcon style={{color: color}} width={30} height={30}/>
           )
         }}
         initialParams={{ userId: route.params.userId }}
@@ -86,9 +91,9 @@ export default function ({route, navigation}) // won't work anyways
         options=
         {{
           headerTitle: 'Centrum Powiadomień',
-          tabBarLabel: 'Notify',
+          tabBarLabel: 'Pierdolety',
           tabBarIcon: ({color, size}) => (
-            <BellIcon style={{color: '#000000'}} width={30} height={30}/>
+            <BellIcon style={{color: color}} width={30} height={30}/>
           ),
           headerLeft: () => (
             <DrawerToggleButton
@@ -105,9 +110,9 @@ export default function ({route, navigation}) // won't work anyways
         options=
         {{
           headerTitle: 'Mój Profil',
-          tabBarLabel: 'Profil',
+          tabBarLabel: 'Luft',
           tabBarIcon: ({color, size}) => (
-            <UserCircleIcon style={{color: '#000000'}} width={30} height={30}/>
+            <UserCircleIcon style={{color: color}} width={30} height={30}/>
           ),
           headerLeft: () => (
             <DrawerToggleButton
@@ -130,9 +135,23 @@ export default function ({route, navigation}) // won't work anyways
           )
         }}
         component={OfferView}
-
+        initialParams={route.params}
       />
 
+      <Tab.Screen
+        name='EditProfileView'
+        options=
+        {{
+          tabBarButton: (props) => null,
+          headerLeft: () => (
+            <HeaderBackButton
+              onPress={(e, o = navigation) => o.navigate('ProfileView')}
+            />
+          )
+        }}
+        component={EditProfileView}
+        initialParams={route.params}
+      />
 
     </Tab.Navigator>
   )

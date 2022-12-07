@@ -195,7 +195,7 @@ export default function MainDrawer ({ navigation, route})
         component={MyOffersView}
         initialParams = {{ userId: route.params.userId}}
       />
-      <Drawer.Screen
+      {/* <Drawer.Screen
         name='EditProfileView'
         options={{
           title: 'Edycja profilu',
@@ -205,7 +205,7 @@ export default function MainDrawer ({ navigation, route})
         }}
         component={EditProfileView}
         initialParams = {{ userId: route.params.userId }}
-      />
+      /> */}
       <Drawer.Screen
         name='PassCtrlView'
         options={{

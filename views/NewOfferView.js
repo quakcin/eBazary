@@ -63,6 +63,9 @@ export function NewOfferView({ navigation })
       setLoc(location);
     })();
 
+  }, []);
+
+  useEffect(() => {
     // TODO: Fix map
     if (loc != null && mapRef.current != null)
     {
@@ -72,7 +75,8 @@ export function NewOfferView({ navigation })
       });
       setCoords({latitude: loc.coords.latitude, longitude: loc.coords.longitude});
     }
-  }, []);
+    return () => {};
+  }, [])
 
   const onSubmit = (data) => console.log('subm', data)
 
