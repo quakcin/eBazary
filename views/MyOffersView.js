@@ -4,6 +4,7 @@ import { useTailwind } from 'tailwind-rn'
 import ShoppingHistoryItem from '../components/ShoppingHistoryItem'
 import { Viewport } from '../utils/Viewport'
 import OffersListing from '../components/OffersListing'
+import { useIsFocused } from '@react-navigation/native'
 
 const serverResp = `
 [
@@ -137,14 +138,18 @@ const serverResp = `
   }
 ]
 `
-export function MyOffersView({ navigation }) {
+export function MyOffersView({ route, navigation }) {
   const [offers, setOffers] = useState([])
+  const isFocused = useIsFocused()
 
+  
   useEffect(() => {
-    const resp = JSON.parse(serverResp)
+     const resp = JSON.parse(serverResp)
+     /*if(route.params.seller !== "-1")
+       navigation.setOptions({ title: "Oferty użytkownika: " + route.params.seller })*/
     setOffers(resp);
     console.log(resp);
-  }, [])
+  }, [isFocused])
 
   return (
     <Viewport navigation={navigation} active='Profile'>

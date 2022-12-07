@@ -177,7 +177,7 @@ export default function ({ navigation, route }) {
           }
         }}
         component={MyOffersView}
-        initialParams = {{ userId: route.params.userId }}
+        initialParams = {{ userId: route.params.userId}}
       />
       <Drawer.Screen
         name='EditProfileView'

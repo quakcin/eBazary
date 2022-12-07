@@ -1,4 +1,3 @@
-import { StatusBar } from 'expo-status-bar'
 import { useEffect, useState } from 'react'
 import {
   StyleSheet,
@@ -9,21 +8,19 @@ import {
   TouchableOpacity
 } from 'react-native'
 import { useTailwind } from 'tailwind-rn'
-
-// import CartItem from '../components/CartItem'
 import OfferTile from '../components/OfferTile'
-
-
 import { Viewport } from '../utils/Viewport'
-import { Karla_400Regular, useFonts } from '@expo-google-fonts/karla'
 import { Colors } from '../utils/Colors'
 import servRequest from '../utils/Server';
+import { useIsFocused } from '@react-navigation/native'
 
 export function CartView({ route, navigation }) 
 {
-  // const tw = useTailwind()
+  const isFocused = useIsFocused()
 
   const [offers, setOffers] = useState([])
+
+  const [isEmpty, setIsEmpty] = useState(false);
 
   const perfCartRefresh = () =>
   {
@@ -35,40 +32,31 @@ export function CartView({ route, navigation })
       },
       (s) =>
       {
-        console.log(s);
         setOffers(s.offers.filter((n) => Object.keys(n).includes('title')));
       },
       (e) =>
       {
-        // FIXME:ALERT
+        Alert.alert(
+          "Błąd aplikacji",
+          "Wystąpił nieoczekiwany błąd, spróbuj ponownie później!",
+          s, [ { text: "OK" } ]
+        );
       }
     )
   }
 
 
-  /*
-    EB1-I23
-    Prawdopodobnie nawigacja!!
-  */
   useEffect(() => { 
     perfCartRefresh();
     return () => {
-      console.log('left'); /* nigdy nie zamyka tej strony */
-                           /* chyba nawigacja */
+      //console.log('left');
     }
-  }, [])
+  }, [isFocused])
 
-  /*
-  let [fontsLoaded] = useFonts({
-    Karla_400Regular
-  })
-  */
 
   const buy = () => {
     console.log('Kupujesz produkty z koszyka!')
   }
-
-  // if (!fontsLoaded) return null
 
   return (
     <Viewport navigation={navigation} active='Cart'>
@@ -117,19 +105,22 @@ export function CartView({ route, navigation })
               minWidth: '100%',
               paddingVertical: 10
             }}
+            onPress={buy}
+            disabled={isEmpty? true : false}
           >
-            <Text
-              style={{
-                color: 'white',
-                fontSize: 15,
-                fontWeight: '400',
-                fontFamily: 'Karla_400Regular',
-                alignSelf: 'center'
-              }}
-              onPress={buy}
-            >
-              Dokonaj Zakupu
-            </Text>
+            <View>
+              <Text
+                style={{
+                  color: 'white',
+                  fontSize: 15,
+                  fontWeight: '400',
+                  fontFamily: 'Karla_400Regular',
+                  alignSelf: 'center'
+                }}
+              >
+                Dokonaj Zakupu
+              </Text>
+            </View>
           </TouchableOpacity>
         </View>
       </View>

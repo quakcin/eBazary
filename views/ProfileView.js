@@ -35,6 +35,7 @@ export function ProfileView({ route, navigation })
   */
 
   const lightMode = true
+  
   const isFocused = useIsFocused()
 
 
@@ -141,7 +142,7 @@ export function ProfileView({ route, navigation })
                 marginTop: 25
               }}
               onPress={() => {
-                navigation.navigate('MyOffersView')
+                navigation.navigate('MyOffersView', { userId: route.params.userId})
               }}
             >
               <Text

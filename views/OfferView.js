@@ -114,23 +114,18 @@ export function OfferView({ route, navigation }) {
   return (
     <Viewport navigation={navigation} active='Home'>
       <ScrollView>
-
-
-
-        <View style={{width: '80%', marginLeft: '10%'}}>
-          <View style={{flexDirection: 'row', marginTop: 50, marginBottom: 30, alignContent: 'flex-start'}}>
+        <View style={{width: '80%', marginLeft: '2%'}}>
+          <View style={{flexDirection: 'row', marginTop: 20, marginBottom: 30, alignContent: 'flex-start', alignItems: 'center'}}>
             <View>
               <ShoppingBagIcon width="50" height="50" style={{color: 'black'}}/>
             </View>
             <View>
               <Text
                 style={{
-                  textAlign: 'center',
-                  fontSize: 28,
+                  fontSize: 25,
                   fontFamily: 'Karla_500Medium',
                   marginLeft: 10,
-                  textAlign: 'left',
-                  width: '55%'
+                  textAlign: 'left'
                 }}
               >
                 {offer.title}
@@ -255,7 +250,7 @@ export function OfferView({ route, navigation }) {
         </View>
         {/* ZAKUPY */}
 
-        <View style={{ width: '80%', marginLeft: '10%', alignContent: 'center' }}>
+        <View style={{ width: '80%', marginLeft: '10%', alignContent: 'center', marginBottom: '10%' }}>
 
 
           <View style={{flexDirection: 'row', marginTop: 50, marginBottom: 30, alignItems: 'center'}}>
@@ -308,6 +303,35 @@ export function OfferView({ route, navigation }) {
           <View style={{marginBottom: 60}}>
             {isRenderingMap && renderMap(lat, lon, coords)}
           </View>
+        
+          <View style={{flexDirection: 'row', marginTop: 50, marginBottom: 30, alignItems: 'center'}}>
+            <View>
+              <CubeIcon width="50" height="50" style={{color: 'black'}}/>
+            </View>
+            <View>
+              <Text
+                style={{
+                  textAlign: 'center',
+                  fontSize: 28,
+                  fontFamily: 'Karla_500Medium',
+                  marginLeft: 10
+                }}
+              >
+                O sprzedającym
+              </Text>
+            </View>
+          </View>
+
+          <Text
+            style={{
+              textAlign: 'justify',
+              fontSize: 16,
+              fontFamily: 'Ubuntu_400Regular'
+            }}
+          >
+            Wszystkie przedmioty sprzedającego
+          </Text>
+        
         </View>
       </ScrollView>
     </Viewport>
