@@ -100,6 +100,7 @@ export function NewOfferView({ route, navigation })
       },
       (s) =>
       {
+        let delay = 0;
         for (let img of imgBuffer)
         {
           if (img == null)
@@ -107,20 +108,13 @@ export function NewOfferView({ route, navigation })
           
           const imgId = uuid();
 
-          servRequest
-          (
-            'addImageToOffer',
-            {
-              imageId: imgId,
-              offerId: offerId
-            },
-            (s) => {}, (e) => {}
-          )
+
           const packets = [];
-          for (let i = 0; i < img.length; i += 1500)
-            packets.push(img.substr(i, i + 1500));
+          for (let i = 0; i < img.length; i += 1900)
+            packets.push(img.substr(i, i + 1900));
 
           for (let p = 0; p < packets.length; p++)
+          {
             setTimeout((id = imgId, pc = p, pak = packets[p]) => {
               servRequest
               (
@@ -139,23 +133,48 @@ export function NewOfferView({ route, navigation })
                   console.log('failed to upload image', id, e);
                 }
               )
-            }, p * 500);
+            }, (delay + p) * 300);
+          }
+          delay++;
+
+          setTimeout((img = imgId, ofd = offerId) =>
+          {
+            servRequest
+            (
+              'addImageToOffer',
+              {
+                imageId: img,
+                offerId: ofd
+              },
+              (s) => {
+                console.log('\t\tLinked Image With An Id', imgId, offerId);
+              }, (e) => {
+                console.log('\t\tFailed to LINK', e);
+              }
+            )
+          }, (delay + packets.length) * 300);
+
+            
         }
-        Alert.alert(
-          "Dodano ogłoszenie",
-          "Pomyślnie ogłoszenie w serwisie e-Bazary",
-          [
-            { text: "OK", onPress: () => { navigation.navigate("OfferView", { userId: route.params.userId, offerId: offerId }) } }
-          ])
+        
+        setTimeout((oid = offerId) => {
+          setTytul("")
+          setOpis("")
+          setCena("")
+          Alert.alert(
+            "Dodano ogłoszenie",
+            "Pomyślnie ogłoszenie w serwisie e-Bazary",
+            [
+              { text: "OK", onPress: () => { navigation.navigate("OfferView", { userId: route.params.userId, offerId: offerId }) } }
+            ])
+        }, 8000);
       },
       (e) =>
       {
         console.log('newOffer', e);
       }
     )
-    setTytul("")
-    setOpis("")
-    setCena("")
+
   }
 
   const data = [

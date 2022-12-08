@@ -50,6 +50,7 @@ export function ProfileView({ route, navigation })
     const [user, setUser] = useState('');
     const [descr, setDescr] = useState('');
     const [image, setImage] = useState('');
+    const [coms, setComs] = useState([]);
   
   /*
     Request user info from the server:
@@ -75,6 +76,8 @@ export function ProfileView({ route, navigation })
         setUser(s.user.user);
         setDescr(s.user.descr);;
         setImage(s.user.image);
+        setComs(JSON.parse(s.comments));
+        console.log(coms);
       },
       (e) =>
       {
@@ -235,25 +238,20 @@ export function ProfileView({ route, navigation })
                     fontWeight: '600'
                   }}
                 >
-                  2
+                  {coms.length}
                 </Text>
               }{' '}
               opinie
             </Text>
+            {coms.map((n) => (
+              <Opinion
+                image={n.img}
+                rating={n.stars}
+                message={n.msg}
+                key={n.msg}
+              />
+            ))}
 
-            {/*
-
-            <Opinion
-              image={serverResp.comments[0].image}
-              rating={serverResp.comments[0].stars}
-              message={serverResp.comments[0].msg}
-            />
-            <Opinion
-              image={serverResp.comments[1].image}
-              rating={serverResp.comments[1].stars}
-              message={serverResp.comments[1].msg}
-            />
-            */}
           </View>
         </ScrollView>
       </Viewport>

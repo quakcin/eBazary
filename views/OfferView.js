@@ -339,6 +339,9 @@ export function OfferView({ route, navigation }) {
             />
             <Button 
               title="Inne Aukcje"
+              onPress={(e, z = offer.sellerId) => navigation.navigate('HomeView', {
+                userId: route.params.userId, userSearch: z
+              })}
             />
           </Text>
             

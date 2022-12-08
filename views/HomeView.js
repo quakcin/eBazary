@@ -25,6 +25,7 @@ import {
 import DropDownPicker from 'react-native-dropdown-picker'
 import { Colors } from '../utils/Colors'
 import { Dropdown } from 'react-native-element-dropdown'
+import { useIsFocused } from '@react-navigation/native'
 
 const Drawer = createDrawerNavigator()
 
@@ -90,10 +91,18 @@ export function HomeView({ route, navigation }) {
     )
   }
 
+
+  const isFocused = useIsFocused();
+
   useEffect(() => 
   {
-    perfSearch();
-  }, [])
+    const searchStr = route.params.userSearch != null 
+      ? `@${route.params.userSearch}` 
+      : '';
+    navigation.setParams({userId: route.params.userId, userSearch: null});
+
+    perfSearch(searchStr);
+  }, [isFocused])
 
   let [fontsLoaded] = useFonts({
     Ubuntu_400Regular

@@ -84,7 +84,7 @@ export default function ({route, navigation}) // won't work anyways
             <ShoppingBagIcon style={{color: color}} width={30} height={30}/>
           )
         }}
-        initialParams={{ userId: route.params.userId }}
+        initialParams={{ userId: route.params.userId, userSearch: null }}
       />
       <Tab.Screen
         name="BellView"
