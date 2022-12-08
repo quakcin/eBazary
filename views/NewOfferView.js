@@ -85,13 +85,14 @@ export function NewOfferView({ route, navigation })
   const addOffer = function (e) 
   {
     const offerId = uuid();
+
     servRequest
     (
       'newOffer',
       {
         userId: route.params.userId,
         offerId: offerId,
-        price: cena,
+        price: cena.replaceAll(',', '.'),
         descr: opis.replaceAll('\n', ' '),
         title: tytul,
         lat: loc.coords.latitude,
@@ -108,10 +109,9 @@ export function NewOfferView({ route, navigation })
           
           const imgId = uuid();
 
-
           const packets = [];
           for (let i = 0; i < img.length; i += 1900)
-            packets.push(img.substr(i, i + 1900));
+            packets.push(img.substr(i, 1900));
 
           for (let p = 0; p < packets.length; p++)
           {
@@ -161,12 +161,12 @@ export function NewOfferView({ route, navigation })
           setTytul("")
           setOpis("")
           setCena("")
-          Alert.alert(
-            "Dodano ogłoszenie",
-            "Pomyślnie ogłoszenie w serwisie e-Bazary",
-            [
-              { text: "OK", onPress: () => { navigation.navigate("OfferView", { userId: route.params.userId, offerId: offerId }) } }
-            ])
+          // Alert.alert(
+          //   "Dodano ogłoszenie",
+          //   "Pomyślnie ogłoszenie w serwisie e-Bazary",
+          //   [
+          //     { text: "OK", onPress: () => { navigation.navigate("OfferView", { userId: route.params.userId, offerId: offerId }) } }
+          //   ])
         }, 8000);
       },
       (e) =>
