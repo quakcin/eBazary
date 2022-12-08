@@ -85,6 +85,7 @@ export function NewOfferView({ route, navigation })
   const addOffer = function (e) 
   {
     const offerId = uuid();
+    let imageCounter = 0
 
     servRequest
     (
@@ -132,22 +133,36 @@ export function NewOfferView({ route, navigation })
                 {
                   console.log('failed to upload image', id, e);
                 }
-              )
-            }, (delay + p) * 300);
-          }
-          delay++;
-
-          setTimeout((img = imgId, ofd = offerId) =>
-          {
-            servRequest
-            (
-              'addImageToOffer',
-              {
-                imageId: img,
-                offerId: ofd
-              },
-              (s) => {
-                console.log('\t\tLinked Image With An Id', imgId, offerId);
+                )
+              }, (delay + p) * 300);
+            }
+            delay++;
+            
+            setTimeout((img = imgId, ofd = offerId) =>
+            {
+              servRequest
+              (
+                'addImageToOffer',
+                {
+                  imageId: img,
+                  offerId: ofd
+                },
+                (s) => {
+                  console.log('\t\tLinked Image With An Id', imgId, offerId);
+                  imageCounter++
+                  if(imageCounter == imgBuffer.reduce((a, b) => a + b != null ? 1 : 0, 0))
+                  {
+                    setTytul("")
+                    setOpis("")
+                    setCena("")
+                    setImgBuffer(Array(5).fill(null))
+                    Alert.alert(
+                      "Dodano ogłoszenie",
+                      "Pomyślnie ogłoszenie w serwisie e-Bazary",
+                      [
+                        { text: "OK", onPress: () => { navigation.navigate("OfferView", { userId: route.params.userId, offerId: offerId }) } }
+                      ])
+                  }
               }, (e) => {
                 console.log('\t\tFailed to LINK', e);
               }
@@ -156,18 +171,6 @@ export function NewOfferView({ route, navigation })
 
             
         }
-        
-        setTimeout((oid = offerId) => {
-          setTytul("")
-          setOpis("")
-          setCena("")
-          // Alert.alert(
-          //   "Dodano ogłoszenie",
-          //   "Pomyślnie ogłoszenie w serwisie e-Bazary",
-          //   [
-          //     { text: "OK", onPress: () => { navigation.navigate("OfferView", { userId: route.params.userId, offerId: offerId }) } }
-          //   ])
-        }, 8000);
       },
       (e) =>
       {
