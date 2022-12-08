@@ -52,7 +52,7 @@ export function NewOfferView({ route, navigation })
   const [tytul, setTytul] = useState('');
   const [cena, setCena] = useState('');
   const [opis, setOpis] = useState('');
-  const [value, setValue] = useState(null);
+  const [katVal, setKatVal] = useState(null);
 
   useEffect(() => 
   {
@@ -98,7 +98,7 @@ export function NewOfferView({ route, navigation })
         title: tytul,
         lat: loc.coords.latitude,
         lon: loc.coords.longitude,
-        kind: value
+        kind: katVal
       },
       (s) =>
       {
@@ -222,10 +222,10 @@ export function NewOfferView({ route, navigation })
               search={false}
               maxHeight={400}
               labelField="label"
-              valueField="value"
+              valueField="label"
               placeholder="Wybierz kategorię"r
-              value={value}
-              onChange={item => setValue(item.label)}
+              value={katVal}
+              onChange={item => setKatVal(item.label)}
             />
             <View
               style={{
