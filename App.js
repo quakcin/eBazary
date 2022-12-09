@@ -48,7 +48,7 @@ export default function App() {
                 fontFamily: 'Karla_400Regular'
               }
             }}
-            initialParams={{ userId: '' }}
+            initialParams={{ userId: '', cartCounter: null }}
             component={MainDrawer}
           />
 

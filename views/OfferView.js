@@ -203,6 +203,7 @@ export function OfferView({ route, navigation }) {
                     {
                       /* do nothing */
                       console.log('succes', s);
+                      navigation.setParams({cartCounter: 1})
                     },
                     (e) =>
                     {

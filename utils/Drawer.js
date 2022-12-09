@@ -117,7 +117,7 @@ export default function MainDrawer ({ navigation, route})
           }
         }}
         component={Tabs}
-        initialParams = {{ userId: route.params.userId }}
+        initialParams = {{ userId: route.params.userId, cartCounter: route.params.cartCounter }}
       />
       <Drawer.Screen
         name='CartViewRouter'

@@ -55,7 +55,7 @@ export function CartView({ route, navigation })
 
 
   const buy = () => {
-    console.log('Kupujesz produkty z koszyka!')
+    console.log('Kupujesz produkty z koszyka!', route.params.cartCounter)
   }
 
   return (

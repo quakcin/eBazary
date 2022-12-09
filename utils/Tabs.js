@@ -40,18 +40,19 @@ export default function ({route, navigation}) // won't work anyways
       <Tab.Screen
         name="CartView"
         component={CartView}
-        options=
-        {{
+        options = {{
           headerTitle: 'Mój Koszyk',
           tabBarLabel: 'Koszyk',
           tabBarIcon: ({color, size}) => (
             <ShoppingCartIcon style={{color: color}} width={30} height={30}/>
-          ),
+            ),
           headerLeft: () => (
             <DrawerToggleButton
               onPress={(e, o = navigation) => o.openDrawer()}
             />
-          )
+          ),
+          //tabBarBadge: route.params.cartCounter 
+          tabBarBadge: 2
         }}
         initialParams={{ userId: route.params.userId }}
       />
