@@ -235,7 +235,18 @@ export function OfferView({ route, navigation }) {
                   paddingVertical: 14,
                   alignItems: 'center'
                 }}
-                onPress={() => navigation.navigate('BuyView')}
+                onPress={() => 
+                  {
+                    navigation.navigate('BuyView', {offers: 
+                      [{
+                        offerId: route.params.offerId,
+                        name: offer.title,
+                        price: offer.price
+                      }],
+                      userId: route.params.userId
+                    });
+                  }
+                }
               >
                 <Text
                   style={{

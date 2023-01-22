@@ -12,8 +12,7 @@ export function MyOffersView({ route, navigation }) {
   const [offers, setOffers] = useState([])
   const isFocused = useIsFocused()
 
-  
-  useEffect(() => 
+  const updateOffers = function ()
   {
       servRequest 
       (
@@ -30,8 +29,30 @@ export function MyOffersView({ route, navigation }) {
             console.log('getOffers fail', e);
          }
       )
-
+  }
+   
+   useEffect(() => 
+   {
+      updateOffers();
    }, [isFocused])
+
+   const deleteOffer = function (v)
+   {
+      servRequest
+      (
+         'deleteOffer',
+         {
+            offerId: v.id
+         },
+         (s) => {
+            console.log('success');
+            updateOffers();
+         }, 
+         (e) => {
+            console.log('err', e);
+         }
+      )
+   }
 
   return (
     <Viewport navigation={navigation} active='Profile'>
@@ -44,7 +65,7 @@ export function MyOffersView({ route, navigation }) {
                navigation.navigate('OfferView', {offerId: v.id, userId: route.params.userId});
             }
          }
-        onSubtitleClick = {(e, v) => console.log('my offer subtitle click', v) }
+        onSubtitleClick = {(e, v) => deleteOffer(v)}
         subtitle = 'usuń ofertę'
       />
     </Viewport>

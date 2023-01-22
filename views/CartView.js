@@ -32,6 +32,7 @@ export function CartView({ route, navigation })
       },
       (s) =>
       {
+        console.log(s);
         setOffers(s.offers.filter((n) => Object.keys(n).includes('title')));
       },
       (e) =>
@@ -55,6 +56,15 @@ export function CartView({ route, navigation })
 
 
   const buy = () => {
+    navigation.navigate('BuyView', {
+      offers: offers.map((n) => 
+      ({
+        offerId: n.offerId,
+        name: n.title,
+        price: n.price
+      })),
+      userId: route.params.userId
+    })
     console.log('Kupujesz produkty z koszyka!', route.params.cartCounter)
   }
 

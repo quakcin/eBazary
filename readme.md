@@ -9,6 +9,6 @@
 - Maciek:
 [x] Logowanie i rejestracja
 
-- Michał
+- Michał (R.I.P)
 [ ] Dodawanie nowego ogłoszenia
 [ ] Moje Konto

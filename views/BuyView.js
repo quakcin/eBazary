@@ -21,19 +21,22 @@ import {
 import { Ubuntu_400Regular } from '@expo-google-fonts/ubuntu'
 import { Karla_400Regular } from '@expo-google-fonts/karla'
 import { Colors } from '../utils/Colors'
+import servRequest from '../utils/Server';
+import uuid from 'react-native-uuid';
 
-const serverResp = {
-  items: [
-    { name: 'Perfumy męskie Calivin Klein', price: 130 },
-    { name: 'Frytkownica Pyrex', price: 52 },
-    { name: 'Kurtka męska zimowa L', price: 253 },
-    { name: 'Kalesony sportowe', price: 43 }
-  ]
-}
+
+// const serverResp = {
+//   items: [
+//     { name: 'Perfumy męskie Calivin Klein', price: 130 },
+//     { name: 'Frytkownica Pyrex', price: 52 },
+//     { name: 'Kurtka męska zimowa L', price: 253 },
+//     { name: 'Kalesony sportowe', price: 43 }
+//   ]
+// }
 
 import * as Location from 'expo-location';
 
-export function BuyView({ navigation }) {
+export function BuyView({ route, navigation }) {
   let [fontsLoaded] = useFonts({
     RobotoMono_600SemiBold,
     Ubuntu_400Regular,
@@ -41,6 +44,10 @@ export function BuyView({ navigation }) {
   })
 
   const tw = useTailwind()
+
+  useEffect(() => {
+    console.log('offers', route.params.offers)
+  }, [])
 
   const genItemList = (items) => {
     const summedItems = [
@@ -109,6 +116,7 @@ export function BuyView({ navigation }) {
   const [tbxAdres, setTbxAdres] = useState('');
   const [tbxMiasto, setTbxMiasto] = useState('');
   const [tbxPoczt, setTbxPoczt] = useState('');
+  const [btnEnabled, setBtnEnabled] = useState(true);
 
 
   useEffect(() => 
@@ -148,6 +156,41 @@ export function BuyView({ navigation }) {
     }
   }, [location])
 
+
+  const payment = function ()
+  {
+    /*
+      for each offer, make request
+    */
+    setBtnEnabled(false);
+    for (const [i, offer] of route.params.offers.entries())
+    {
+      servRequest
+      (
+        'buyOffer',
+        {
+          offerId: offer.offerId,
+          userId: route.params.userId,
+          uuid: uuid.v4()
+        },
+        (s) =>
+        {
+          console.log("Bought!");
+        },
+        (e) =>
+        {
+          console.log(e);
+        }
+      )
+    }
+
+    setTimeout(() => {
+      navigation.navigate("BellView", {
+        userId: route.params.userId
+      })
+    }, 500);
+  }
+
   // console.log(text);
 
   if (!fontsLoaded) return null
@@ -174,7 +217,7 @@ export function BuyView({ navigation }) {
             height='40'
           />
         </View>
-        <View style={{ marginTop: 25 }}>{genItemList(serverResp.items)}</View>
+        <View style={{ marginTop: 25 }}>{genItemList(route.params.offers)}</View>
         <View style={{ width: '80%', marginLeft: '10%', marginTop: 40 }}>
           <View style={{ flexDirection: 'row', padding: 10 }}>
             <TextInput
@@ -259,7 +302,8 @@ export function BuyView({ navigation }) {
             alignSelf: 'center',
             marginTop: '12%'
           }}
-          onPress={() => console.log('Płacenie...')}
+          disabled={!btnEnabled}
+          onPress={() => payment()}
         >
           <Text
             style={{
