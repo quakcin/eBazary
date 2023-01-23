@@ -173,12 +173,17 @@ def main():
   http = urllib3.PoolManager()
 
   pages = []
-  pages.append(('elektronika', 'https://www.olx.pl/d/elektronika/telefony/'))
-  pages.append(('elektronika', 'https://www.olx.pl/d/elektronika/komputery/'))
-  pages.append(('elektronika', 'https://www.olx.pl/d/elektronika/smartwatche-i-opaski/'))
-  pages.append(('elektronika', 'https://www.olx.pl/d/elektronika/gry-konsole/'))
-  pages.append(('motoryzacja', 'https://www.olx.pl/d/motoryzacja/samochody/'))
-  pages.append(('motoryzacja', 'https://www.olx.pl/d/motoryzacja/motocykle-skutery/'))
+  pages.append(('Elektronika', 'https://www.olx.pl/d/elektronika/telefony/'))
+  pages.append(('Moda', 'https://www.olx.pl/d/moda/ubrania-meskie/?search%5Bfilter_enum_state%5D%5B0%5D=new'))
+  pages.append(('Dom', 'https://www.olx.pl/d/dom-ogrod/wykonczenie-wnetrz/?search%5Bfilter_enum_state%5D%5B0%5D=new'))
+  pages.append(('Elektronika', 'https://www.olx.pl/d/elektronika/komputery/'))
+  pages.append(('Inne', 'https://www.olx.pl/d/uslugi-firmy/uslugi/'))
+  pages.append(('Elektronika', 'https://www.olx.pl/d/elektronika/smartwatche-i-opaski/'))
+  pages.append(('Dom', 'https://www.olx.pl/d/dom-ogrod/meble/?search%5Bfilter_enum_state%5D%5B0%5D=new'))
+  pages.append(('Elektronika', 'https://www.olx.pl/d/elektronika/gry-konsole/'))
+  pages.append(('Motoryzacja', 'https://www.olx.pl/d/motoryzacja/samochody/'))
+  pages.append(('Moda', 'https://www.olx.pl/d/moda/ubrania-damskie/?search%5Bfilter_enum_state%5D%5B0%5D=new'))
+  pages.append(('Motoryzacja', 'https://www.olx.pl/d/motoryzacja/motocykle-skutery/'))
 
   # url = 'http://e-bazary.ugu.pl/dbgImg.php'
   # response = http.request('GET', url)
