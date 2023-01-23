@@ -6,7 +6,8 @@ import {
   Button,
   TextInput,
   ScrollView,
-  TouchableOpacity
+  TouchableOpacity,
+  Alert
 } from 'react-native'
 import { ArchiveBoxArrowDownIcon } from 'react-native-heroicons/outline'
 import { useTailwind } from 'tailwind-rn'
@@ -165,6 +166,18 @@ export function BuyView({ route, navigation }) {
     setBtnEnabled(false);
     for (const [i, offer] of route.params.offers.entries())
     {
+      if(tbxPoczt.length == 0 || tbxMiasto == 0 || tbxAdres == 0 || selected == '') 
+      {
+        Alert.alert(
+          "Finalizacja zakupu",
+          "Błędne dane wysyłki!",
+          [
+            { text: "OK" }
+          ]
+        );
+        setBtnEnabled(true);
+        return;
+      }
       servRequest
       (
         'buyOffer',
@@ -172,7 +185,6 @@ export function BuyView({ route, navigation }) {
           offerId: offer.offerId,
           userId: route.params.userId,
           uuid: uuid.v4(),
-          /* serialize more */
           adr1: `${tbxPoczt}`,
           adr2: `${tbxMiasto}`,
           adr3: `${tbxAdres}`,
