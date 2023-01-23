@@ -1,12 +1,5 @@
 
-// Szatanie, panie zniszczenia gwiazdo zaranna, dopomusz
-// Szatanie, panie zniszczenia gwiazdo zaranna, dopomusz
-// Szatanie, panie zniszczenia gwiazdo zaranna, dopomusz
-// Szatanie, panie zniszczenia gwiazdo zaranna, dopomusz
-// Szatanie, panie zniszczenia gwiazdo zaranna, dopomusz
-// Szatanie, panie zniszczenia gwiazdo zaranna, dopomusz
-
-import { NavigationContainer } from '@react-navigation/native';
+import { NavigationContainer, useFocusEffect } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { CartView } from '../views/CartView';
 import { HomeView } from '../views/HomeView';
@@ -22,12 +15,42 @@ import { DrawerToggleButton } from '@react-navigation/drawer';
 import { EditProfileView } from '../views/EditProfileView';
 import { PasswordCtlView } from '../views/PasswordCtlView';
 
+import { useState, useEffect } from 'react';
+import servRequest from './Server';
+
 
 const Tab = createBottomTabNavigator();
 const __doShowLabel = true;
 
+
 export default function ({route, navigation}) // won't work anyways
 {
+  const [cartItemCount, setCartItemCount] = useState([]);
+
+  useEffect(() => {
+    console.log('mount');
+    setInterval(() => {
+      servRequest
+      (
+        "getCart",
+        {
+          userId: route.params.userId
+        },
+        (s) => {
+          const list = s.offers;
+          list.pop();
+          setCartItemCount(list);
+        },
+        (e) => {
+        }
+      )
+      // setCartItemCount(cartItemCount + 1);
+    }, 500);
+    return () => {
+      console.log('umount!');
+    }
+  }, []);
+
   return (
     <Tab.Navigator
       initialRouteName='HomeView'
@@ -52,7 +75,7 @@ export default function ({route, navigation}) // won't work anyways
             />
           ),
           //tabBarBadge: route.params.cartCounter 
-          tabBarBadge: 2
+          tabBarBadge: cartItemCount.length
         }}
         initialParams={{ userId: route.params.userId }}
       />

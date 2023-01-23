@@ -7,7 +7,9 @@ export default function servRequest (cmd, args, onSuccess, onError = null)
     .join('&');
   
   const url = `http://www.e-bazary.ugu.pl/${cmd}.php?${tokens}`;
-  console.log('req', url);
+  
+  if (url.includes("getCart") == false) /* TODO: Remove ME */
+    console.log('req', url);
 
   
   fetch(url)

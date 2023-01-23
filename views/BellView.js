@@ -14,23 +14,26 @@ export function BellView({ route, navigation }) {
 
   useEffect(() => 
   {
-    servRequest
-    (
-      'getNotifs',
-      {
-        userId: route.params.userId
-      },
-      (s) => 
-      {
-        const list = s.list;
-        list.pop();
-        setNotifications(list);
-      },
-      (e) =>
-      {
-        console.log('getNotifs Failed', e);
-      }
-    )
+    setInterval((uid = route.params.userId) => {
+
+      servRequest
+      (
+        'getNotifs',
+        {
+          userId: route.params.userId
+        },
+        (s) => 
+        {
+          const list = s.list;
+          list.pop();
+          setNotifications(list);
+        },
+        (e) =>
+        {
+          console.log('getNotifs Failed', e);
+        }
+      )
+    }, 3000);
     // setNotifications(serverResp)
   }, [])
 

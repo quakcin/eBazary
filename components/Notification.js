@@ -17,6 +17,7 @@ import { Ubuntu_400Regular } from '@expo-google-fonts/ubuntu'
 import { Karla_400Regular } from '@expo-google-fonts/karla'
 
 export default function Notification({ kind, source, navigation }) {
+  console.log('creating notification from: ', kind, source);
   const tw = useTailwind()
 
   const iconSize = 40
