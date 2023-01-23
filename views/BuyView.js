@@ -171,7 +171,11 @@ export function BuyView({ route, navigation }) {
         {
           offerId: offer.offerId,
           userId: route.params.userId,
-          uuid: uuid.v4()
+          uuid: uuid.v4(),
+          /* serialize more */
+          adr1: `${tbxPoczt} ${tbxMiasto}`,
+          adr2: `${tbxAdres}`,
+          shp: selected
         },
         (s) =>
         {

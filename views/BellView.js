@@ -7,7 +7,7 @@ import Notification from '../components/Notification'
 
 import servRequest from '../utils/Server';
 
-export function BellView({ navigation }) {
+export function BellView({ route, navigation }) {
   const tw = useTailwind()
 
   const [notifications, setNotifications] = useState([])
@@ -18,11 +18,13 @@ export function BellView({ navigation }) {
     (
       'getNotifs',
       {
-        userId: 0
+        userId: route.params.userId
       },
       (s) => 
       {
-        setNotifications(s.list);
+        const list = s.list;
+        list.pop();
+        setNotifications(list);
       },
       (e) =>
       {
