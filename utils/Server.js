@@ -8,7 +8,7 @@ export default function servRequest (cmd, args, onSuccess, onError = null)
   
   const url = `http://www.e-bazary.ugu.pl/${cmd}.php?${tokens}`;
   
-  if (url.includes("getCart") == false) /* TODO: Remove ME */
+  if (url.includes("getCart") == false && url.includes('getNotif') == false) /* TODO: Remove ME */
     console.log('req', url);
 
   

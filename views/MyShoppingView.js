@@ -8,24 +8,28 @@ import { Viewport } from '../utils/Viewport'
 import OffersListing from '../components/OffersListing'
 
 import servRequest from '../utils/Server';
+import { useIsFocused } from '@react-navigation/native'
 
-export function MyShoppingView({ navigation }) {
+export function MyShoppingView({ route, navigation }) {
   const tw = useTailwind()
 
   const [hist, setHist] = useState(null);
 
+  const isFocused = useIsFocused();
+
   useEffect(() => 
   {
-
     servRequest
     (
       'getShoppings',
       {
-         userId: 0
+         userId: route.params.userId
       },
       (s) => 
       {
-         setHist(s.list);
+        const list = s.offers;
+        list.pop();
+        setHist(list.reverse());
       },
       (e) =>
       {
@@ -35,7 +39,7 @@ export function MyShoppingView({ navigation }) {
 
 
     return () => console.log('left');
-  }, [])
+  }, [isFocused])
 
   return (
     <Viewport navigation={navigation} active='Cart'>

@@ -26,7 +26,7 @@ export function BellView({ route, navigation }) {
         {
           const list = s.list;
           list.pop();
-          setNotifications(list);
+          setNotifications(list.reverse());
         },
         (e) =>
         {

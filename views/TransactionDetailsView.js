@@ -18,6 +18,8 @@ import {
 } from '@expo-google-fonts/roboto-mono'
 import { Ubuntu_400Regular } from '@expo-google-fonts/ubuntu'
 import { Karla_400Regular } from '@expo-google-fonts/karla'
+import uuid from 'react-native-uuid';
+
 import {
   BanknotesIcon,
   NoSymbolIcon,
@@ -159,6 +161,7 @@ export function TransactionDetailsView({ navigation, route }) {
       <View>
         {summedItems.map((n) => (
           <View
+            key={uuid.v4()}
             style={{
               width: '70%',
               marginLeft: '15%',
@@ -202,6 +205,7 @@ export function TransactionDetailsView({ navigation, route }) {
       stars.push(
         <TouchableOpacity>
           <StarIcon
+            key={uuid.v4()}
             style={{ color: i <= starsCount ? Colors.yellowish : Colors.dark }}
             width='25'
             height='25'
@@ -277,9 +281,10 @@ export function TransactionDetailsView({ navigation, route }) {
   }
 
   const genBuyerFooter = (src) => {
+    console.log('metakye', src.details.buyer);
     const fields = Object.keys(src.details.buyer).map((n) =>
       n === 'user' ? (
-        <Text style={{ fontFamily: 'RobotoMono_600SemiBold' }}>
+        <Text style={{ fontFamily: 'RobotoMono_600SemiBold' }} key={uuid.v4}>
           Szczegóły kupującego:
         </Text>
       ) : (
@@ -291,6 +296,7 @@ export function TransactionDetailsView({ navigation, route }) {
       <View>
         {fields.map((n) => (
           <Text
+            key={uuid.v4()}
             style={{
               textAlign: 'center',
               fontFamily: 'Ubuntu_400Regular',

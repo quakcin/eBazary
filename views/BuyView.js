@@ -106,10 +106,10 @@ export function BuyView({ route, navigation }) {
 
   const [selected, setSelected] = useState('')
   const data = [
-    { key: 'pp', value: 'Poczta Polska' },
-    { key: 'pl', value: 'Kurier DPD' },
-    { key: 'ph', value: 'Kurier DHL' },
-    { key: 'pi', value: 'Paczkomat InPost' }
+    { key: 'Poczta Polskap', value: 'Poczta Polska' },
+    { key: 'Kurier DPD', value: 'Kurier DPD' },
+    { key: 'Kurier DHL', value: 'Kurier DHL' },
+    { key: 'Paczkomat InPost', value: 'Paczkomat InPost' }
   ]
 
   const [location, setLocation] = useState(null);
