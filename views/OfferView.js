@@ -191,7 +191,7 @@ export function OfferView({ route, navigation }) {
                 }}
                 onPress={() => 
                 {
-                  console.log('do koszyka', route.params.offerId);
+                  // console.log('do koszyka', route.params.offerId);
                   servRequest
                   (
                     'addToCart',
@@ -202,7 +202,7 @@ export function OfferView({ route, navigation }) {
                     (s) => 
                     {
                       /* do nothing */
-                      console.log('succes', s);
+                      // console.log('succes', s);
                       navigation.setParams({cartCounter: 1})
                     },
                     (e) =>

@@ -127,7 +127,7 @@ export function NewOfferView({ route, navigation })
                 },
                 (s) => 
                 {
-                  console.log('finished uploading image!', id)
+                  // console.log('finished uploading image!', id)
                 },
                 (e) =>
                 {
@@ -148,7 +148,7 @@ export function NewOfferView({ route, navigation })
                   offerId: ofd
                 },
                 (s) => {
-                  console.log('\t\tLinked Image With An Id', imgId, offerId);
+                  // console.log('\t\tLinked Image With An Id', imgId, offerId);
                   imageCounter++
                   if(imageCounter == imgBuffer.reduce((a, b) => a + b != null ? 1 : 0, 0))
                   {
@@ -174,7 +174,7 @@ export function NewOfferView({ route, navigation })
       },
       (e) =>
       {
-        console.log('newOffer', e);
+        // console.log('newOffer', e);
       }
     )
 
@@ -367,8 +367,8 @@ export function NewOfferView({ route, navigation })
   const takePic = async () =>
   {
     const photo = await cam.takePictureAsync();
-    console.log(photo.uri);
-    console.log('imm: ', ImageManipulator);
+    // console.log(photo.uri);
+    // console.log('imm: ', ImageManipulator);
 
     const manipResult = await ImageManipulator.manipulateAsync
     (
@@ -398,7 +398,7 @@ export function NewOfferView({ route, navigation })
 
   const cameraView = function () 
   {
-    console.log('accessing camera');
+    // console.log('accessing camera');
     return (
       <View style={styles.container}>
         <Camera style={styles.camera} type={type} onPress={(e) => console.log(this) } ref={(r) => setCam(r)}>

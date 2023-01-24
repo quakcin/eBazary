@@ -281,7 +281,7 @@ export function TransactionDetailsView({ navigation, route }) {
   }
 
   const genBuyerFooter = (src) => {
-    console.log('metakye', src.details.buyer);
+    // console.log('metakye', src.details.buyer);
     const fields = Object.keys(src.details.buyer).map((n) =>
       n === 'user' ? (
         <Text style={{ fontFamily: 'RobotoMono_600SemiBold' }} key={uuid.v4}>

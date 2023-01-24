@@ -30,7 +30,7 @@ export default function ({route, navigation}) // won't work anyways
   const [cartItemCount, setCartItemCount] = useState([]);
 
   useEffect(() => {
-    console.log('mount');
+    // console.log('mount');
     setInterval(() => {
       servRequest
       (
@@ -49,7 +49,7 @@ export default function ({route, navigation}) // won't work anyways
       // setCartItemCount(cartItemCount + 1);
     }, 500);
     return () => {
-      console.log('umount!');
+      // console.log('umount!');
     }
   }, []);
 
@@ -76,7 +76,6 @@ export default function ({route, navigation}) // won't work anyways
               onPress={(e, o = navigation) => o.openDrawer()}
             />
           ),
-          //tabBarBadge: route.params.cartCounter 
           tabBarBadge: cartItemCount.length,
           tabBarBadgeStyle: { backgroundColor: Colors.reddish }          
         }}
@@ -170,6 +169,7 @@ export default function ({route, navigation}) // won't work anyways
         name='EditProfileView'
         options=
         {{
+          headerTitle: 'Edytuj profil',
           tabBarButton: (props) => null,
           headerLeft: () => (
             <HeaderBackButton
@@ -186,6 +186,7 @@ export default function ({route, navigation}) // won't work anyways
         name='PassCtrlView'
         options=
         {{
+          headerTitle: 'Zmiana hasła',
           tabBarButton: (props) => null,
           headerLeft: () => (
             <HeaderBackButton

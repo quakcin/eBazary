@@ -45,7 +45,7 @@ export function MyOffersView({ route, navigation }) {
             offerId: v.id
          },
          (s) => {
-            console.log('success');
+            // console.log('success');
             updateOffers();
          }, 
          (e) => {

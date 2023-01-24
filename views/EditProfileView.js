@@ -207,7 +207,7 @@ export function EditProfileView({ route, navigation }) {
   {
     const cIdx = __premade_icons.indexOf(image);
     const nIdx = (cIdx + 1) %  __premade_icons.length;
-    console.log(cIdx, nIdx, __premade_icons.length);
+    // console.log(cIdx, nIdx, __premade_icons.length);
     setImage(__premade_icons[nIdx]);
   }
 

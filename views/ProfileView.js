@@ -58,8 +58,8 @@ export function ProfileView({ route, navigation })
 
   useEffect (() => 
   {
-    console.log('userId: ', route.params.userId); 
-    console.log('override: ', route.params.profileOverride);
+    // console.log('userId: ', route.params.userId); 
+    // console.log('override: ', route.params.profileOverride);
 
     const override = route.params.profileOverride;
     navigation.setParams({userId: route.params.userId, profileOverride: null})
@@ -72,12 +72,12 @@ export function ProfileView({ route, navigation })
       },
       (s) =>
       {
-        console.log("Refreshing Data!")
+        // console.log("Refreshing Data!")
         setUser(s.user.user);
-        setDescr(s.user.descr);;
+        setDescr(s.user.descr);
         setImage(s.user.image);
         setComs(JSON.parse(s.comments));
-        console.log(coms);
+        // console.log(coms);
       },
       (e) =>
       {

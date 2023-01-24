@@ -93,7 +93,7 @@ export default function Notification({ kind, source, navigation }) {
       <TouchableOpacity
         style={{ width: '80%', alignItems: 'flex-start', paddingLeft: '2%' }}
         onPress={() => {
-          console.log(source)
+          // console.log(source)
           if (
             ['TransactionSuccess', 'TransactionFailure', 'NewBuyer'].includes(
               source.type

@@ -32,7 +32,7 @@ export function CartView({ route, navigation })
       },
       (s) =>
       {
-        console.log(s);
+        // console.log(s);
         setOffers(s.offers.filter((n) => Object.keys(n).includes('title')));
       },
       (e) =>
@@ -65,7 +65,7 @@ export function CartView({ route, navigation })
       })),
       userId: route.params.userId
     })
-    console.log('Kupujesz produkty z koszyka!', route.params.cartCounter)
+    // console.log('Kupujesz produkty z koszyka!', route.params.cartCounter)
   }
 
   return (
@@ -80,7 +80,7 @@ export function CartView({ route, navigation })
                 subtitle = 'zrezygnuj'
                 image={o.thumb}
                 onSubtitleClick={() => {
-                  console.log('handle item removal', o.offerId);
+                  // console.log('handle item removal', o.offerId);
                   servRequest
                   (
                     'removeFromCart',

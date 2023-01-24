@@ -168,7 +168,7 @@ export function HomeView({ route, navigation }) {
                   value={kategoriaVal}
                   onChange={item => {
                     setKategoria(item.label);
-                    console.log('risen for', item.label)
+                    // console.log('risen for', item.label)
                     perfSearch(query, item.label);
                   }}
                 />
