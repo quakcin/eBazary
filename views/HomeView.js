@@ -43,16 +43,16 @@ export function HomeView({ route, navigation }) {
   const [kategoriaVal, setKategoria] = useState(null)
 
   const kategoria = [
-    { label: 'Wszystkie' },
-    { label: 'Dom'},
-    { label: 'Elektronika' },
-    { label: 'Moda' },
-    { label: 'Motoryzacja'},
-    { label: 'Inne' }
+    { label: 'Wszystkie', value: 0 },
+    { label: 'Dom', value: 1},
+    { label: 'Elektronika', value: 2 },
+    { label: 'Moda', value: 3 },
+    { label: 'Motoryzacja', value: 4},
+    { label: 'Inne', value: 5 }
   ];
 
   const filter = [
-    { label: 'Tranfość', value: 0 },
+    { label: 'Trafność', value: 0 },
     { label: 'Ocena', value: 1 },
     { label: 'Oszczędnie', value: 2 },
     { label: 'Bogato', value: 3 }
@@ -167,7 +167,7 @@ export function HomeView({ route, navigation }) {
                   placeholder="Kategoria"
                   value={kategoriaVal}
                   onChange={item => {
-                    setKategoria(item.label);
+                    setKategoria(item.value);
                     // console.log('risen for', item.label)
                     perfSearch(query, item.label);
                   }}
