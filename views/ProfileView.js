@@ -76,8 +76,22 @@ export function ProfileView({ route, navigation })
         setUser(s.user.user);
         setDescr(s.user.descr);
         setImage(s.user.image);
-        setComs(JSON.parse(s.comments));
-        // console.log(coms);
+        // setComs(JSON.parse(s.comments));
+        // console.log('stary osełki');
+        servRequest
+        (
+          'profileView',
+          {
+            userId: route.params.userId,
+            profileId: override
+          },
+          (s) => {
+            ; // pass
+          },
+          (e) => {
+            console.log('p:profileView', e);
+          } 
+        )
       },
       (e) =>
       {

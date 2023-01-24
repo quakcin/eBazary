@@ -17,5 +17,6 @@ export default function servRequest (cmd, args, onSuccess, onError = null)
     .then((json) => json.ok
       ? onSuccess(json)
       : onError(json))
-    .catch((e, u = url) => console.log('failed ', e, 'at ', u));
+    .catch((e, u = url) => 
+      console.log('failed ', e, 'at ', `'${u}'`));
 }
