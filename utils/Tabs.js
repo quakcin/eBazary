@@ -17,6 +17,8 @@ import { PasswordCtlView } from '../views/PasswordCtlView';
 
 import { useState, useEffect } from 'react';
 import servRequest from './Server';
+import { color } from 'react-native-reanimated';
+import { Colors } from './Colors';
 
 
 const Tab = createBottomTabNavigator();
@@ -75,7 +77,8 @@ export default function ({route, navigation}) // won't work anyways
             />
           ),
           //tabBarBadge: route.params.cartCounter 
-          tabBarBadge: cartItemCount.length
+          tabBarBadge: cartItemCount.length,
+          tabBarBadgeStyle: { backgroundColor: Colors.reddish }          
         }}
         initialParams={{ userId: route.params.userId }}
       />
