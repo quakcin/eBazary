@@ -136,7 +136,7 @@ export default function ({route, navigation}) // won't work anyways
         component={ProfileView}
         options=
         {{
-          headerTitle: 'Mój Profil',
+          headerTitle: 'Profil',
           tabBarLabel: 'Profil',
           tabBarIcon: ({color, size}) => (
             <UserCircleIcon style={{color: color}} width={30} height={30}/>
