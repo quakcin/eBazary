@@ -39,14 +39,16 @@ export function HomeView({ route, navigation }) {
   
   const [filterVal, setFilter] = useState(null)
   const [kategoriaVal, setKategoria] = useState(null)
+  const [pMin, setpMin] = useState('');
+  const [pMax, setpMax] = useState('');
 
   const kategoria = [
-    { label: 'Wszystkie', value: 0 },
-    { label: 'Dom', value: 1},
-    { label: 'Elektronika', value: 2 },
-    { label: 'Moda', value: 3 },
-    { label: 'Motoryzacja', value: 4},
-    { label: 'Inne', value: 5 }
+    { label: 'Wszystkie', value: 'Wszystkie' },
+    { label: 'Dom', value: 'Dom'},
+    { label: 'Elektronika', value: 'Elektronika' },
+    { label: 'Moda', value: 'Moda' },
+    { label: 'Motoryzacja', value: 'Motoryzacja'},
+    { label: 'Inne', value: 'Inne'}
   ];
 
   const filter = [
@@ -57,30 +59,37 @@ export function HomeView({ route, navigation }) {
   ]
 
   // fix drop down hooks
+  let querying = null;
 
-  const perfSearch = (custom = null, kind = null) => 
+  const perfSearch = (custom = null, kind = null, cpMin = null, cpMax = null, cFilter = null) => 
   {
+    const qr = custom !== null 
+     ? custom 
+      : query;
+
     setOffers([]);
+    querying = qr;
     servRequest
     (
       'search',
       {
         page: page,
-        query: custom !== null 
-          ? custom 
-          : query,
+        query: qr,
+        pmin: cpMin ?? (pMin === '' ? '0' : pMin),
+        pmax: cpMax ?? (pMax === '' ? '9999999' : pMax),
+        ordr: cFilter ?? (filterVal ?? 0),
 
-        kind: kind != null 
-          ? kind 
-          : kategoriaVal === null 
-            ? 'Wszystkie' 
-            : kategoriaVal
+        kind: kind ?? (kategoriaVal ?? 'Wszystkie')
       },
       (s) => 
       {
-        setOffers(s.offers);
-        setPageCount(s.pages)
-        // console.log(s.offers);
+        // console.log(qr.substr(0, qr.length - 1), querying);
+        if (qr == querying)
+        {
+          setOffers(s.offers);
+          setPageCount(s.pages)
+          // console.log(s.offers);
+        }
       },
       (e) =>
       {
@@ -164,10 +173,13 @@ export function HomeView({ route, navigation }) {
                   valueField="value"
                   placeholder="Kategoria"
                   value={kategoriaVal}
-                  onChange={item => {
+                  onChange={(item) => {
                     setKategoria(item.value);
                     // console.log('risen for', item.label)
-                    perfSearch(query, item.label);
+                    setTimeout(() => {
+                      // console.log('ovh', kategoriaVal)
+                      perfSearch(query, item.value);
+                    }, 100);
                   }}
                 />
                 <Dropdown
@@ -183,6 +195,7 @@ export function HomeView({ route, navigation }) {
                   value={filterVal}
                   onChange={item => {
                     setFilter(item.value);
+                    perfSearch(null, null, null, null, item.value)
                   }}
                 />
                 {/*<DropDownPicker
@@ -228,6 +241,12 @@ export function HomeView({ route, navigation }) {
                       width: 50
                     }
                   ]}
+                  value={pMin}
+                  onChangeText={(v) => {
+                    setpMin(v);
+                    perfSearch(null,null, v === '' ? '0' : v, null);
+                  }}
+                  keyboardType="numeric"
                   placeholder='0'
                 />
 
@@ -245,6 +264,12 @@ export function HomeView({ route, navigation }) {
                       paddingHorizontal: 12
                     }
                   ]}
+                  keyboardType="numeric"
+                  value={pMax}
+                  onChangeText={(v) => {
+                    setpMax(v);
+                    perfSearch(null,null, null, v === '' ? '0' : v);
+                  }}
                   placeholder='100'
                 />
                 <Text style={{ fontSize: 16, fontFamily: 'Karla_400Regular' }}>
