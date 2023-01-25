@@ -40,7 +40,7 @@ const Opinion = ({ image, rating, message }) => {
   if (!fontsLoaded) return null
 
   return (
-    <View style={{ flexDirection: 'row', marginTop: 13 }}>
+    <View style={{ flexDirection: 'row', marginTop: 13, width: '100%' }}>
       <Image
         source={{ uri: image }}
         style={{ width: 65, height: 65, borderRadius: 90 }}

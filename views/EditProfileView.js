@@ -158,7 +158,7 @@ export function EditProfileView({ route, navigation }) {
       },
       (e) =>
       {
-        console.log('failed to fetch user info, pls handle me') // TODO:ALERT
+        console.log('failed to fetch user info', e);
       }
     )
 
@@ -190,11 +190,11 @@ export function EditProfileView({ route, navigation }) {
       (s) => 
       {
         navigation.replace("AuthView")
-        //console.log('removed user'); // TODO:ALERT
+        //console.log('removed user'); 
       },
       (e) =>
       {
-        console.log('failed ', JSON.stringify(e)); // TODO:ALERT
+        console.log('failed ', e); 
       }
     )
 

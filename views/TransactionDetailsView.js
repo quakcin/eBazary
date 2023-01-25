@@ -18,6 +18,7 @@ import {
 import { Ubuntu_400Regular } from '@expo-google-fonts/ubuntu'
 import { Karla_400Regular } from '@expo-google-fonts/karla'
 import uuid from 'react-native-uuid';
+import servRequest from '../utils/Server';
 
 import {
   BanknotesIcon,
@@ -140,6 +141,22 @@ export function TransactionDetailsView({ navigation, route }) {
     )
   }
 
+  const deleteNotif = (e, navigation, route) => {
+    servRequest
+    (
+      'deleteNotif',
+      {
+        notifId: route.params.source.hook
+      },
+      (s) => {
+        navigation.navigate('BellView', { userId: route.params.userId});
+      },
+      (e) => {
+        console.log('failed to remove notification', e);
+      }
+    )
+  }
+
   // TODO: Move me into separate container type beat
   const genItemList = (items) => {
     const summedItems = [
@@ -175,7 +192,7 @@ export function TransactionDetailsView({ navigation, route }) {
                   fontFamily: 'Karla_400Regular'
                 }}
               >
-                {n.name}
+                {n.name.length > 28 ? n.name.substr(0, 28) + '...' : n.name} {/* TODO: Migrate to standalone component */}
               </Text>
             </View>
             <View>
@@ -186,7 +203,7 @@ export function TransactionDetailsView({ navigation, route }) {
                   fontFamily: 'Karla_400Regular'
                 }}
               >
-                {n.price}zł
+                {parseFloat(n.price).toFixed(2)}zł
               </Text>
             </View>
           </View>
@@ -201,20 +218,49 @@ export function TransactionDetailsView({ navigation, route }) {
     const stars = []
     for (let i = 0; i < 5; i++)
       stars.push(
-        <TouchableOpacity>
+        <TouchableOpacity
+          key={`star${i}`}
+          onPress={() => setStarsCount(i)}
+        >
           <StarIcon
-            key={uuid.v4()}
             style={{ color: i <= starsCount ? Colors.yellowish : Colors.dark }}
             width='25'
             height='25'
-            onPress={() => setStarsCount(i)}
           />
         </TouchableOpacity>
       )
     return stars
   }
 
-  const [opinion, setOpinion] = useState('')
+  const [opinion, setOpinion] = useState('');
+
+  const sendOpinion = function (e)
+  {
+    servRequest
+    (
+      'sendOpinion',
+      {
+        userId: route.params.userId,
+        sellerId: route.params.source.details.sellerId,
+        msg: opinion,
+        stars: starsCount + 1,
+        notifId: route.params.source.hook
+      },
+      (s) => {
+        console.log(s);
+        navigation.navigate
+        (
+          'BellView',
+          {
+            userId: route.params.userId
+          }
+        )
+      },
+      (e) => {
+        console.log('err: ', e);
+      }
+    )
+  }
 
   const genSuccesFooter = (src) => {
     return (
@@ -258,9 +304,7 @@ export function TransactionDetailsView({ navigation, route }) {
               width: '80%',
               alignSelf: 'center'
             }}
-            onPress={() => {
-              console.log('opinia: ', opinion, 'gwiazdki', starsCount)
-            }}
+            onPress={sendOpinion}
           >
             <Text
               style={{
@@ -282,7 +326,7 @@ export function TransactionDetailsView({ navigation, route }) {
     // console.log('metakye', src.details.buyer);
     const fields = Object.keys(src.details.buyer).map((n) =>
       n === 'user' ? (
-        <Text style={{ fontFamily: 'RobotoMono_600SemiBold' }} key={uuid.v4}>
+        <Text style={{ fontFamily: 'RobotoMono_600SemiBold' }} key={uuid.v4()}>
           Szczegóły kupującego:
         </Text>
       ) : (
@@ -342,6 +386,7 @@ export function TransactionDetailsView({ navigation, route }) {
 
   if (!fontsLoaded) return null
 
+  console.log(route.params.source);
   return (
     <Viewport navigation={navigation} active='Bell'>
       <ScrollView>
@@ -372,6 +417,32 @@ export function TransactionDetailsView({ navigation, route }) {
         <View style={{ marginTop: 25, marginBottom: 50 }}>
           {genFooter[route.params.source.type](route.params.source)}
         </View>
+        {/* <View>
+        <TouchableOpacity
+            style={{
+              borderRadius: 5,
+              backgroundColor: Colors.buttons,
+              paddingHorizontal: 45,
+              paddingVertical: 10,
+              alignItems: 'center',
+              marginTop: 2,
+              width: '80%',
+              alignSelf: 'center'
+            }}
+            onPress={(e) => deleteNotif(e, navigation, route)}
+          >
+            <Text
+              style={{
+                color: 'white',
+                fontSize: 15,
+                fontWeight: '400',
+                fontFamily: 'Karla_400Regular'
+              }}
+            >
+              Usuń powiadomienie
+            </Text>
+          </TouchableOpacity>
+        </View> */}
       </ScrollView>
     </Viewport>
   )

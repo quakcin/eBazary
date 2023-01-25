@@ -10,8 +10,9 @@ const CartItem = ({ data }) => {
     RobotoMono_500Medium
   })
 
+  /* WARN: unused */
   const deleteItem = () => {
-    console.log(`Removing ${JSON.stringify(data)}`)
+    // console.log(`Removing ${JSON.stringify(data)}`)
   }
 
   if (!fontsLoaded) return null

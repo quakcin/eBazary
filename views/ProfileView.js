@@ -50,6 +50,7 @@ export function ProfileView({ route, navigation })
     const [descr, setDescr] = useState('');
     const [image, setImage] = useState('');
     const [coms, setComs] = useState([]);
+    const [rendId, setRendId] = useState('');
   
   /*
     Request user info from the server:
@@ -62,7 +63,7 @@ export function ProfileView({ route, navigation })
 
     const override = route.params.profileOverride;
     navigation.setParams({userId: route.params.userId, profileOverride: null})
-
+    setRendId(override == null ? route.params.userId : override);
     servRequest
     (
       'userInfo',
@@ -72,11 +73,11 @@ export function ProfileView({ route, navigation })
       (s) =>
       {
         // console.log("Refreshing Data!")
+        // console.log('COMMENTS', s.user.comments);
         setUser(s.user.user);
         setDescr(s.user.descr);
         setImage(s.user.image);
-        // setComs(JSON.parse(s.comments));
-        // console.log('stary osełki');
+        setComs(s.comments);
         servRequest
         (
           'profileView',
@@ -104,6 +105,41 @@ export function ProfileView({ route, navigation })
 
   }, [isFocused]);
 
+  const renderEditBtn = function(navigation, route)
+  {
+    if (rendId != route.params.userId)
+      return (
+        <View></View>
+      )
+       return (
+            <TouchableOpacity
+              style={{
+                borderRadius: 5,
+                backgroundColor: lightMode
+                  ? Colors.buttons
+                  : Colors.buttonsDarkMode,
+                paddingHorizontal: 45,
+                paddingVertical: 10,
+                alignItems: 'center',
+                marginTop: 15
+              }}
+              onPress={() => {
+                navigation.navigate('EditProfileView')
+              }}
+            >
+              <Text
+                style={{
+                  color: 'white',
+                  fontSize: 15,
+                  fontWeight: '400',
+                  fontFamily: 'Karla_400Regular',
+                }}
+              >
+                Edytuj Profil
+              </Text>
+            </TouchableOpacity>)
+  }
+
   return (
     <>
       <Viewport navigation={navigation} active='Profile'>
@@ -111,7 +147,7 @@ export function ProfileView({ route, navigation })
           <View
             style={{
               padding: 30,
-              width: '100%'
+              width: '100%',
             }}
           >
             <View
@@ -206,33 +242,7 @@ export function ProfileView({ route, navigation })
                 Moje Zakupy
               </Text>
             </TouchableOpacity>
-
-            <TouchableOpacity
-              style={{
-                borderRadius: 5,
-                backgroundColor: lightMode
-                  ? Colors.buttons
-                  : Colors.buttonsDarkMode,
-                paddingHorizontal: 45,
-                paddingVertical: 10,
-                alignItems: 'center',
-                marginTop: 15
-              }}
-              onPress={() => {
-                navigation.navigate('EditProfileView')
-              }}
-            >
-              <Text
-                style={{
-                  color: 'white',
-                  fontSize: 15,
-                  fontWeight: '400',
-                  fontFamily: 'Karla_400Regular',
-                }}
-              >
-                Edytuj Profil
-              </Text>
-            </TouchableOpacity>
+            {renderEditBtn(navigation, route)}
 
             <Text
               style={{
@@ -251,19 +261,21 @@ export function ProfileView({ route, navigation })
                     fontWeight: '600'
                   }}
                 >
-                  {coms.length}
+                  {coms != null ? coms.length : 0}
                 </Text>
               }{' '}
               opinie
             </Text>
-            {coms.map((n) => (
-              <Opinion
-                image={n.img}
-                rating={n.stars}
-                message={n.msg}
-                key={n.msg}
-              />
-            ))}
+            <View style={{width: '100%', pading: 0, alignContent: 'left'}}>
+              {coms != null && coms.map((n) => (
+                <Opinion
+                  image={n.image}
+                  rating={n.star}
+                  message={n.opinionText}
+                  key={n.opinionText}
+                />
+              ))}
+            </View>
 
           </View>
         </ScrollView>

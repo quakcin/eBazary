@@ -15,10 +15,12 @@ import { NewOfferView } from '../views/NewOfferView'
 import { PasswordCtlView } from '../views/PasswordCtlView'
 import { ProfileView } from '../views/ProfileView'
 import { Karla_400Regular, useFonts } from '@expo-google-fonts/karla'
-import { Text, View } from 'react-native'
+import { Text, View, LogBox } from 'react-native'
 import { Colors } from './Colors'
 import Tabs from './Tabs'
 import { useEffect, useState } from 'react'
+LogBox.ignoreLogs(['Warning:']);
+
 
 const Drawer = createDrawerNavigator()
 

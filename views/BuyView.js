@@ -25,15 +25,6 @@ import servRequest from '../utils/Server';
 import uuid from 'react-native-uuid';
 
 
-// const serverResp = {
-//   items: [
-//     { name: 'Perfumy męskie Calivin Klein', price: 130 },
-//     { name: 'Frytkownica Pyrex', price: 52 },
-//     { name: 'Kurtka męska zimowa L', price: 253 },
-//     { name: 'Kalesony sportowe', price: 43 }
-//   ]
-// }
-
 import * as Location from 'expo-location';
 
 export function BuyView({ route, navigation }) {
@@ -45,7 +36,8 @@ export function BuyView({ route, navigation }) {
 
 
   useEffect(() => {
-    console.log('offers', route.params.offers)
+    /* WARN: unused */
+    // console.log('offers', route.params.offers)
   }, [])
 
   const genItemList = (items) => {
@@ -82,7 +74,7 @@ export function BuyView({ route, navigation }) {
                   fontFamily: 'Karla_400Regular'
                 }}
               >
-                {n.name}
+                {n.name.length > 28 ? n.name.substr(0, 28) + '...' : n.name}
               </Text>
             </View>
             <View>
@@ -104,7 +96,7 @@ export function BuyView({ route, navigation }) {
 
   const [selected, setSelected] = useState('')
   const data = [
-    { key: 'Poczta Polskap', value: 'Poczta Polska' },
+    { key: 'Poczta Polska', value: 'Poczta Polska' },
     { key: 'Kurier DPD', value: 'Kurier DPD' },
     { key: 'Kurier DHL', value: 'Kurier DHL' },
     { key: 'Paczkomat InPost', value: 'Paczkomat InPost' }
@@ -139,7 +131,7 @@ export function BuyView({ route, navigation }) {
   {
     if (location != null)
     {
-      console.log(location);
+      // console.log(location);
 
       // prep request url
       const apiRequest = `https://api.geoapify.com/v1/geocode/reverse?lat=${location.coords.latitude}&lon=${location.coords.longitude}&apiKey=24d24bff67b34d988d0adc504c1f8ed9`;
@@ -190,7 +182,8 @@ export function BuyView({ route, navigation }) {
         },
         (s) =>
         {
-          console.log("Bought!");
+          // console.log("Bought!");
+          /* pass */
         },
         (e) =>
         {

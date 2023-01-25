@@ -31,7 +31,7 @@ export function BellView({ route, navigation }) {
           console.log('getNotifs Failed', e);
         }
       )
-    }, 3000);
+    }, 500);
     // setNotifications(serverResp)
   }, [])
 
@@ -45,6 +45,7 @@ export function BellView({ route, navigation }) {
               source={n}
               key={n.hook}
               navigation={navigation}
+              route={route}
             />
           ))}
         </View>

@@ -77,7 +77,7 @@ export default function ({route, navigation}) // won't work anyways
             />
           ),
           tabBarBadge: cartItemCount.length,
-          tabBarBadgeStyle: { backgroundColor: Colors.reddish }          
+          tabBarBadgeStyle: { backgroundColor: Colors.buttons }          
         }}
         initialParams={{ userId: route.params.userId }}
       />

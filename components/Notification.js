@@ -14,15 +14,16 @@ import {
 } from '@expo-google-fonts/roboto-mono'
 import { Ubuntu_400Regular } from '@expo-google-fonts/ubuntu'
 import { Karla_400Regular } from '@expo-google-fonts/karla'
+import servRequest from '../utils/Server';
 
-export default function Notification({ kind, source, navigation }) {
+export default function Notification({ kind, source, route, navigation }) {
   // console.log('creating notification from: ', kind, source);
 
   const iconSize = 40
 
   const kinds = {
     NewOpinion: {
-      title: 'Dodano opinię na twój temat',
+      title: 'Dodano opinię na Twój temat',
       subtitle: 'Kliknij tutaj aby zobaczyć',
       icon: (
         <StarIcon
@@ -33,7 +34,7 @@ export default function Notification({ kind, source, navigation }) {
       )
     },
     NewViews: {
-      title: 'Ktoś odwiedził twój profil',
+      title: 'Ktoś odwiedził Twój profil',
       subtitle: 'Oby tak dalej!',
       icon: (
         <EyeIcon
@@ -66,7 +67,7 @@ export default function Notification({ kind, source, navigation }) {
       )
     },
     NewBuyer: {
-      title: 'Ktoś kupił twój produkt',
+      title: 'Ktoś kupił Twój produkt',
       subtitle: 'Zobacz kto',
       icon: (
         <MegaphoneIcon
@@ -90,6 +91,21 @@ export default function Notification({ kind, source, navigation }) {
     <View style={{ marginTop: 20, width: '100%', alignItems: 'center' }}>
       <TouchableOpacity
         style={{ width: '80%', alignItems: 'flex-start', paddingLeft: '2%' }}
+        onLongPress={() => {
+          servRequest
+          (
+            'deleteNotif',
+            {
+              notifId: source.hook
+            },
+            (s) => {
+              // pass
+            },
+            (e) => {
+              console.log('failed to rm notification', e);
+            }
+          )
+        }}
         onPress={() => {
           // console.log(source)
           if (
@@ -100,7 +116,15 @@ export default function Notification({ kind, source, navigation }) {
             navigation.navigate({
               name: 'TransactionDetailsView',
               merge: true,
-              params: { source: source }
+              params: { source: source, userId: route.params.userId }
+            })
+          }
+          else if (source.type == 'NewOpinion')
+          {
+            navigation.navigate({
+              name: 'ProfileView',
+              merge: true,
+              params: { userId: route.params.userId }
             })
           }
         }}

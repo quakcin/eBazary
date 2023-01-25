@@ -10,7 +10,7 @@ import {
   TouchableOpacity
 } from 'react-native'
 import { Viewport } from '../utils/Viewport'
-import { useEffect, useState, SafeAreaView } from 'react'
+import { useEffect, useState, SafeAreaView, useRef } from 'react'
 import AutoHeightImage from 'react-native-auto-height-image'
 import VerticalSlider from '../components/ImageSlider'
 import {
@@ -43,6 +43,7 @@ export function OfferView({ route, navigation }) {
   const [isRenderingMap, setIsRenderingMap] = useState(false);
   const isFocused = useIsFocused()
 
+  const mapRef = useRef();
 
   const renderMap = (lat, lon, coords) => <View>
       <MapView 
@@ -50,6 +51,7 @@ export function OfferView({ route, navigation }) {
           width: '100%',
           height: 300
         }}
+        ref = {mapRef}
         zoom = {1000}
         initialRegion = {{
           latitude: lat,
@@ -89,6 +91,10 @@ export function OfferView({ route, navigation }) {
         setLon(s.lon);
         setCoords({latitude: s.lat, longitude: s.lon});
         setIsRenderingMap(true);
+        mapRef.current.animateToRegion
+        ({
+          latitude: s.lat, longitude: s.lon, latitudeDelta: 0.009, longitudeDelta: 0.009
+        });
       },
       (e) =>
       {

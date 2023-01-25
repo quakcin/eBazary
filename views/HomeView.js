@@ -61,7 +61,7 @@ export function HomeView({ route, navigation }) {
   // fix drop down hooks
   let querying = null;
 
-  const perfSearch = (custom = null, kind = null, cpMin = null, cpMax = null, cFilter = null) => 
+  const perfSearch = (custom = null, kind = null, cpMin = null, cpMax = null, cFilter = null, cPage = null) => 
   {
     const qr = custom !== null 
      ? custom 
@@ -73,7 +73,7 @@ export function HomeView({ route, navigation }) {
     (
       'search',
       {
-        page: page,
+        page: cPage ?? page,
         query: qr,
         pmin: cpMin ?? (pMin === '' ? '0' : pMin),
         pmax: cpMax ?? (pMax === '' ? '9999999' : pMax),
@@ -88,6 +88,7 @@ export function HomeView({ route, navigation }) {
         {
           setOffers(s.offers);
           setPageCount(s.pages)
+          setPage(cPage ?? page);
           // console.log(s.offers);
         }
       },
@@ -136,7 +137,7 @@ export function HomeView({ route, navigation }) {
             onChangeText={(txt) => 
             {
               setQuery(txt);
-              perfSearch(txt); /* FIXED: EB1-I12 */
+              perfSearch(txt, null, null, null, null, 0); /* FIXED: EB1-I12 */
             }}
           />
 
@@ -288,7 +289,8 @@ export function HomeView({ route, navigation }) {
               subtitle={o.kind}
               image={o.thumb}
               onSubtitleClick={() => {
-                console.log('Do nothing cause ' + o.title)
+                /* purposefully handled */
+                // console.log('Do nothing cause ' + o.title)
               }}
               onTileClick={(n) => {
                 // console.log('navigation to offerId: ', o.offerId);
@@ -312,7 +314,7 @@ export function HomeView({ route, navigation }) {
             if (page <= 0)
               return;
             setPage(page - 1);
-            perfSearch();
+            perfSearch(null, null, null, null, null, page - 1);
           }}>
             <ArrowSmallLeftIcon
               style={{ color: page <= 0 ? '#ffffff' : '#000000' }} /* EB1-I11 */
@@ -325,7 +327,7 @@ export function HomeView({ route, navigation }) {
             if (page >= pageCount)
               return;
             setPage(page + 1);
-            perfSearch();
+            perfSearch(null, null, null, null, null, page + 1);
           }}>
             <ArrowSmallRightIcon
               style={{ color: page >= pageCount ? '#ffffff' : '#000000' }} /* EB1-I11 */

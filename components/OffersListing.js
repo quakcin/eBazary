@@ -10,6 +10,7 @@ import {
 import { useFonts, RobotoMono_500Medium } from '@expo-google-fonts/roboto-mono'
 import { Ubuntu_400Regular } from '@expo-google-fonts/ubuntu'
 import { Colors } from '../utils/Colors'
+import uuid from 'react-native-uuid';
 
 import OfferTile from './OfferTile'
 
@@ -40,7 +41,7 @@ const OffersListing = ({
             image={o.image}
             onSubtitleClick={(e, v = o) => onSubtitleClick(e, v)}
             onTileClick={(e, v = o) => onTitleClick(e, v)}
-            key={o.title}
+            key={uuid.v4()}
           />
         ))}
       </ScrollView>
