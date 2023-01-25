@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react'
 import { ScrollView, View } from 'react-native'
-import { useTailwind } from 'tailwind-rn'
 import ShoppingHistoryItem from '../components/ShoppingHistoryItem'
 import { Viewport } from '../utils/Viewport'
 import OffersListing from '../components/OffersListing'

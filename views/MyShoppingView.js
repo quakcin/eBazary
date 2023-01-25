@@ -1,7 +1,6 @@
 import { StatusBar } from 'expo-status-bar'
 import { useEffect, useState } from 'react'
 import { StyleSheet, Text, View, Button, ScrollView } from 'react-native'
-import { useTailwind } from 'tailwind-rn'
 import ShoppingHistoryItem from '../components/ShoppingHistoryItem'
 import { Viewport } from '../utils/Viewport'
 
@@ -11,7 +10,6 @@ import servRequest from '../utils/Server';
 import { useIsFocused } from '@react-navigation/native'
 
 export function MyShoppingView({ route, navigation }) {
-  const tw = useTailwind()
 
   const [hist, setHist] = useState(null);
 

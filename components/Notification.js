@@ -7,7 +7,6 @@ import {
   ExclamationTriangleIcon,
   MegaphoneIcon
 } from 'react-native-heroicons/outline'
-import { useTailwind } from 'tailwind-rn'
 import { Colors } from '../utils/Colors'
 import {
   useFonts,
@@ -18,7 +17,6 @@ import { Karla_400Regular } from '@expo-google-fonts/karla'
 
 export default function Notification({ kind, source, navigation }) {
   // console.log('creating notification from: ', kind, source);
-  const tw = useTailwind()
 
   const iconSize = 40
 

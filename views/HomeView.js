@@ -9,7 +9,6 @@ import {
   Button,
   StyleSheet
 } from 'react-native'
-import { useTailwind } from 'tailwind-rn'
 import { Viewport } from '../utils/Viewport'
 import OfferTile from '../components/OfferTile'
 import { useEffect, useState } from 'react'
@@ -30,7 +29,6 @@ import { useIsFocused } from '@react-navigation/native'
 const Drawer = createDrawerNavigator()
 
 export function HomeView({ route, navigation }) {
-  const tw = useTailwind()
 
   const [offers, setOffers] = useState([])
   const [isShowingFilters, setIsShowingFilters] = useState(false)

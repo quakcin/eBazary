@@ -10,13 +10,11 @@ import {
   TouchableOpacity,
   Alert
 } from 'react-native'
-import { useTailwind } from 'tailwind-rn'
 import { Colors } from '../utils/Colors'
 import { Viewport } from '../utils/Viewport'
 import servRequest from '../utils/Server';
 
 export function PasswordCtlView({ route, navigation }) {
-  const tw = useTailwind()
 
   const [currentPassword, setCurrentPassword] = useState('')
   const [newPassword, setNewPassword] = useState('')

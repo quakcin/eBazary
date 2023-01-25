@@ -15,9 +15,6 @@ import MakePhotoWidget from '../components/MakePhotoWidget'
 import RemovePhotoWidget from '../components/RemovePhotoWidget'
 import SelectList from 'react-native-dropdown-select-list'
 import { useState } from 'react'
-import { useFonts, RobotoMono_500Medium } from '@expo-google-fonts/roboto-mono'
-import { Ubuntu_400Regular } from '@expo-google-fonts/ubuntu'
-import { Karla_400Regular } from '@expo-google-fonts/karla'
 import { Colors } from '../utils/Colors'
 import servRequest from '../utils/Server';
 import UUIDGenerator from 'react-native-uuid-generator';
@@ -80,7 +77,6 @@ export function NewOfferView({ route, navigation })
       setCoords({latitude: loc.coords.latitude, longitude: loc.coords.longitude});
     }
   }, [loc, rerender]);
-
 
   const addOffer = function (e) 
   {
@@ -195,6 +191,7 @@ export function NewOfferView({ route, navigation })
   });
   setCoords({latitude: loc.coords.latitude, longitude: loc.coords.longitude});  
   */
+
   const normalView = function ()
   {
     return (
@@ -207,7 +204,7 @@ export function NewOfferView({ route, navigation })
               paddingTop: 25,
               paddingBottom: 25,
             }}
-      >
+          >
             <TextInput
               style={[styles.defaultInput, styles.shortInput]}
               onChangeText={setTytul}

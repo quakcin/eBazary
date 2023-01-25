@@ -9,7 +9,6 @@ import {
   TouchableOpacity,
   TextInput
 } from 'react-native'
-import { useTailwind } from 'tailwind-rn'
 import { Viewport } from '../utils/Viewport'
 import { useEffect, useState } from 'react'
 import {
@@ -29,7 +28,6 @@ import {
 import { Colors } from '../utils/Colors'
 
 export function TransactionDetailsView({ navigation, route }) {
-  const tw = useTailwind()
 
   let [fontsLoaded] = useFonts({
     RobotoMono_600SemiBold,

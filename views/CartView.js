@@ -7,7 +7,6 @@ import {
   ScrollView,
   TouchableOpacity
 } from 'react-native'
-import { useTailwind } from 'tailwind-rn'
 import OfferTile from '../components/OfferTile'
 import { Viewport } from '../utils/Viewport'
 import { Colors } from '../utils/Colors'

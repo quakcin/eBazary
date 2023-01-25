@@ -1,8 +1,6 @@
 import 'react-native-gesture-handler'
 import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
-import { TailwindProvider } from 'tailwind-rn'
-import utilities from './tailwind.json'
 import { AuthView } from './views/AuthView.js'
 import { OfferView } from './views/OfferView'
 import { BuyView } from './views/BuyView'
@@ -33,7 +31,7 @@ export default function App() {
   })
 
   return (
-    <TailwindProvider utilities={utilities}>
+    <>
       <StatusBar  barStyle="light-content" translucent={true} />
       <NavigationContainer>
         <Stack.Navigator
@@ -110,6 +108,6 @@ export default function App() {
           />
         </Stack.Navigator>
       </NavigationContainer>
-    </TailwindProvider>
+    </>
   )
 }

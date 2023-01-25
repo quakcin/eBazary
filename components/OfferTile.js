@@ -7,7 +7,6 @@ import {
   BellIcon,
   UserCircleIcon
 } from 'react-native-heroicons/outline'
-import { useTailwind } from 'tailwind-rn'
 import { useFonts, RobotoMono_500Medium } from '@expo-google-fonts/roboto-mono'
 import { Ubuntu_400Regular } from '@expo-google-fonts/ubuntu'
 import { Colors } from '../utils/Colors'
@@ -22,7 +21,6 @@ const OfferTile = ({
   onTileClick,
   onSubtitleClick
 }) => {
-  const tw = useTailwind()
 
   let [fontsLoaded] = useFonts({
     Ubuntu_400Regular,

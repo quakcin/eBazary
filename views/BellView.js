@@ -1,14 +1,12 @@
 import { StatusBar } from 'expo-status-bar'
 import { useEffect, useState } from 'react'
 import { StyleSheet, Text, View, Button, ScrollView } from 'react-native'
-import { useTailwind } from 'tailwind-rn'
 import { Viewport } from '../utils/Viewport'
 import Notification from '../components/Notification'
 
 import servRequest from '../utils/Server';
 
 export function BellView({ route, navigation }) {
-  const tw = useTailwind()
 
   const [notifications, setNotifications] = useState([])
 

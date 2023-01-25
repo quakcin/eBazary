@@ -7,11 +7,9 @@ import {
   BellIcon,
   UserCircleIcon
 } from 'react-native-heroicons/outline'
-import { useTailwind } from 'tailwind-rn'
 import { Colors } from './Colors'
 
 const NavBar = ({ navigation, active }) => {
-  const tw = useTailwind()
 
   const colors = {
     Cart: '',

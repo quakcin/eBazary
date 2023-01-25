@@ -8,7 +8,6 @@ import {
   TouchableOpacity,
   ScrollView
 } from 'react-native'
-import { useTailwind } from 'tailwind-rn'
 import Opinion from '../components/Opinion'
 import { Viewport } from '../utils/Viewport'
 import {

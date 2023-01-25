@@ -9,7 +9,6 @@ import {
   ScrollView,
   TouchableOpacity
 } from 'react-native'
-import { useTailwind } from 'tailwind-rn'
 import { Viewport } from '../utils/Viewport'
 import { useEffect, useState, SafeAreaView } from 'react'
 import AutoHeightImage from 'react-native-auto-height-image'
@@ -36,7 +35,6 @@ import {
 import { useIsFocused } from '@react-navigation/native'
 
 export function OfferView({ route, navigation }) {
-  const tw = useTailwind()
 
   const [offer, setOffer] = useState({ imgs: [], price: 0, title: '', descr: '' })
   const [coords, setCoords] = useState({latitude: 0, longitude: 0});

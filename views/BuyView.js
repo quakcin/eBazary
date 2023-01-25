@@ -10,7 +10,6 @@ import {
   Alert
 } from 'react-native'
 import { ArchiveBoxArrowDownIcon } from 'react-native-heroicons/outline'
-import { useTailwind } from 'tailwind-rn'
 import { Viewport } from '../utils/Viewport'
 import { useEffect, useState } from 'react'
 import DropDownPicker from 'react-native-dropdown-picker'
@@ -44,7 +43,6 @@ export function BuyView({ route, navigation }) {
     Karla_400Regular
   })
 
-  const tw = useTailwind()
 
   useEffect(() => {
     console.log('offers', route.params.offers)
