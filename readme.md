@@ -1,14 +1,5 @@
-
-
-** TODO:
-
-- Marcin:
-[x] Wszystkie od notifkacji 
-[x] Finalizacja Zakupu
-
-- Maciek:
-[x] Logowanie i rejestracja
-
-- Michał (R.I.P)
-[ ] Dodawanie nowego ogłoszenia
-[ ] Moje Konto
+Yet another school project.
+Mobile app for an online shopping service. 
+Actuall had to write semi-working backend. 
+Forget any security or safety precautions. 
+Written in react-native and php.
